@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState, useCallback } from "react";
+import LeadForm from "@/components/LeadForm";
 
 /* ─── Zenora Coordinates (Goldwins / Veeriampalayam, Coimbatore) ─── */
 const ZENORA_LAT = 11.0653565;
@@ -16,6 +17,8 @@ export default function MapSection() {
   const tileLayerRef = useRef<any>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isDark, setIsDark] = useState(true);
+  const [showWebverseForm, setShowWebverseForm] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const leafletRef = useRef<any>(null);
 
   /* ─── Toggle theme ─── */
@@ -24,6 +27,7 @@ export default function MapSection() {
   }, []);
 
   useEffect(() => {
+    setMounted(true);
     if (mapInstanceRef.current) return;
 
     import("leaflet").then((L) => {
@@ -159,8 +163,24 @@ export default function MapSection() {
     };
   }, []);
 
+  if (!mounted) {
+    return (
+      <section id="map-section" className="relative pt-6 pb-20 overflow-hidden" style={{ minHeight: "800px" }}>
+        <div className="absolute inset-0 z-30 flex items-center justify-center bg-[#f5f1ed]">
+          <div className="flex flex-col items-center gap-4">
+            <div className="w-10 h-10 border-2 border-[#e1b258]/30 border-t-[#e1b258] rounded-full animate-spin" />
+            <p className="font-body text-[#ab948a] text-xs uppercase" style={{ fontFamily: "'BW Diagrid', sans-serif" }}>
+              Loading map...
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
-    <section id="map-section" className="relative pt-6 pb-20 overflow-hidden">
+    <>
+      <section id="map-section" className="relative pt-6 pb-20 overflow-hidden">
       {/* ─── Background texture ─── */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -283,11 +303,9 @@ export default function MapSection() {
                 View on Google Maps
               </a>
 
-              <a
-                href="https://zenvistas.spimproject.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 font-body text-[10px] uppercase text-[#e1b258] hover:text-white transition-colors duration-300"
+              <button
+                onClick={() => setShowWebverseForm(true)}
+                className="inline-flex items-center gap-2 font-body text-[10px] uppercase text-[#e1b258] hover:text-white transition-colors duration-300 bg-transparent border-none cursor-pointer p-0"
               >
                 <svg
                   className="w-3.5 h-3.5"
@@ -303,7 +321,7 @@ export default function MapSection() {
                   />
                 </svg>
                 Explore in Webverse
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -365,6 +383,14 @@ export default function MapSection() {
           filter: none !important;
         }
       `}</style>
-    </section>
+      </section>
+
+      {/* ─── Webverse Lead Form ─── */}
+      <LeadForm
+        open={showWebverseForm}
+        onClose={() => setShowWebverseForm(false)}
+        redirectUrl="https://zenvistas.spimproject.com/"
+      />
+    </>
   );
 }

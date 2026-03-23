@@ -5,9 +5,10 @@ import { X } from "lucide-react";
 interface LeadFormProps {
   open: boolean;
   onClose: () => void;
+  redirectUrl?: string;
 }
 
-export default function LeadForm({ open, onClose }: LeadFormProps) {
+export default function LeadForm({ open, onClose, redirectUrl }: LeadFormProps) {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -33,19 +34,38 @@ export default function LeadForm({ open, onClose }: LeadFormProps) {
         body: JSON.stringify(data),
       });
 
-      if (!res.ok) throw new Error("Submission failed");
+      if (!res.ok) {
+        console.error("API Error:", await res.text());
+        if (!redirectUrl) throw new Error("Submission failed");
+      }
       
-      // Trigger PDF download
-      const link = document.createElement("a");
-      link.href = "/brochure/zenora-brochure.pdf";
-      link.download = "Zenora-Brochure.pdf";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      
-      setSubmitted(true);
-    } catch {
-      setError("Something went wrong. Please try again.");
+      if (redirectUrl) {
+        // Redirect to the provided URL after form submission
+        setSubmitted(true);
+        setTimeout(() => {
+          window.open(redirectUrl, "_blank", "noopener,noreferrer");
+        }, 1200);
+      } else {
+        // Default: trigger PDF download
+        const link = document.createElement("a");
+        link.href = "/brochure/zenora-brochure.pdf";
+        link.download = "Zenora-Brochure.pdf";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        setSubmitted(true);
+      }
+    } catch (err) {
+      console.error(err);
+      if (redirectUrl) {
+        // Still allow the redirect even if the API throws a network error
+        setSubmitted(true);
+        setTimeout(() => {
+          window.open(redirectUrl, "_blank", "noopener,noreferrer");
+        }, 1200);
+      } else {
+        setError("Something went wrong. Please try again.");
+      }
     } finally {
       setLoading(false);
     }
@@ -78,7 +98,9 @@ export default function LeadForm({ open, onClose }: LeadFormProps) {
             <div className="w-12 h-px bg-[#e1b258] mx-auto mb-6" />
             <h3 className="font-display text-2xl text-[#28362b] mb-4">Thank you</h3>
             <p className="font-body text-[#594433] text-base leading-relaxed">
-              We'll be in touch shortly to help you discover Zenora.
+              {redirectUrl
+                ? "Redirecting you to the Webverse experience..."
+                : "We'll be in touch shortly to help you discover Zenora."}
             </p>
           </div>
         ) : (
@@ -127,7 +149,7 @@ export default function LeadForm({ open, onClose }: LeadFormProps) {
                 disabled={loading}
                 className="mt-4 bg-[#28362b] text-[#e1d5c9] font-body text-xs uppercase py-4 hover:bg-[#e1b258] hover:text-[#28362b] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {loading ? "Submitting..." : "Download Brochure"}
+                {loading ? "Submitting..." : redirectUrl ? "Continue to Webverse" : "Download Brochure"}
               </button>
 
               {error && (

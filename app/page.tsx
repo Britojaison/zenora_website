@@ -8,6 +8,7 @@ import Amenities from "@/components/Amenities";
 import Highlights from "@/components/Highlights";
 import Gallery from "@/components/Gallery";
 import Location from "@/components/Location";
+import CoffeeWithZenora from "@/components/CoffeeWithZenora";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -37,6 +38,7 @@ export default function Home() {
       />
       <Gallery />
       <Location />
+      <CoffeeWithZenora />
       <FAQ />
       <Contact />
       <Footer />
