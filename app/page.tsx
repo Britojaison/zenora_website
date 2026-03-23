@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Intro from "@/components/Intro";
+import MapSection from "@/components/MapSection";
 import Residences from "@/components/Residences";
 import FullBleedImage from "@/components/FullBleedImage";
 import Amenities from "@/components/Amenities";
@@ -19,6 +20,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Intro />
+      <MapSection />
       <Residences />
       <FullBleedImage
         src="/img/7-cent-side.jpg"
