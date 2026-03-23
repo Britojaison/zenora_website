@@ -60,7 +60,7 @@ export default function CoffeeWithZenora() {
         {/* ─── Full Bleed Background Image ─── */}
         <Image
           src="/images/coffee_with_Zenora.png"
-          alt="Coffee with Zenora – Exclusive Dinner Experience"
+          alt="Coffee with Zenora – Exclusive Coffee Experience"
           fill
           sizes="100vw"
           className="object-cover"
@@ -91,20 +91,9 @@ export default function CoffeeWithZenora() {
 
           {/* Label Removed */}
 
-          {/* Heading */}
-          <h2
-            className={`font-display text-[clamp(2rem,5vw,4rem)] text-[#e1d5c9] text-center leading-[1.15] mb-6 transition-all duration-700 delay-300 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-6"
-            }`}
-          >
-            Exclusive Dinner with Zenora
-          </h2>
-
           {/* Subtitle */}
           <p
-            className={`font-body text-[#e1b258] text-sm uppercase mb-10 transition-all duration-700 delay-400 ${
+            className={`font-body text-[#e1b258] text-sm uppercase mb-12 transition-all duration-700 delay-300 ${
               isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-4"
@@ -112,6 +101,17 @@ export default function CoffeeWithZenora() {
           >
             A VIP Experience
           </p>
+
+          {/* Heading */}
+          <h2
+            className={`font-display text-[clamp(2rem,5vw,4rem)] text-[#e1d5c9] text-center leading-[1.15] mb-8 transition-all duration-700 delay-400 ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-6"
+            }`}
+          >
+            Exclusive Coffee with Zenora
+          </h2>
 
           {/* Description */}
           <div
@@ -121,14 +121,14 @@ export default function CoffeeWithZenora() {
                 : "opacity-0 translate-y-6"
             }`}
           >
-            <p className="font-body text-[#e1d5c9] text-base md:text-lg leading-[1.9] tracking-wide" style={{ WebkitFontSmoothing: 'antialiased', WebkitTextStroke: '0.4px #0a0806' }}>
+            <p className="font-body text-[#e1d5c9] text-base md:text-lg leading-[1.9] tracking-wide">
               An intimate, invite-only evening designed for those who appreciate
-              luxury living. Join us for an exclusive dinner at Zenora Villas.
+              luxury living. Join us for an exclusive coffee at Zenora Villas.
               This intimate event offers a personal walkthrough of our luxury
               villas, combined with fine dining in an upscale, relaxed setting.
             </p>
             <div className="w-8 h-px bg-[#e1b258]/40 mx-auto my-6" />
-            <p className="font-body text-[#ab948a] text-sm md:text-base leading-[1.9] tracking-wide" style={{ WebkitFontSmoothing: 'antialiased', WebkitTextStroke: '0.4px #0a0806' }}>
+            <p className="font-body text-[#ab948a] text-sm md:text-base leading-[1.9] tracking-wide">
               You&apos;ll also have the opportunity to connect with key
               individuals behind some of the region&apos;s most successful and
               influential ventures.
@@ -200,7 +200,7 @@ export default function CoffeeWithZenora() {
                 <X size={18} />
               </button>
               <p className="font-body text-[#e1b258] text-xs uppercase mb-3">
-                Exclusive Dinner
+                Exclusive Coffee
               </p>
               <h3 className="font-display text-2xl text-[#e1d5c9] mb-1">
                 Available Slots This Week
@@ -377,7 +377,7 @@ export default function CoffeeWithZenora() {
                 {/* Header */}
                 <div className="mb-8">
                   <p className="font-body text-[#e1b258] text-xs uppercase mb-3">
-                    Exclusive Dinner
+                    Exclusive Coffee
                   </p>
                   <h3 className="font-display text-3xl text-[#28362b] mb-2">
                     Reserve Your Spot
@@ -490,7 +490,7 @@ export default function CoffeeWithZenora() {
                     <textarea
                       id="cwz-requests"
                       name="requests"
-                      placeholder="Dietary restrictions, preferences for the dinner..."
+                      placeholder="Dietary restrictions, preferences for the coffee..."
                       rows={3}
                       className="bg-transparent border-b border-[#ab948a]/30 py-3 font-body text-base text-[#28362b] placeholder:text-[#ab948a]/50 focus:border-[#e1b258] focus:outline-none transition-colors resize-none"
                     />
