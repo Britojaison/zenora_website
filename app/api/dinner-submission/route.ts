@@ -7,10 +7,12 @@ const DATA_FILE_PATH = path.join(process.cwd(), "data", "dinner_submissions.json
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
+    console.log("Received dinner submission body:", body);
     const { fullName, phone, email, income, requests } = body;
 
     // Validate request
     if (!fullName || !phone || !email || !income) {
+      console.log("Validation failed - missing fields:", { fullName, phone, email, income });
       return NextResponse.json({ error: "Required fields missing" }, { status: 400 });
     }
 
