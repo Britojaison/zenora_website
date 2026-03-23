@@ -45,3 +45,6 @@ public/videos/
 # env files
 .env.local
 .env*.local
+
+# data
+/data/
