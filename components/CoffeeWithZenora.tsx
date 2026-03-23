@@ -81,10 +81,13 @@ export default function CoffeeWithZenora() {
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#e1b258]/30 to-transparent" />
 
         {/* ─── Content ─── */}
-        <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 md:px-20 py-24">
+        <div 
+          className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 md:px-20 py-24"
+          style={{ transform: 'translateY(-10%)' }}
+        >
           {/* Gold accent line */}
           <div
-            className={`w-12 h-px bg-[#e1b258] mb-8 transition-all duration-1000 ${
+            className={`w-12 h-px bg-[#e1b258] mb-4 transition-all duration-1000 ${
               isVisible ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
             }`}
           />
@@ -93,7 +96,7 @@ export default function CoffeeWithZenora() {
 
           {/* Subtitle */}
           <p
-            className={`font-body text-[#e1b258] text-sm uppercase mb-12 transition-all duration-700 delay-300 ${
+            className={`font-body text-[#e1b258] text-sm uppercase mb-4 transition-all duration-700 delay-300 ${
               isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-4"
