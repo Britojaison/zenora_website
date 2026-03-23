@@ -24,9 +24,7 @@ const outdoorImages = [
   "/outdoor/View-06.png",
   "/outdoor/View-08.png",
   "/outdoor/View-09.png",
-  "/outdoor/View-10.png",
   "/outdoor/View-12.png",
-  "/outdoor/View-13.png",
   "/outdoor/View-14.png",
   "/outdoor/View-34.png",
   "/outdoor/View-41.png",
@@ -124,7 +122,7 @@ export default function Gallery() {
     autoScrollRef.current = setInterval(() => {
       const el = scrollRef.current;
       if (!el) return;
-      
+
       const children = el.children;
       if (children.length > currentImages.length) {
         const firstSetWidth = (children[currentImages.length] as HTMLElement).offsetLeft - (children[0] as HTMLElement).offsetLeft;
@@ -132,7 +130,7 @@ export default function Gallery() {
           el.scrollLeft -= firstSetWidth;
         }
       }
-      
+
       el.scrollBy({ left: 1, behavior: "auto" });
     }, 20);
 
@@ -147,7 +145,7 @@ export default function Gallery() {
   const scroll = (direction: "left" | "right") => {
     const el = scrollRef.current;
     if (!el) return;
-    
+
     const children = el.children;
     if (children.length > currentImages.length) {
       const firstSetWidth = (children[currentImages.length] as HTMLElement).offsetLeft - (children[0] as HTMLElement).offsetLeft;
@@ -241,9 +239,8 @@ export default function Gallery() {
               key={tab}
               ref={(el) => { tabRefs.current[i] = el; }}
               onClick={() => setActiveTab(tab)}
-              className={`relative font-body text-xs uppercase tracking-wider px-6 py-3 transition-colors duration-400 ${
-                activeTab === tab ? "text-[#28362b]" : "text-[#ab948a] hover:text-[#594433]"
-              }`}
+              className={`relative font-body text-xs uppercase tracking-wider px-6 py-3 transition-colors duration-400 ${activeTab === tab ? "text-[#28362b]" : "text-[#ab948a] hover:text-[#594433]"
+                }`}
             >
               {tabInfo[tab].label}
             </button>
@@ -275,21 +272,21 @@ export default function Gallery() {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-          <button
-            onClick={() => scroll("left")}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center bg-[#28362b]/80 hover:bg-[#28362b] text-[#e1d5c9] rounded-full transition-all duration-300 opacity-0 group-hover/gallery:opacity-100 -translate-x-1/2 hover:scale-110"
-            aria-label="Scroll left"
-          >
-            <ChevronLeft size={20} />
-          </button>
+        <button
+          onClick={() => scroll("left")}
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center bg-[#28362b]/80 hover:bg-[#28362b] text-[#e1d5c9] rounded-full transition-all duration-300 opacity-0 group-hover/gallery:opacity-100 -translate-x-1/2 hover:scale-110"
+          aria-label="Scroll left"
+        >
+          <ChevronLeft size={20} />
+        </button>
 
-          <button
-            onClick={() => scroll("right")}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center bg-[#28362b]/80 hover:bg-[#28362b] text-[#e1d5c9] rounded-full transition-all duration-300 opacity-0 group-hover/gallery:opacity-100 translate-x-1/2 hover:scale-110"
-            aria-label="Scroll right"
-          >
-            <ChevronRight size={20} />
-          </button>
+        <button
+          onClick={() => scroll("right")}
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center bg-[#28362b]/80 hover:bg-[#28362b] text-[#e1d5c9] rounded-full transition-all duration-300 opacity-0 group-hover/gallery:opacity-100 translate-x-1/2 hover:scale-110"
+          aria-label="Scroll right"
+        >
+          <ChevronRight size={20} />
+        </button>
 
         <div
           ref={scrollRef}
