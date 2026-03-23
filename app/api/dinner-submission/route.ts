@@ -1,8 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs/promises";
-import path from "path";
-
-const DATA_FILE_PATH = path.join(process.cwd(), "data", "dinner_submissions.json");
 
 export async function POST(req: NextRequest) {
   try {
@@ -16,40 +12,31 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Required fields missing" }, { status: 400 });
     }
 
-    // Prepare data entry
-    const newSubmission = {
-      id: Date.now().toString(),
-      timestamp: new Date().toISOString(),
-      fullName,
-      phone,
-      email,
-      income,
-      requests: requests || "",
-    };
+    // Combine special fields into the note for CRM
+    const noteContent = `Lead from Zenora Website - Exclusive Dinner
+Income Range: ${income}
+Special Requests: ${requests || "None"}`;
 
-    // Ensure directory exists (belt and braces)
-    const dataDir = path.dirname(DATA_FILE_PATH);
-    try {
-      await fs.access(dataDir);
-    } catch {
-      await fs.mkdir(dataDir, { recursive: true });
+    const params = new URLSearchParams({
+      "api_key": process.env.SELLDO_API_KEY!,
+      "sell_do[form][lead][name]": fullName,
+      "sell_do[form][lead][email]": email,
+      "sell_do[form][lead][phone]": phone,
+      "sell_do[campaign][srd]": process.env.SELLDO_SRD!,
+      "sell_do[form][note][content]": noteContent,
+    });
+
+    // Send to Sell.do CRM
+    const response = await fetch(
+      `https://app.sell.do/api/leads/create?${params.toString()}`,
+      { method: "POST" }
+    );
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Sell.do API error for dinner form:", errorText);
+      return NextResponse.json({ error: "Failed to submit lead to CRM" }, { status: 500 });
     }
-
-    // Read existing data
-    let submissions = [];
-    try {
-      const fileData = await fs.readFile(DATA_FILE_PATH, "utf-8");
-      submissions = JSON.parse(fileData);
-    } catch {
-      // File doesn't exist or is empty/corrupt, we'll start fresh
-      submissions = [];
-    }
-
-    // Add new submission
-    submissions.push(newSubmission);
-
-    // Save back to file
-    await fs.writeFile(DATA_FILE_PATH, JSON.stringify(submissions, null, 2), "utf-8");
 
     return NextResponse.json({ success: true });
   } catch (error) {
