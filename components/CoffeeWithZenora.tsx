@@ -60,7 +60,7 @@ export default function CoffeeWithZenora() {
         {/* ─── Full Bleed Background Image ─── */}
         <Image
           src="/images/coffee_with_Zenora.png"
-          alt="Coffee with Zenora – Exclusive Coffee Experience"
+          alt="Coffee with Zenora – Exclusive Dinner Experience"
           fill
           sizes="100vw"
           className="object-cover"
@@ -112,7 +112,7 @@ export default function CoffeeWithZenora() {
                 : "opacity-0 translate-y-6"
             }`}
           >
-            Exclusive Coffee with Zenora
+            Exclusive Dinner with Zenora
           </h2>
 
           {/* Description */}
@@ -125,7 +125,7 @@ export default function CoffeeWithZenora() {
           >
             <p className="font-body text-[#e1d5c9] text-base md:text-lg leading-[1.9] tracking-wide">
               An intimate, invite-only evening designed for those who appreciate
-              luxury living. Join us for an exclusive coffee at Zenora Villas.
+              luxury living. Join us for an exclusive dinner at Zenora Villas.
               This intimate event offers a personal walkthrough of our luxury
               villas, combined with fine dining in an upscale, relaxed setting.
             </p>
@@ -202,7 +202,7 @@ export default function CoffeeWithZenora() {
                 <X size={18} />
               </button>
               <p className="font-body text-[#e1b258] text-xs uppercase mb-3">
-                Exclusive Coffee
+                Exclusive Dinner
               </p>
               <h3 className="font-display text-2xl text-[#e1d5c9] mb-1">
                 Available Slots This Week
@@ -379,7 +379,7 @@ export default function CoffeeWithZenora() {
                 {/* Header */}
                 <div className="mb-8">
                   <p className="font-body text-[#e1b258] text-xs uppercase mb-3">
-                    Exclusive Coffee
+                    Exclusive Dinner
                   </p>
                   <h3 className="font-display text-3xl text-[#28362b] mb-2">
                     Reserve Your Spot
@@ -492,7 +492,7 @@ export default function CoffeeWithZenora() {
                     <textarea
                       id="cwz-requests"
                       name="requests"
-                      placeholder="Dietary restrictions, preferences for the coffee..."
+                      placeholder="Dietary restrictions, preferences for the dinner..."
                       rows={3}
                       className="bg-transparent border-b border-[#ab948a]/30 py-3 font-body text-base text-[#28362b] placeholder:text-[#ab948a]/50 focus:border-[#e1b258] focus:outline-none transition-colors resize-none"
                     />
