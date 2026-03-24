@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Clarity from "../components/Clarity";
 
 export const metadata: Metadata = {
   title: "Zenora · Crafted for the Chosen",
@@ -67,7 +68,10 @@ export default function RootLayout({
           crossOrigin=""
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <Clarity />
+        {children}
+      </body>
     </html>
   );
 }
