@@ -5,13 +5,26 @@ import MetaPixel from "../components/MetaPixel";
 import { GoogleTagManager } from '@next/third-parties/google';
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.zenvistas.co.in"),
   title: "Zenora · Crafted for the Chosen",
   description:
     "An affordable luxury villa community in Goldwins, Coimbatore. Sky Garden, Aqua Lounge, Star Deck — elevation without compromise.",
   openGraph: {
     title: "Zenora by ZenVistas",
     description: "This is not escape. This is elevation.",
+    url: "https://www.zenvistas.co.in",
     siteName: "Zenora",
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Zenora · Crafted for the Chosen",
+    description:
+      "An affordable luxury villa community in Goldwins, Coimbatore. Sky Garden, Aqua Lounge, Star Deck — elevation without compromise.",
+  },
+  verification: {
+    google: "T6IyrQzCmAV1Qkz2kVz5gkhIPsObZw6tE_MOLVAeD3s",
   },
 };
 

@@ -4,7 +4,7 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     console.log("Received dinner submission body:", body);
-    const { fullName, phone, email, requests } = body;
+    const { fullName, phone, email, requests, srd } = body;
 
     // Validate request
     if (!fullName || !phone || !email) {
@@ -21,7 +21,7 @@ Special Requests: ${requests || "None"}`;
       "sell_do[form][lead][name]": fullName,
       "sell_do[form][lead][email]": email,
       "sell_do[form][lead][phone]": phone,
-      "sell_do[campaign][srd]": "69b90e4058f1e7692bde687e",
+      "sell_do[campaign][srd]": srd || "69b90e4058f1e7692bde687e",
       "sell_do[form][note][content]": noteContent,
     });
 
