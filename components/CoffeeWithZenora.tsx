@@ -16,7 +16,6 @@ function getNextDate(dayOfWeek: number): string {
   });
 }
 
-const INCOME_BANDS = ["₹10 Cr+", "₹25 Cr+", "₹50 Cr+"];
 
 export default function CoffeeWithZenora() {
   const [showSlots, setShowSlots] = useState(false);
@@ -463,39 +462,6 @@ export default function CoffeeWithZenora() {
                       required
                       className="bg-transparent border-b border-[#ab948a]/30 py-3 font-body text-base text-[#28362b] placeholder:text-[#ab948a]/50 focus:border-[#e1b258] focus:outline-none transition-colors"
                     />
-                  </div>
-
-                  {/* Annual Income Range */}
-                  <div className="flex flex-col gap-1.5">
-                    <label
-                      htmlFor="cwz-income"
-                      className="font-body text-xs uppercase text-[#594433]/70"
-                    >
-                      Annual Income Range{" "}
-                      <span className="text-[#e1b258]">*</span>
-                    </label>
-                    <div className="relative">
-                      <select
-                        id="cwz-income"
-                        name="income"
-                        required
-                        defaultValue=""
-                        className="w-full bg-transparent border-b border-[#ab948a]/30 py-3 font-body text-base text-[#28362b] focus:border-[#e1b258] focus:outline-none transition-colors appearance-none cursor-pointer"
-                      >
-                        <option value="" disabled className="text-[#ab948a]">
-                          Select range
-                        </option>
-                        {INCOME_BANDS.map((band) => (
-                          <option key={band} value={band}>
-                            {band}
-                          </option>
-                        ))}
-                      </select>
-                      <ChevronRight
-                        size={14}
-                        className="absolute right-0 top-1/2 -translate-y-1/2 rotate-90 text-[#ab948a] pointer-events-none"
-                      />
-                    </div>
                   </div>
 
                   {/* Special Requests */}

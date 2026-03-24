@@ -4,17 +4,16 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     console.log("Received dinner submission body:", body);
-    const { fullName, phone, email, income, requests } = body;
+    const { fullName, phone, email, requests } = body;
 
     // Validate request
-    if (!fullName || !phone || !email || !income) {
-      console.log("Validation failed - missing fields:", { fullName, phone, email, income });
+    if (!fullName || !phone || !email) {
+      console.log("Validation failed - missing fields:", { fullName, phone, email });
       return NextResponse.json({ error: "Required fields missing" }, { status: 400 });
     }
 
     // Combine special fields into the note for CRM
     const noteContent = `Lead from Zenora Website - Exclusive Dinner
-Income Range: ${income}
 Special Requests: ${requests || "None"}`;
 
     const params = new URLSearchParams({
