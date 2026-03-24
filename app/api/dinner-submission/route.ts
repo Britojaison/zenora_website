@@ -17,11 +17,11 @@ export async function POST(req: NextRequest) {
 Special Requests: ${requests || "None"}`;
 
     const params = new URLSearchParams({
-      "api_key": process.env.SELLDO_API_KEY!,
+      "api_key": "69f342a7632e73e6f895191899e2537d",
       "sell_do[form][lead][name]": fullName,
       "sell_do[form][lead][email]": email,
       "sell_do[form][lead][phone]": phone,
-      "sell_do[campaign][srd]": process.env.SELLDO_SRD!,
+      "sell_do[campaign][srd]": "69b90e4058f1e7692bde687e",
       "sell_do[form][note][content]": noteContent,
     });
 
