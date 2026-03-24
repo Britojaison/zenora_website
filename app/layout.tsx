@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Clarity from "../components/Clarity";
+import MetaPixel from "../components/MetaPixel";
+import { GoogleTagManager } from '@next/third-parties/google';
 
 export const metadata: Metadata = {
   title: "Zenora · Crafted for the Chosen",
@@ -20,6 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <GoogleTagManager gtmId="GTM-5FNDNF5D" />
       <head>
         <link
           rel="preload"
@@ -70,6 +73,7 @@ export default function RootLayout({
       </head>
       <body>
         <Clarity />
+        <MetaPixel />
         {children}
       </body>
     </html>
