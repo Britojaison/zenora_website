@@ -1,6 +1,16 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X } from "lucide-react";
+
+const LEAD_SRD_MAPPINGS = [
+  { source: "Google", medium: "Branded_Search", campaign: "Zenora_Search_Branded", srd: "69b90eb8735dafb5321577e7" },
+  { source: "Google", medium: "Generic_Search", campaign: "Zenora_Search_Generic", srd: "69b90eef2f31c6356115c183" },
+  { source: "Google", medium: "YouTube", campaign: "Zenora_YouTube", srd: "69b90f29a3d855a21507c57c" },
+  { source: "Google", medium: "Display", campaign: "Zenora_Display", srd: "69b90f51a3d8558dd41af2b6" },
+  { source: "Google", medium: "DemandGen", campaign: "Zenora_DemandGen", srd: "69b90f932f31c6cb3d3a4b94" },
+  { source: "Google", medium: "PMax", campaign: "Zenora_PMax", srd: "69b90fe19403685816f40d24" },
+  { source: "Taboola", medium: "General", campaign: "Zenora_Taboola", srd: "69b9100b2f31c686cd170812" },
+];
 
 interface LeadFormProps {
   open: boolean;
@@ -11,6 +21,28 @@ interface LeadFormProps {
 export default function LeadForm({ open, onClose, redirectUrl }: LeadFormProps) {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [srd, setSrd] = useState<string | null>(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const utmSource = params.get("utm_source");
+    const utmMedium = params.get("utm_medium");
+    const utmCampaign = params.get("utm_campaign");
+
+    const matched = LEAD_SRD_MAPPINGS.find(m =>
+      m.source === utmSource &&
+      m.medium === utmMedium &&
+      m.campaign === utmCampaign
+    );
+
+    if (matched) {
+      setSrd(matched.srd);
+      sessionStorage.setItem("lead_srd", matched.srd);
+    } else {
+      const storedSrd = sessionStorage.getItem("lead_srd");
+      if (storedSrd) setSrd(storedSrd);
+    }
+  }, []);
   const [error, setError] = useState("");
 
   if (!open) return null;
@@ -31,7 +63,7 @@ export default function LeadForm({ open, onClose, redirectUrl }: LeadFormProps) 
       const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, ...(srd && { srd }) }),
       });
 
       if (!res.ok) {

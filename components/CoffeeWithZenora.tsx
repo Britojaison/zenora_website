@@ -44,22 +44,31 @@ export default function CoffeeWithZenora() {
     const utmMedium = params.get("utm_medium");
     const utmCampaign = params.get("utm_campaign");
 
-    let resolvedSrd = null;
-    if (utmSource === "Google" && utmMedium === "Search" && utmCampaign === "Coffee_With_Zenora_Search") {
-      resolvedSrd = "69c2478b9403689446b6b864";
-    } else if (utmSource === "Google" && utmMedium === "Pmax" && utmCampaign === "Coffee_With_Zenora_Pmax") {
-      resolvedSrd = "69c141382f31c6ef6540e41e";
-    } else if (utmSource === "Google" && utmMedium === "DemandGen" && utmCampaign === "Coffee_With_Zenora_DemandGen") {
-      resolvedSrd = "69c2481da3d8554ec4571bba";
-    } else if (utmSource === "Google" && utmMedium === "Display" && utmCampaign === "Coffee_With_Zenora_Display") {
-      resolvedSrd = "69c248cb0d185159b7dae152";
-    } else if (utmSource === "Google" && utmMedium === "Youtube" && utmCampaign === "Coffee_With_Zenora_Youtube") {
-      resolvedSrd = "69c24a7a58f1e788e307696d";
-    }
+    const srdMappings = [
+      { source: "Google", medium: "Branded_Search", campaign: "Zenora_Search_Branded", srd: "69b90eb8735dafb5321577e7" },
+      { source: "Google", medium: "Generic_Search", campaign: "Zenora_Search_Generic", srd: "69b90eef2f31c6356115c183" },
+      { source: "Google", medium: "YouTube", campaign: "Zenora_YouTube", srd: "69b90f29a3d855a21507c57c" },
+      { source: "Google", medium: "Display", campaign: "Zenora_Display", srd: "69b90f51a3d8558dd41af2b6" },
+      { source: "Google", medium: "DemandGen", campaign: "Zenora_DemandGen", srd: "69b90f932f31c6cb3d3a4b94" },
+      { source: "Google", medium: "PMax", campaign: "Zenora_PMax", srd: "69b90fe19403685816f40d24" },
+      { source: "Taboola", medium: "General", campaign: "Zenora_Taboola", srd: "69b9100b2f31c686cd170812" },
+      // Previous mappings
+      { source: "Google", medium: "Search", campaign: "Coffee_With_Zenora_Search", srd: "69c2478b9403689446b6b864" },
+      { source: "Google", medium: "Pmax", campaign: "Coffee_With_Zenora_Pmax", srd: "69c141382f31c6ef6540e41e" },
+      { source: "Google", medium: "DemandGen", campaign: "Coffee_With_Zenora_DemandGen", srd: "69c2481da3d8554ec4571bba" },
+      { source: "Google", medium: "Display", campaign: "Coffee_With_Zenora_Display", srd: "69c248cb0d185159b7dae152" },
+      { source: "Google", medium: "Youtube", campaign: "Coffee_With_Zenora_Youtube", srd: "69c24a7a58f1e788e307696d" }
+    ];
 
-    if (resolvedSrd) {
-      setSrd(resolvedSrd);
-      sessionStorage.setItem("cwz_srd", resolvedSrd);
+    const matched = srdMappings.find(m => 
+      m.source === utmSource && 
+      m.medium === utmMedium && 
+      m.campaign === utmCampaign
+    );
+
+    if (matched) {
+      setSrd(matched.srd);
+      sessionStorage.setItem("cwz_srd", matched.srd);
     } else {
       const storedSrd = sessionStorage.getItem("cwz_srd");
       if (storedSrd) setSrd(storedSrd);
