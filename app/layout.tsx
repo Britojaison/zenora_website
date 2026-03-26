@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import Clarity from "../components/Clarity";
 import MetaPixel from "../components/MetaPixel";
@@ -87,8 +88,13 @@ export default function RootLayout({
       <body>
         <Clarity />
         <MetaPixel />
+        <Script 
+          src="//forms.cdn.sell.do/t/665d85d70d1851dc7c28dd6a.js" 
+          strategy="beforeInteractive" 
+        />
         {children}
       </body>
     </html>
   );
 }
+
