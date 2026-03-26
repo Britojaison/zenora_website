@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X } from "lucide-react";
 
 interface LeadFormProps {
@@ -12,6 +12,28 @@ export default function LeadForm({ open, onClose, redirectUrl }: LeadFormProps) 
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [srd, setSrd] = useState<string | null>(null); // Dynamic SRD from UTM
+
+  useEffect(() => {
+    // Extract dynamic SRD from UTM parameters
+    const params = new URLSearchParams(window.location.search);
+    const utmSource = params.get("utm_source");
+    const utmMedium = params.get("utm_medium");
+    const utmCampaign = params.get("utm_campaign");
+
+    let resolvedSrd = null;
+    if (utmSource === "Website" && utmMedium === "WATI" && utmCampaign === "Zenora_Brochure_WATI") {
+      resolvedSrd = "69c50198735daf0afb3b7ec6";
+    }
+
+    if (resolvedSrd) {
+      setSrd(resolvedSrd);
+      sessionStorage.setItem("lead_srd", resolvedSrd);
+    } else {
+      const storedSrd = sessionStorage.getItem("lead_srd");
+      if (storedSrd) setSrd(storedSrd);
+    }
+  }, []);
 
   if (!open) return null;
 
@@ -31,7 +53,7 @@ export default function LeadForm({ open, onClose, redirectUrl }: LeadFormProps) 
       const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, ...(srd ? { srd } : {}) }),
       });
 
       if (!res.ok) {

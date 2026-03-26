@@ -55,6 +55,8 @@ export default function CoffeeWithZenora() {
       resolvedSrd = "69c248cb0d185159b7dae152";
     } else if (utmSource === "Google" && utmMedium === "Youtube" && utmCampaign === "Coffee_With_Zenora_Youtube") {
       resolvedSrd = "69c24a7a58f1e788e307696d";
+    } else if (utmSource === "Website" && utmMedium === "WATI" && utmCampaign === "Zenora_Brochure_WATI") {
+      resolvedSrd = "69c50198735daf0afb3b7ec6";
     }
 
     if (resolvedSrd) {
