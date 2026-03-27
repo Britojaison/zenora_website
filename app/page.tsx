@@ -33,7 +33,7 @@ export default function Home() {
       <FullBleedImage
         src="/img/private-theatre.jpg"
         alt="Zenora lifestyle"
-        quote="This is not escape. This is elevation."
+        quote="Rise to elevated living."
         author="Zenora"
       />
       <Gallery />

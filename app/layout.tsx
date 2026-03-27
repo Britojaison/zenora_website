@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     "An affordable luxury villa community in Goldwins, Coimbatore. Sky Garden, Aqua Lounge, Star Deck — elevation without compromise.",
   openGraph: {
     title: "Zenora by ZenVistas",
-    description: "This is not escape. This is elevation.",
+    description: "Rise to elevated living.",
     url: "https://www.zenvistas.co.in",
     siteName: "Zenora",
     locale: "en_IN",
