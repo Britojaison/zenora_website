@@ -38,6 +38,18 @@ export default function RootLayout({
     <html lang="en">
       <GoogleTagManager gtmId="GTM-5FNDNF5D" />
       <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17832990826"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads-gtag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17832990826');
+          `}
+        </Script>
         <link
           rel="preload"
           href="https://qgulurniv017kjjt.public.blob.vercel-storage.com/zenora_main_video.mp4"
