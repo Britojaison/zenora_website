@@ -1,7 +1,7 @@
 "use client";
 import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from "lucide-react";
 
 const indoorImages = [
   "/indoor/bedroom01.jpg",
@@ -42,14 +42,18 @@ const clubhouseImages = [
   "/clubhouse/Yoga.jpg",
 ];
 
-const tabs = ["indoor", "outdoor", "clubhouse"] as const;
+const galleryVideos = [
+  { src: "/videos/video1-web.mp4", title: "Zenora Walkthrough" },
+];
+
+const tabs = ["indoor", "outdoor", "clubhouse", "videos"] as const;
 type Tab = (typeof tabs)[number];
 
 const tabInfo: Record<Tab, { label: string; title: string; desc: string }> = {
   indoor: {
     label: "Indoor",
     title: "Indoor Spaces",
-    desc: "Interiors defined by proportion and light. Spaces that feel calm,considered and quietly refined.",
+    desc: "Interiors defined by proportion and light. Spaces that feel calm, considered and quietly refined.",
   },
   outdoor: {
     label: "Outdoor",
@@ -61,9 +65,14 @@ const tabInfo: Record<Tab, { label: string; title: string; desc: string }> = {
     title: "Clubhouse",
     desc: "A space designed for connection. Zenora\u2019s clubhouse brings together refined interiors with curated areas for conversation, relaxation, and community.",
   },
+  videos: {
+    label: "Videos",
+    title: "Video Tour",
+    desc: "Experience Zenora through a cinematic walkthrough. Every detail, every space\u2014brought to life.",
+  },
 };
 
-const imageMap: Record<Tab, string[]> = {
+const imageMap: Record<Exclude<Tab, 'videos'>, string[]> = {
   indoor: indoorImages,
   outdoor: outdoorImages,
   clubhouse: clubhouseImages,
@@ -77,12 +86,21 @@ export default function Gallery() {
   const autoScrollRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
-  const currentImages = imageMap[activeTab];
-  const displayImages = [...currentImages, ...currentImages];
+  // Video state
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const [showControls, setShowControls] = useState(true);
+  const controlsTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const isVideoTab = activeTab === "videos";
+  const currentImages = isVideoTab ? [] : imageMap[activeTab];
+  const displayImages = isVideoTab ? [] : [...currentImages, ...currentImages];
 
   const activeIndex = tabs.indexOf(activeTab);
 
   const checkScroll = useCallback(() => {
+    if (isVideoTab) return;
     const el = scrollRef.current;
     if (!el) return;
     const children = el.children;
@@ -92,7 +110,7 @@ export default function Gallery() {
         el.scrollLeft -= firstSetWidth;
       }
     }
-  }, [currentImages.length]);
+  }, [currentImages.length, isVideoTab]);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -111,7 +129,7 @@ export default function Gallery() {
 
   // Auto-scroll
   useEffect(() => {
-    if (isHovered || lightboxIndex !== null) {
+    if (isVideoTab || isHovered || lightboxIndex !== null) {
       if (autoScrollRef.current) {
         clearInterval(autoScrollRef.current);
         autoScrollRef.current = null;
@@ -140,7 +158,44 @@ export default function Gallery() {
         autoScrollRef.current = null;
       }
     };
-  }, [isHovered, lightboxIndex, activeTab, currentImages.length]);
+  }, [isVideoTab, isHovered, lightboxIndex, activeTab, currentImages.length]);
+
+  // Video controls
+  const togglePlay = useCallback(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.paused) {
+      video.play();
+      setIsPlaying(true);
+    } else {
+      video.pause();
+      setIsPlaying(false);
+    }
+  }, []);
+
+  const toggleMute = useCallback(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = !video.muted;
+    setIsMuted(!video.muted ? false : true);
+  }, []);
+
+  const handleVideoMouseMove = useCallback(() => {
+    setShowControls(true);
+    if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
+    controlsTimeoutRef.current = setTimeout(() => {
+      if (isPlaying) setShowControls(false);
+    }, 2500);
+  }, [isPlaying]);
+
+  // Reset video state on tab change
+  useEffect(() => {
+    if (!isVideoTab) {
+      setIsPlaying(false);
+      setIsMuted(true);
+      setShowControls(true);
+    }
+  }, [isVideoTab]);
 
   const scroll = (direction: "left" | "right") => {
     const el = scrollRef.current;
@@ -266,52 +321,142 @@ export default function Gallery() {
         </div>
       </div>
 
-      {/* Horizontal Scrolling Gallery */}
-      <div
-        className="relative group/gallery"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <button
-          onClick={() => scroll("left")}
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center bg-[#28362b]/80 hover:bg-[#28362b] text-[#e1d5c9] rounded-full transition-all duration-300 opacity-0 group-hover/gallery:opacity-100 -translate-x-1/2 hover:scale-110"
-          aria-label="Scroll left"
-        >
-          <ChevronLeft size={20} />
-        </button>
-
-        <button
-          onClick={() => scroll("right")}
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center bg-[#28362b]/80 hover:bg-[#28362b] text-[#e1d5c9] rounded-full transition-all duration-300 opacity-0 group-hover/gallery:opacity-100 translate-x-1/2 hover:scale-110"
-          aria-label="Scroll right"
-        >
-          <ChevronRight size={20} />
-        </button>
-
-        <div
-          ref={scrollRef}
-          className="flex gap-4 overflow-x-auto pb-4 hide-scrollbar"
-        >
-          {displayImages.map((src, i) => (
+      {/* Video Section */}
+      {isVideoTab ? (
+        <div className="space-y-8">
+          {galleryVideos.map((video, idx) => (
             <div
-              key={`${activeTab}-${i}`}
-              className="relative flex-shrink-0 w-[350px] md:w-[450px] aspect-[4/3] overflow-hidden cursor-pointer group"
-              onClick={() => openLightbox(i)}
+              key={idx}
+              className="relative w-full overflow-hidden rounded-sm bg-[#1a1a1a] group/video"
+              onMouseMove={handleVideoMouseMove}
+              onMouseLeave={() => {
+                if (isPlaying) {
+                  if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
+                  controlsTimeoutRef.current = setTimeout(() => setShowControls(false), 1200);
+                }
+              }}
             >
-              <Image
-                src={src}
-                alt={`${activeTab} view ${(i % currentImages.length) + 1}`}
-                fill
-                sizes="(max-width: 768px) 350px, 450px"
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-              />
+              {/* Cinematic letterbox aspect ratio */}
+              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                <video
+                  ref={videoRef}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  src={video.src}
+                  muted={isMuted}
+                  playsInline
+                  preload="metadata"
+                  poster=""
+                  onPlay={() => setIsPlaying(true)}
+                  onPause={() => setIsPlaying(false)}
+                  onEnded={() => { setIsPlaying(false); setShowControls(true); }}
+                />
+
+                {/* Gradient overlay for controls visibility */}
+                <div
+                  className="absolute inset-0 transition-opacity duration-500"
+                  style={{
+                    background: showControls
+                      ? 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 40%, transparent 60%, rgba(0,0,0,0.3) 100%)'
+                      : 'transparent',
+                    opacity: showControls ? 1 : 0,
+                  }}
+                />
+
+                {/* Center play button (shown when paused) */}
+                <button
+                  onClick={togglePlay}
+                  className={`absolute inset-0 flex items-center justify-center z-10 transition-opacity duration-500 ${
+                    !isPlaying || showControls ? 'opacity-100' : 'opacity-0'
+                  }`}
+                  aria-label={isPlaying ? "Pause video" : "Play video"}
+                >
+                  <div
+                    className={`w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 ${
+                      isPlaying
+                        ? 'bg-[#28362b]/60 backdrop-blur-md border border-[#e1d5c9]/20'
+                        : 'bg-[#e1b258]/90 hover:bg-[#e1b258] shadow-2xl'
+                    }`}
+                  >
+                    {isPlaying ? (
+                      <Pause size={28} className="text-[#e1d5c9]" />
+                    ) : (
+                      <Play size={32} className="text-[#28362b] ml-1" />
+                    )}
+                  </div>
+                </button>
+
+                {/* Bottom controls bar */}
+                <div
+                  className={`absolute bottom-0 left-0 right-0 px-6 py-4 flex items-center justify-between z-20 transition-all duration-500 ${
+                    showControls ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="font-body text-[#e1d5c9] text-sm tracking-wide">
+                      {video.title}
+                    </span>
+                  </div>
+
+                  <button
+                    onClick={(e) => { e.stopPropagation(); toggleMute(); }}
+                    className="w-10 h-10 rounded-full bg-[#28362b]/50 backdrop-blur-sm border border-[#e1d5c9]/10 flex items-center justify-center text-[#e1d5c9] hover:text-[#e1b258] hover:border-[#e1b258]/30 transition-all duration-300"
+                    aria-label={isMuted ? "Unmute" : "Mute"}
+                  >
+                    {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+                  </button>
+                </div>
+              </div>
             </div>
           ))}
         </div>
-      </div>
+      ) : (
+        /* Horizontal Scrolling Gallery */
+        <div
+          className="relative group/gallery"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <button
+            onClick={() => scroll("left")}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center bg-[#28362b]/80 hover:bg-[#28362b] text-[#e1d5c9] rounded-full transition-all duration-300 opacity-0 group-hover/gallery:opacity-100 -translate-x-1/2 hover:scale-110"
+            aria-label="Scroll left"
+          >
+            <ChevronLeft size={20} />
+          </button>
+
+          <button
+            onClick={() => scroll("right")}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center bg-[#28362b]/80 hover:bg-[#28362b] text-[#e1d5c9] rounded-full transition-all duration-300 opacity-0 group-hover/gallery:opacity-100 translate-x-1/2 hover:scale-110"
+            aria-label="Scroll right"
+          >
+            <ChevronRight size={20} />
+          </button>
+
+          <div
+            ref={scrollRef}
+            className="flex gap-4 overflow-x-auto pb-4 hide-scrollbar"
+          >
+            {displayImages.map((src, i) => (
+              <div
+                key={`${activeTab}-${i}`}
+                className="relative flex-shrink-0 w-[350px] md:w-[450px] aspect-[4/3] overflow-hidden cursor-pointer group"
+                onClick={() => openLightbox(i)}
+              >
+                <Image
+                  src={src}
+                  alt={`${activeTab} view ${(i % currentImages.length) + 1}`}
+                  fill
+                  sizes="(max-width: 768px) 350px, 450px"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Lightbox */}
-      {lightboxIndex !== null && (
+      {lightboxIndex !== null && !isVideoTab && (
         <div
           className="fixed inset-0 z-50 bg-[#28362b]/95 flex items-center justify-center"
           onClick={closeLightbox}

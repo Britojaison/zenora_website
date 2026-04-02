@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next';
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: 'https://www.zenvistas.co.in/home',
+      url: 'https://www.zenvistas.co.in/zenora',
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 1,
