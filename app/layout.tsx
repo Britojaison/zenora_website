@@ -3,6 +3,8 @@ import Script from "next/script";
 import "./globals.css";
 import Clarity from "../components/Clarity";
 import MetaPixel from "../components/MetaPixel";
+import WhatsAppButton from "../components/WhatsAppButton";
+import CallButton from "../components/CallButton";
 import { GoogleTagManager } from '@next/third-parties/google';
 
 export const metadata: Metadata = {
@@ -105,6 +107,8 @@ export default function RootLayout({
           strategy="beforeInteractive" 
         />
         {children}
+        <WhatsAppButton />
+        <CallButton />
       </body>
     </html>
   );
