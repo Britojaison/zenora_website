@@ -38,7 +38,7 @@ export default function Hero() {
         <p className="font-body text-white text-sm uppercase mb-6">
           Goldwins, Coimbatore
         </p>
-        <h1 className="font-display text-[clamp(2rem,6vw,5rem)] leading-[1.05] text-white whitespace-nowrap" style={{ fontWeight: 300, fontStyle: 'italic' }}>
+        <h1 className="font-display text-[clamp(2rem,6vw,5rem)] leading-[1.05] text-white whitespace-normal md:whitespace-nowrap" style={{ fontWeight: 300, fontStyle: 'italic' }}>
           Crafted for the Chosen
         </h1>
         <div className="w-16 h-px bg-[#e1b258] opacity-60 my-8" />
