@@ -288,13 +288,13 @@ export default function Gallery() {
       {/* Tab Switcher with sliding indicator */}
       <div className="mb-12">
         {/* Tabs */}
-        <div className="relative inline-flex border-b border-[#ab948a]/20 mb-8">
+        <div className="relative inline-flex w-full md:w-auto overflow-x-auto hide-scrollbar border-b border-[#ab948a]/20 mb-8">
           {tabs.map((tab, i) => (
             <button
               key={tab}
               ref={(el) => { tabRefs.current[i] = el; }}
               onClick={() => setActiveTab(tab)}
-              className={`relative font-body text-xs uppercase tracking-wider px-6 py-3 transition-colors duration-400 ${activeTab === tab ? "text-[#28362b]" : "text-[#ab948a] hover:text-[#594433]"
+              className={`relative font-body text-[10px] md:text-xs uppercase tracking-wider px-4 md:px-6 py-3 transition-colors duration-400 whitespace-nowrap ${activeTab === tab ? "text-[#28362b]" : "text-[#ab948a] hover:text-[#594433]"
                 }`}
             >
               {tabInfo[tab].label}
