@@ -52,10 +52,23 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-[#ab948a]/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-body text-[#ab948a] text-[10px]">
+          <p className="font-body text-[#ab948a] text-[10px] shrink-0">
             © {new Date().getFullYear()} ZenVistas. All rights reserved.
           </p>
-          <p className="font-body text-[#ab948a] text-[10px]">
+
+          <div className="flex gap-6 items-center flex-wrap justify-center">
+            <a href="/terms-and-conditions" className="font-body text-[#ab948a] hover:text-[#e1d5c9] transition-colors text-[10px]">
+              Terms and Conditions
+            </a>
+            <a href="/privacy-policy" className="font-body text-[#ab948a] hover:text-[#e1d5c9] transition-colors text-[10px]">
+              Privacy Policy
+            </a>
+            <a href="/cookies" className="font-body text-[#ab948a] hover:text-[#e1d5c9] transition-colors text-[10px]">
+              Cookies
+            </a>
+          </div>
+
+          <p className="font-body text-[#ab948a] text-[10px] shrink-0">
             RERA Registered · TNRERA/11/BLG/0013/2026
           </p>
         </div>

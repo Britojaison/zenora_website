@@ -3,11 +3,11 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 
 const links = [
-  { label: "Residences", href: "#residences" },
-  { label: "Amenities", href: "#amenities" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Location", href: "#location" },
-  { label: "Contact", href: "#contact" },
+  { label: "Residences", href: "/#residences" },
+  { label: "Amenities", href: "/#amenities" },
+  { label: "Gallery", href: "/#gallery" },
+  { label: "Location", href: "/#location" },
+  { label: "Contact", href: "/#contact" },
   { label: "Webverse", href: "https://zenvistas.spimproject.com/", external: true },
 ];
 
@@ -29,7 +29,7 @@ export default function Navbar() {
     >
       <div className="max-w-screen-xl mx-auto px-6 md:px-12 flex items-center justify-between h-20">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-3">
+        <a href="/" className="flex items-center gap-3">
           <img 
             src={scrolled ? "/images/Artboard 1.svg" : "/images/zenora_logo.svg"}
             alt="Zenora Logo" 
@@ -54,7 +54,7 @@ export default function Navbar() {
 
         {/* CTA */}
         <a
-          href="#contact"
+          href="/#contact"
           className={`hidden md:inline-flex items-center gap-2 border text-[10px] uppercase px-5 py-2.5 transition-all duration-500 hover:scale-105 hover:shadow-lg ${scrolled ? "border-[#e1b258]/60 text-[#e1b258] hover:bg-[#e1b258] hover:text-white" : "border-white/40 text-white hover:bg-white hover:text-[#28362b]"}`}
         >
           Enquire
@@ -85,7 +85,7 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="#contact"
+            href="/#contact"
             onClick={() => setOpen(false)}
             className="border border-[#e1b258]/60 text-[#e1b258] text-[10px] uppercase px-5 py-3 text-center hover:bg-[#e1b258] hover:text-white transition-all duration-300"
           >
