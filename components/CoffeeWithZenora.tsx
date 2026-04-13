@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { X, Calendar, Clock, Users, ChevronRight } from "lucide-react";
+import Cookies from "js-cookie";
 
 /* ─── Compute upcoming Wednesday & Saturday dates ─── */
 function getNextDate(dayOfWeek: number): string {
@@ -25,6 +26,7 @@ export default function CoffeeWithZenora() {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [srd, setSrd] = useState("69b90e4058f1e7692bde687e"); // Default SRD
+  const [formDataState, setFormDataState] = useState({ fullName: "", phone: "", email: "", requests: "" });
 
   const wednesdayDate = getNextDate(3);
   const saturdayDate = getNextDate(6);
@@ -67,6 +69,13 @@ export default function CoffeeWithZenora() {
       if (storedSrd) setSrd(storedSrd);
     }
 
+    setFormDataState({
+      fullName: Cookies.get("user_name") || "",
+      phone: Cookies.get("user_phone") || "",
+      email: Cookies.get("user_email") || "",
+      requests: ""
+    });
+
     return () => observer.disconnect();
   }, []);
 
@@ -78,6 +87,10 @@ export default function CoffeeWithZenora() {
       const formData = new FormData(e.currentTarget);
       const data = Object.fromEntries(formData.entries());
       const payload = { ...data, srd };
+
+      Cookies.set("user_name", data.fullName as string, { expires: 365 });
+      Cookies.set("user_phone", data.phone as string, { expires: 365 });
+      Cookies.set("user_email", data.email as string, { expires: 365 });
 
       const res = await fetch("/api/dinner-submission", {
         method: "POST",
@@ -132,47 +145,43 @@ export default function CoffeeWithZenora() {
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#e1b258]/30 to-transparent" />
 
         {/* ─── Content ─── */}
-        <div 
+        <div
           className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 md:px-20 py-24"
         >
           {/* Gold accent line */}
           <div
-            className={`w-12 h-px bg-[#e1b258] mb-4 transition-all duration-1000 ${
-              isVisible ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
-            }`}
+            className={`w-12 h-px bg-[#e1b258] mb-4 transition-all duration-1000 ${isVisible ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
+              }`}
           />
 
           {/* Label Removed */}
 
           {/* Subtitle */}
           <p
-            className={`font-body text-[#e1b258] text-sm uppercase mb-10 transition-all duration-700 delay-300 ${
-              isVisible
+            className={`font-body text-[#e1b258] text-sm uppercase mb-10 transition-all duration-700 delay-300 ${isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-4"
-            }`}
+              }`}
           >
             A VIP Experience
           </p>
 
           {/* Heading */}
           <h2
-            className={`font-display text-[clamp(2rem,5vw,4rem)] text-[#e1d5c9] text-center leading-[1.15] mb-8 transition-all duration-700 delay-400 ${
-              isVisible
+            className={`font-display text-[clamp(2rem,5vw,4rem)] text-[#e1d5c9] text-center leading-[1.15] mb-8 transition-all duration-700 delay-400 ${isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-6"
-            }`}
+              }`}
           >
             Exclusive Dinner with Zenora
           </h2>
 
           {/* Description */}
           <div
-            className={`max-w-2xl text-center mb-12 transition-all duration-700 delay-500 ${
-              isVisible
+            className={`max-w-2xl text-center mb-12 transition-all duration-700 delay-500 ${isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-6"
-            }`}
+              }`}
           >
             <p className="font-body text-[#e1d5c9] text-base md:text-lg leading-[1.9] tracking-wide">
               An intimate, invite-only evening designed for those who appreciate
@@ -191,11 +200,10 @@ export default function CoffeeWithZenora() {
           {/* ─── Slots Button ─── */}
           <button
             onClick={() => setShowSlots(true)}
-            className={`group relative inline-flex items-center gap-3 px-10 py-4 border border-[#e1b258]/50 bg-transparent hover:bg-[#e1b258] text-[#e1b258] hover:text-[#28362b] transition-all duration-500 mb-8 ${
-              isVisible
+            className={`group relative inline-flex items-center gap-3 px-10 py-4 border border-[#e1b258]/50 bg-transparent hover:bg-[#e1b258] text-[#e1b258] hover:text-[#28362b] transition-all duration-500 mb-8 ${isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-6"
-            }`}
+              }`}
             style={{ transitionDelay: isVisible ? "600ms" : "0ms" }}
           >
             <Calendar size={16} className="transition-colors duration-500" />
@@ -210,11 +218,10 @@ export default function CoffeeWithZenora() {
 
           {/* ─── Limited seats note ─── */}
           <p
-            className={`font-body text-[#ab948a] text-[11px] uppercase transition-all duration-700 ${
-              isVisible
+            className={`font-body text-[#ab948a] text-[11px] uppercase transition-all duration-700 ${isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-4"
-            }`}
+              }`}
             style={{ transitionDelay: isVisible ? "700ms" : "0ms" }}
           >
             <Users size={12} className="inline-block mr-2 -mt-0.5" />
@@ -456,6 +463,8 @@ export default function CoffeeWithZenora() {
                       type="text"
                       placeholder="Your full name"
                       required
+                      value={formDataState.fullName}
+                      onChange={(e) => setFormDataState({ ...formDataState, fullName: e.target.value })}
                       className="bg-transparent border-b border-[#ab948a]/30 py-3 font-body text-base text-[#28362b] placeholder:text-[#ab948a]/50 focus:border-[#e1b258] focus:outline-none transition-colors"
                     />
                   </div>
@@ -474,6 +483,8 @@ export default function CoffeeWithZenora() {
                       type="tel"
                       placeholder="+91"
                       required
+                      value={formDataState.phone}
+                      onChange={(e) => setFormDataState({ ...formDataState, phone: e.target.value })}
                       className="bg-transparent border-b border-[#ab948a]/30 py-3 font-body text-base text-[#28362b] placeholder:text-[#ab948a]/50 focus:border-[#e1b258] focus:outline-none transition-colors"
                     />
                   </div>
@@ -492,6 +503,8 @@ export default function CoffeeWithZenora() {
                       type="email"
                       placeholder="you@example.com"
                       required
+                      value={formDataState.email}
+                      onChange={(e) => setFormDataState({ ...formDataState, email: e.target.value })}
                       className="bg-transparent border-b border-[#ab948a]/30 py-3 font-body text-base text-[#28362b] placeholder:text-[#ab948a]/50 focus:border-[#e1b258] focus:outline-none transition-colors"
                     />
                   </div>
@@ -512,6 +525,8 @@ export default function CoffeeWithZenora() {
                       name="requests"
                       placeholder="Dietary restrictions, preferences for the dinner..."
                       rows={3}
+                      value={formDataState.requests}
+                      onChange={(e) => setFormDataState({ ...formDataState, requests: e.target.value })}
                       className="bg-transparent border-b border-[#ab948a]/30 py-3 font-body text-base text-[#28362b] placeholder:text-[#ab948a]/50 focus:border-[#e1b258] focus:outline-none transition-colors resize-none"
                     />
                   </div>

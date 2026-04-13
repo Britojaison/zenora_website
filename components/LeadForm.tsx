@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
+import Cookies from "js-cookie";
 
 interface LeadFormProps {
   open: boolean;
@@ -13,6 +14,8 @@ export default function LeadForm({ open, onClose, redirectUrl }: LeadFormProps) 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [srd, setSrd] = useState<string | null>(null); // Dynamic SRD from UTM
+
+  const [formDataState, setFormDataState] = useState({ name: "", phone: "", email: "" });
 
   useEffect(() => {
     // Extract dynamic SRD from UTM parameters
@@ -33,6 +36,12 @@ export default function LeadForm({ open, onClose, redirectUrl }: LeadFormProps) 
       const storedSrd = sessionStorage.getItem("lead_srd");
       if (storedSrd) setSrd(storedSrd);
     }
+
+    setFormDataState({
+      name: Cookies.get("user_name") || "",
+      phone: Cookies.get("user_phone") || "",
+      email: Cookies.get("user_email") || "",
+    });
   }, []);
 
   if (!open) return null;
@@ -49,6 +58,10 @@ export default function LeadForm({ open, onClose, redirectUrl }: LeadFormProps) 
       email: formData.get("email") as string,
     };
 
+    Cookies.set("user_name", data.name, { expires: 365 });
+    Cookies.set("user_phone", data.phone, { expires: 365 });
+    Cookies.set("user_email", data.email, { expires: 365 });
+
     try {
       const res = await fetch("/api/lead", {
         method: "POST",
@@ -60,7 +73,7 @@ export default function LeadForm({ open, onClose, redirectUrl }: LeadFormProps) 
         console.error("API Error:", await res.text());
         if (!redirectUrl) throw new Error("Submission failed");
       }
-      
+
       if (redirectUrl) {
         // Redirect to the provided URL after form submission
         setSubmitted(true);
@@ -161,6 +174,8 @@ export default function LeadForm({ open, onClose, redirectUrl }: LeadFormProps) 
                     type={field.type}
                     placeholder={field.placeholder}
                     required
+                    value={formDataState[field.id as keyof typeof formDataState]}
+                    onChange={(e) => setFormDataState({ ...formDataState, [field.id]: e.target.value })}
                     className="bg-transparent border-b border-[#ab948a]/30 py-3 font-body text-base text-[#28362b] placeholder:text-[#ab948a]/50 focus:border-[#e1b258] focus:outline-none transition-colors"
                   />
                 </div>
