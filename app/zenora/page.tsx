@@ -38,7 +38,7 @@ export default function Home() {
       />
       <Gallery />
       <Location />
-      <CoffeeWithZenora />
+      {/* <CoffeeWithZenora /> */}
       <FAQ />
       <Contact />
       <Footer />

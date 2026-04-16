@@ -184,16 +184,7 @@ export default function CoffeeWithZenora() {
               }`}
           >
             <p className="font-body text-[#e1d5c9] text-base md:text-lg leading-[1.9] tracking-wide">
-              An intimate, invite-only evening designed for those who appreciate
-              luxury living. Join us for an exclusive dinner at Zenora Villas.
-              This intimate event offers a personal walkthrough of our luxury
-              villas, combined with fine dining in an upscale, relaxed setting.
-            </p>
-            <div className="w-8 h-px bg-[#e1b258]/40 mx-auto my-6" />
-            <p className="font-body text-[#ab948a] text-sm md:text-base leading-[1.9] tracking-wide">
-              You&apos;ll also have the opportunity to connect with key
-              individuals behind some of the region&apos;s most successful and
-              influential ventures.
+              An intimate evening designed for families who are seriously considering Zenora. A personal walkthrough of the villas, combined with fine dining in an upscale, relaxed setting.
             </p>
           </div>
 

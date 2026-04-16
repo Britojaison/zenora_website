@@ -5,7 +5,9 @@ import Clarity from "../components/Clarity";
 import MetaPixel from "../components/MetaPixel";
 import WhatsAppButton from "../components/WhatsAppButton";
 import CallButton from "../components/CallButton";
+import CookieBanner from "../components/CookieBanner";
 import { GoogleTagManager } from '@next/third-parties/google';
+import { cookies } from 'next/headers';
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.zenvistas.co.in"),
@@ -31,27 +33,35 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const cookieStore = await cookies();
+  const consent = cookieStore.get("cookie_consent")?.value;
+  const isAccepted = consent === "accepted";
+
   return (
     <html lang="en">
-      <GoogleTagManager gtmId="GTM-5FNDNF5D" />
+      {isAccepted && <GoogleTagManager gtmId="GTM-5FNDNF5D" />}
       <head>
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-17832990826"
-          strategy="afterInteractive"
-        />
-        <Script id="google-ads-gtag" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'AW-17832990826');
-          `}
-        </Script>
+        {isAccepted && (
+          <>
+            <Script
+              src="https://www.googletagmanager.com/gtag/js?id=AW-17832990826"
+              strategy="afterInteractive"
+            />
+            <Script id="google-ads-gtag" strategy="afterInteractive" dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'AW-17832990826');
+              `
+            }} />
+          </>
+        )}
         <link
           rel="preload"
           href="https://qgulurniv017kjjt.public.blob.vercel-storage.com/zenora_main_video.mp4"
@@ -100,8 +110,12 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <Clarity />
-        <MetaPixel />
+        {isAccepted && (
+          <>
+            <Clarity />
+            <MetaPixel />
+          </>
+        )}
         <Script 
           src="//forms.cdn.sell.do/t/665d85d70d1851dc7c28dd6a.js" 
           strategy="beforeInteractive" 
@@ -109,6 +123,7 @@ export default function RootLayout({
         {children}
         <WhatsAppButton />
         <CallButton />
+        <CookieBanner />
       </body>
     </html>
   );
