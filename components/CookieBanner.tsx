@@ -55,12 +55,6 @@ export default function CookieBanner() {
         >
           Accept
         </button>
-        <button
-          onClick={handleReject}
-          className="flex-1 border border-[#ab948a]/30 text-[#594433] hover:border-[#28362b] font-body text-[10px] uppercase tracking-[2px] py-3.5 transition-colors text-center"
-        >
-          Reject All
-        </button>
       </div>
     </div>
   );
