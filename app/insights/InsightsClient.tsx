@@ -13,9 +13,18 @@ const CARDS = [
   { key: "invest", tag: "Investment", img: "https://zenvistas.co.in/img/master-bedroom-view-1.jpg", title: "Is a ₹5 Crore Villa a Good Investment in Coimbatore Right Now", excerpt: "A ₹5 crore property decision should be driven by fundamentals: location quality, land ownership, supply scarcity, and the timing of entry." }
 ];
 
-export default function InsightsClient() {
+export default function InsightsClient({ initialArticle = null }: { initialArticle?: string | null } = {}) {
   const [activeFilter, setActiveFilter] = useState("All");
-  const [activeArticle, setActiveArticle] = useState<string | null>(null);
+  const [activeArticle, setActiveArticle] = useState<string | null>(initialArticle);
+
+  const handleArticleChange = (key: string | null) => {
+    setActiveArticle(key);
+    if (key) {
+      window.history.pushState({}, '', `/insights/${key}`);
+    } else {
+      window.history.pushState({}, '', `/insights`);
+    }
+  };
 
   const TABS = ["All", "Market", "Lifestyle", "Investment", "Legal"];
 
@@ -26,17 +35,17 @@ export default function InsightsClient() {
   const renderArticle = () => {
     switch (activeArticle) {
       case "goldwins":
-        return <ArticleGoldwins onBack={() => setActiveArticle(null)} onArticleSelect={setActiveArticle} />;
+        return <ArticleGoldwins onBack={() => handleArticleChange(null)} onArticleSelect={handleArticleChange} />;
       case "gated":
-        return <ArticleGated onBack={() => setActiveArticle(null)} onArticleSelect={setActiveArticle} />;
+        return <ArticleGated onBack={() => handleArticleChange(null)} onArticleSelect={handleArticleChange} />;
       case "invest":
-        return <ArticleInvest onBack={() => setActiveArticle(null)} onArticleSelect={setActiveArticle} />;
+        return <ArticleInvest onBack={() => handleArticleChange(null)} onArticleSelect={handleArticleChange} />;
       case "rera":
-        return <ArticleRera onBack={() => setActiveArticle(null)} onArticleSelect={setActiveArticle} />;
+        return <ArticleRera onBack={() => handleArticleChange(null)} onArticleSelect={handleArticleChange} />;
       case "lifestyle":
-        return <ArticleLifestyle onBack={() => setActiveArticle(null)} onArticleSelect={setActiveArticle} />;
+        return <ArticleLifestyle onBack={() => handleArticleChange(null)} onArticleSelect={handleArticleChange} />;
       case "prices":
-        return <ArticlePrices onBack={() => setActiveArticle(null)} onArticleSelect={setActiveArticle} />;
+        return <ArticlePrices onBack={() => handleArticleChange(null)} onArticleSelect={handleArticleChange} />;
       default:
         return null;
     }
@@ -48,7 +57,7 @@ export default function InsightsClient() {
         {/* Sticky Back Bar */}
         <div className="sticky top-[80px] z-40 bg-white/90 backdrop-blur-md border-b border-[#ab948a]/20 py-4 px-6 md:px-12">
           <button
-            onClick={() => setActiveArticle(null)}
+            onClick={() => handleArticleChange(null)}
             className="flex items-center gap-2 font-body text-[10px] uppercase tracking-[2px] text-[#e1b258] hover:text-[#594433] transition-colors"
           >
             <ArrowLeft size={16} /> Back to Insights
@@ -68,13 +77,13 @@ export default function InsightsClient() {
       <div className="max-w-screen-xl mx-auto px-6 md:px-12">
         {/* Header */}
         <div className="mb-16 max-w-2xl">
-          <span className="font-body text-xs md:text-sm uppercase tracking-[3px] text-[#e1b258] block mb-4">
+          <span className="font-body text-[10px] uppercase tracking-[3px] text-[#e1b258] block mb-4">
             Research & Perspective
           </span>
           <h1 className="font-display font-light italic text-5xl md:text-6xl text-[#28362b] mb-6 leading-tight">
             Insights
           </h1>
-          <p className="font-body text-[#594433] text-lg md:text-xl leading-relaxed">
+          <p className="font-body text-[#594433] text-base leading-relaxed">
             Research, guides, and market perspective on luxury villas and real estate in Coimbatore — from the team behind Zenora by ZenVistas.
           </p>
         </div>
@@ -85,7 +94,7 @@ export default function InsightsClient() {
             <button
               key={tab}
               onClick={() => setActiveFilter(tab)}
-              className={`font-body text-xs uppercase tracking-[2px] px-6 py-4 whitespace-nowrap transition-colors border-b-2 ${activeFilter === tab
+              className={`font-body text-[10px] uppercase tracking-[2px] px-6 py-4 whitespace-nowrap transition-colors border-b-2 ${activeFilter === tab
                   ? "text-[#e1b258] border-[#e1b258]"
                   : "text-[#ab948a] border-transparent hover:text-[#28362b]"
                 }`}
@@ -103,7 +112,7 @@ export default function InsightsClient() {
               onClick={() => {
                 if (card.key) {
                   window.scrollTo({ top: 0, behavior: "smooth" });
-                  setActiveArticle(card.key);
+                  handleArticleChange(card.key);
                 }
               }}
               className="text-left group flex flex-col bg-white/50 backdrop-blur-sm border border-[#ab948a]/20 transition-all hover:bg-white hover:border-[#e1b258]/40"
@@ -116,20 +125,20 @@ export default function InsightsClient() {
                 />
               </div>
               <div className="p-8 flex flex-col flex-1">
-                <span className="font-body text-[11px] md:text-xs uppercase tracking-[2px] text-[#e1b258] mb-4">
+                <span className="font-body text-[10px] uppercase tracking-[2px] text-[#e1b258] mb-4">
                   {card.tag}
                 </span>
-                <h3 className="font-display text-2xl md:text-3xl font-light italic text-[#28362b] leading-[1.3] mb-4">
+                <h3 className="font-display text-2xl font-light italic text-[#28362b] leading-[1.3] mb-4">
                   {card.title}
                 </h3>
-                <p className="font-body text-base md:text-lg text-[#594433] leading-relaxed mb-8 flex-1">
+                <p className="font-body text-[13px] text-[#594433] leading-relaxed mb-8 flex-1">
                   {card.excerpt}
                 </p>
                 <div className="flex items-center justify-between border-t border-[#ab948a]/20 pt-4 relative">
-                  <span className="font-body text-[11px] md:text-xs tracking-[1px] text-[#ab948a]">
+                  <span className="font-body text-[10px] tracking-[1px] text-[#ab948a]">
                     April 2026
                   </span>
-                  <span className="font-body text-[11px] md:text-xs uppercase tracking-[2px] text-[#e1b258]">
+                  <span className="font-body text-[10px] uppercase tracking-[2px] text-[#e1b258]">
                     {card.key ? "Read →" : "Coming Soon"}
                   </span>
                 </div>
@@ -157,7 +166,7 @@ const AHero = ({ tag, title, excerpt, time, img }: any) => (
       <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-light italic text-[#28362b] leading-[1.1] mb-8">
         {title}
       </h1>
-      <p className="font-body text-lg md:text-xl text-[#594433] leading-relaxed max-w-2xl">
+      <p className="font-body text-base md:text-lg text-[#594433] leading-relaxed max-w-2xl">
         {excerpt}
       </p>
       <div className="flex items-center justify-start gap-4 mt-8 font-body text-[10px] uppercase tracking-[2px] text-[#ab948a]">
@@ -177,13 +186,13 @@ const AHero = ({ tag, title, excerpt, time, img }: any) => (
 );
 
 const AH2 = ({ children }: any) => (
-  <h2 className="font-display text-4xl md:text-[40px] font-light italic text-[#28362b] mt-16 mb-6 leading-snug">
+  <h2 className="font-display text-3xl font-light italic text-[#28362b] mt-16 mb-6 leading-snug">
     {children}
   </h2>
 );
 
 const AP = ({ children }: any) => (
-  <p className="font-body text-lg md:text-xl text-[#594433] leading-[1.8] mb-6">
+  <p className="font-body text-[15px] md:text-base text-[#594433] leading-[1.8] mb-6">
     {children}
   </p>
 );
@@ -195,7 +204,7 @@ const AUL = ({ children }: any) => (
 );
 
 const ALI = ({ children }: any) => (
-  <li className="font-body text-lg md:text-xl text-[#594433] leading-[1.8] flex gap-4 border-b border-[#ab948a]/10 pb-4 last:border-0 last:pb-0">
+  <li className="font-body text-[15px] md:text-base text-[#594433] leading-[1.8] flex gap-4 border-b border-[#ab948a]/10 pb-4 last:border-0 last:pb-0">
     <span className="text-[#e1b258] shrink-0 mt-1">—</span>
     <div>{children}</div>
   </li>
@@ -203,7 +212,7 @@ const ALI = ({ children }: any) => (
 
 const ABlockquote = ({ children }: any) => (
   <blockquote className="border-l-[3px] border-[#e1b258] pl-6 md:pl-10 my-12 py-2 bg-[#e1b258]/5">
-    <p className="font-display italic text-3xl md:text-4xl font-light text-[#28362b] leading-relaxed">
+    <p className="font-display italic text-2xl md:text-3xl font-light text-[#28362b] leading-relaxed">
       "{children}"
     </p>
   </blockquote>
@@ -211,7 +220,7 @@ const ABlockquote = ({ children }: any) => (
 
 const AHighlight = ({ children }: any) => (
   <div className="bg-[#e1b258]/10 border border-[#e1b258]/20 border-l-[3px] border-l-[#e1b258] p-6 md:p-8 my-10">
-    <p className="font-body text-lg md:text-xl text-[#28362b] leading-[1.8] m-0">
+    <p className="font-body text-[15px] md:text-base text-[#28362b] leading-[1.8] m-0">
       {children}
     </p>
   </div>
@@ -225,18 +234,18 @@ const AINArticleCTA = () => (
   <section className="bg-white border-y border-[#ab948a]/20 py-20 px-6 mt-20">
     <div className="max-w-screen-md mx-auto md:flex items-center justify-between gap-12 text-center md:text-left">
       <div>
-        <span className="font-body text-[11px] md:text-xs uppercase tracking-[2px] text-[#e1b258] block mb-3">
+        <span className="font-body text-[9px] uppercase tracking-[2px] text-[#e1b258] block mb-3">
           Zenora by ZenVistas
         </span>
-        <h3 className="font-display text-4xl md:text-[40px] font-light italic text-[#28362b] leading-snug mb-4">
+        <h3 className="font-display text-3xl font-light italic text-[#28362b] leading-snug mb-4">
           The only luxury villa<br />project in Goldwins.
         </h3>
-        <p className="font-body text-lg md:text-xl text-[#594433] leading-relaxed">
+        <p className="font-body text-[14px] text-[#594433] leading-relaxed">
           60 exclusive villas from ₹5.5 Cr. RERA registered. Book a site visit and see it for yourself.
         </p>
       </div>
       <div className="mt-8 md:mt-0 shrink-0">
-        <a href="/#contact" className="inline-block border border-[#e1b258]/60 text-[#e1b258] font-body text-xs md:text-sm uppercase tracking-[2px] px-8 py-4 hover:bg-[#e1b258] hover:text-white transition-all duration-300">
+        <a href="/#contact" className="inline-block border border-[#e1b258]/60 text-[#e1b258] font-body text-[10px] uppercase tracking-[2px] px-8 py-4 hover:bg-[#e1b258] hover:text-white transition-all duration-300">
           Book a Site Visit
         </a>
       </div>
@@ -247,7 +256,7 @@ const AINArticleCTA = () => (
 const ARelated = ({ articles, onSelect, onBack }: any) => (
   <section className="bg-[#f5f1ed] py-20 px-6">
     <div className="max-w-screen-md mx-auto">
-      <span className="font-body text-xs uppercase tracking-[3px] text-[#e1b258] block mb-8 text-center md:text-left">
+      <span className="font-body text-[10px] uppercase tracking-[3px] text-[#e1b258] block mb-8 text-center md:text-left">
         Related Insights
       </span>
       <div className="grid md:grid-cols-2 gap-6">
@@ -263,13 +272,13 @@ const ARelated = ({ articles, onSelect, onBack }: any) => (
               }}
               className="text-left bg-white/60 border border-[#ab948a]/20 p-8 transition-all hover:bg-white hover:border-[#e1b258]/40"
             >
-              <div className="font-body text-[11px] md:text-xs uppercase tracking-[2px] text-[#e1b258] mb-3">
+              <div className="font-body text-[9px] uppercase tracking-[2px] text-[#e1b258] mb-3">
                 {c.tag}
               </div>
-              <h4 className="font-display text-2xl md:text-3xl font-light italic text-[#28362b] leading-[1.3] mb-6">
+              <h4 className="font-display text-xl font-light italic text-[#28362b] leading-[1.3] mb-6">
                 {c.title}
               </h4>
-              <div className="font-body text-[11px] md:text-xs uppercase tracking-[2px] text-[#e1b258]">
+              <div className="font-body text-[10px] uppercase tracking-[2px] text-[#e1b258]">
                 Read →
               </div>
             </button>
@@ -277,8 +286,8 @@ const ARelated = ({ articles, onSelect, onBack }: any) => (
         })}
       </div>
       <div className="text-center mt-16">
-        <button onClick={onBack} className="inline-flex items-center gap-2 border border-[#ab948a]/40 text-[#594433] font-body text-[11px] md:text-xs uppercase tracking-[2px] px-8 py-3 hover:border-[#28362b] hover:text-[#28362b] transition-all duration-300">
-          <ArrowLeft size={16} /> Back to All Insights
+        <button onClick={onBack} className="inline-flex items-center gap-2 border border-[#ab948a]/40 text-[#594433] font-body text-[10px] uppercase tracking-[2px] px-8 py-3 hover:border-[#28362b] hover:text-[#28362b] transition-all duration-300">
+          <ArrowLeft size={14} /> Back to All Insights
         </button>
       </div>
     </div>
