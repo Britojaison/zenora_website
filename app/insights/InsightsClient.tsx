@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 
@@ -14,15 +15,20 @@ const CARDS = [
 ];
 
 export default function InsightsClient({ initialArticle = null }: { initialArticle?: string | null } = {}) {
+  const router = useRouter();
   const [activeFilter, setActiveFilter] = useState("All");
   const [activeArticle, setActiveArticle] = useState<string | null>(initialArticle);
+
+  useEffect(() => {
+    setActiveArticle(initialArticle);
+  }, [initialArticle]);
 
   const handleArticleChange = (key: string | null) => {
     setActiveArticle(key);
     if (key) {
-      window.history.pushState({}, '', `/insights/${key}`);
+      router.push(`/insights/${key}`, { scroll: false });
     } else {
-      window.history.pushState({}, '', `/insights`);
+      router.push(`/insights`, { scroll: false });
     }
   };
 
