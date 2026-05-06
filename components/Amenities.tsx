@@ -42,7 +42,7 @@ const amenities = [
     img: "/img/amenities/Community Lounge.png",
   },
   {
-    name: "Cricket Truf",
+    name: "Cricket Turf",
     desc: "For the familiar rhythm of the game. Evenings often gather here around friendly matches and spirited play.",
     img: "/img/amenities/cricket.jpg",
   },
