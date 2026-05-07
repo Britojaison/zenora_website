@@ -10,7 +10,7 @@ const highlights = [
 const features = [
   "Aspirational homes for the next chapter",
   "Rooftop lifestyle : Sky Garden, Aqua Lounge, Star Deck",
-  "Starting at ₹5.5 Cr : premium without the premium chaos",
+
   "Goldwins convenience, minus the noise",
   "Modern design with practical comfort",
   "Clubhouse, Wellness Arena, EV charging, CCTV",

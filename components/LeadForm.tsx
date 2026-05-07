@@ -81,13 +81,7 @@ export default function LeadForm({ open, onClose, redirectUrl }: LeadFormProps) 
           window.open(redirectUrl, "_blank", "noopener,noreferrer");
         }, 1200);
       } else {
-        // Default: trigger PDF download
-        const link = document.createElement("a");
-        link.href = "/brochure/zenora-brochure.pdf";
-        link.download = "Zenora-Brochure.pdf";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        // Just show thank you message
         setSubmitted(true);
       }
     } catch (err) {
@@ -186,7 +180,7 @@ export default function LeadForm({ open, onClose, redirectUrl }: LeadFormProps) 
                 disabled={loading}
                 className="mt-4 bg-[#28362b] text-[#e1d5c9] font-body text-xs uppercase py-4 hover:bg-[#e1b258] hover:text-[#28362b] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {loading ? "Submitting..." : redirectUrl ? "Continue to Webverse" : "Download Brochure"}
+                {loading ? "Submitting..." : redirectUrl ? "Continue to Webverse" : "Submit"}
               </button>
 
               {error && (

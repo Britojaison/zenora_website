@@ -72,22 +72,20 @@ export default function CoffeeContent() {
 
       {/* ─── Stats Banner ─── */}
       <section className="bg-[#28362b] text-[#e1d5c9] py-20 px-6 mt-12">
-        <div className="max-w-screen-xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-12 text-center">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
           <FadeIn delay={100}>
             <div className="font-display text-5xl md:text-6xl text-[#e1b258] mb-2">4</div>
             <div className="font-body text-[11px] uppercase tracking-[2px] opacity-80">Families Per Evening</div>
           </FadeIn>
           <FadeIn delay={200}>
-            <div className="font-display text-2xl md:text-3xl text-[#e1b258] mb-4 leading-tight italic">Invite<br/>Only</div>
-            <div className="font-body text-[11px] uppercase tracking-[2px] opacity-80">— By Application</div>
+            <div className="mt-2 md:mt-3">
+              <div className="font-display text-2xl md:text-3xl text-[#e1b258] mb-4 leading-tight italic">Invite Only</div>
+              <div className="font-body text-[11px] uppercase tracking-[2px] opacity-80">— By Application</div>
+            </div>
           </FadeIn>
           <FadeIn delay={300}>
             <div className="font-display text-5xl md:text-6xl text-[#e1b258] mb-2">60</div>
             <div className="font-body text-[11px] uppercase tracking-[2px] opacity-80">Exclusive Villas</div>
-          </FadeIn>
-          <FadeIn delay={400}>
-            <div className="font-display text-3xl md:text-5xl text-[#e1b258] mb-4 mt-2">₹5.5Cr</div>
-            <div className="font-body text-[11px] uppercase tracking-[2px] opacity-80">Starting Price</div>
           </FadeIn>
         </div>
       </section>
@@ -169,9 +167,9 @@ export default function CoffeeContent() {
 
           <FadeIn delay={300}>
             <div className="bg-white p-10 border border-[#ab948a]/10 hover:border-[#e1b258]/30 transition-colors h-full">
-              <h4 className="font-display text-4xl font-light italic text-[#28362b] mb-2">₹5.5Cr</h4>
-              <div className="font-body text-[10px] uppercase tracking-[2px] text-[#e1b258] mb-6">Starting Price</div>
-              <p className="font-body text-sm text-[#594433] leading-relaxed">Indicative. Covers freehold plot, villa construction, and lifetime access to all community amenities.</p>
+              <h4 className="font-display text-4xl font-light italic text-[#28362b] mb-2">Premium</h4>
+              <div className="font-body text-[10px] uppercase tracking-[2px] text-[#e1b258] mb-6">Signature Luxury</div>
+              <p className="font-body text-sm text-[#594433] leading-relaxed">An address that reflects your stature. From curated lifestyle amenities to refined architectural details, experience a home crafted for the chosen few.</p>
             </div>
           </FadeIn>
         </div>

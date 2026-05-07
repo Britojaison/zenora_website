@@ -36,7 +36,7 @@ export default function TermsAndConditions() {
               <span className="font-body font-bold text-[#e1b258] mt-1">3.</span> Pricing
             </h2>
             <p className="pl-6">
-              All pricing displayed on this website, including the indicative starting figure of ₹5.5 Cr, is indicative only and subject to change without prior notice. Website pricing does not constitute a binding price commitment. The legally binding price is that agreed and executed in the formal sale agreement between ZenVistas Realty and the buyer. Buyers are advised to confirm current pricing directly with the ZenVistas sales team before making any financial decision.
+              All pricing displayed on this website is indicative only and subject to change without prior notice. Website pricing does not constitute a binding price commitment. The legally binding price is that agreed and executed in the formal sale agreement between ZenVistas Realty and the buyer. Buyers are advised to confirm current pricing directly with the ZenVistas sales team before making any financial decision.
             </p>
 
             <h2 className="font-display text-2xl text-[#28362b] mt-8 mb-4 flex items-start gap-3">

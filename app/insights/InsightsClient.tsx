@@ -11,7 +11,7 @@ const CARDS = [
   { key: "gated", tag: "Market", img: "https://zenvistas.co.in/img/aerial-view-club-hosue.jpg", title: "Gated Villas vs Independent House in Coimbatore: The Real Buying Trade Off", excerpt: "The real decision is not luxury versus non-luxury. It is whether ownership, privacy, and ease of living can exist together in one buying structure." },
   { key: "goldwins", tag: "Market", img: "https://zenvistas.co.in/img/street-view.jpg", title: "Luxury Villas in Goldwins Coimbatore: Why This Address Holds Long Term Value", excerpt: "Established infrastructure, airport proximity, and limited new luxury supply make Goldwins one of the strongest location-led plays for villa buyers in Coimbatore." },
   { key: "prices", tag: "Market", img: "https://zenvistas.co.in/img/amenities/swimming-pool.jpg", title: "Property Prices in Coimbatore 2026: Luxury Villas Locality Guide", excerpt: "Luxury villa pricing in Coimbatore is not one flat market. It changes meaningfully by locality, maturity, access, and the kind of buyer each micro-market attracts." },
-  { key: "invest", tag: "Investment", img: "https://zenvistas.co.in/img/master-bedroom-view-1.jpg", title: "Is a ₹5 Crore Villa a Good Investment in Coimbatore Right Now", excerpt: "A ₹5 crore property decision should be driven by fundamentals: location quality, land ownership, supply scarcity, and the timing of entry." }
+  { key: "invest", tag: "Investment", img: "https://zenvistas.co.in/img/master-bedroom-view-1.jpg", title: "Is a Luxury Villa a Good Investment in Coimbatore Right Now", excerpt: "A luxury property decision should be driven by fundamentals: location quality, land ownership, supply scarcity, and the timing of entry." }
 ];
 
 export default function InsightsClient({ initialArticle = null }: { initialArticle?: string | null } = {}) {
@@ -247,7 +247,7 @@ const AINArticleCTA = () => (
           The only luxury villa<br />project in Goldwins.
         </h3>
         <p className="font-body text-[14px] text-[#594433] leading-relaxed">
-          60 exclusive villas from ₹5.5 Cr. RERA registered. Book a site visit and see it for yourself.
+          60 exclusive villas. RERA registered. Book a site visit and see it for yourself.
         </p>
       </div>
       <div className="mt-8 md:mt-0 shrink-0">
@@ -400,7 +400,7 @@ const ArticleGated = ({ onBack, onArticleSelect }: any) => (
 
       <AH2>The cost logic buyers often miss</AH2>
       <AP>On paper, an independent house can look simpler. Buy land. Build home. Finish the rest later. In practice, premium construction, infrastructure, landscape, utilities, and long-term upkeep can push the real cost much closer to a gated luxury product than people initially expect.</AP>
-      <AP>That is why this comparison also connects directly with villa investment in Coimbatore at the ₹5 crore level. The buying structure affects not only lifestyle but also how value is experienced over time.</AP>
+      <AP>That is why this comparison also connects directly with villa investment in Coimbatore. The buying structure affects not only lifestyle but also how value is experienced over time.</AP>
 
       <AH2>How to decide properly</AH2>
       <AP>If full physical control matters most, an independent house may still be the right answer. If a buyer wants land ownership, privacy, better organised surroundings, and less management load, a gated villa usually becomes the more balanced choice.</AP>
@@ -414,8 +414,8 @@ const ArticleInvest = ({ onBack, onArticleSelect }: any) => (
   <>
     <AHero
       tag="Investment"
-      title="Is a ₹5 Crore Villa a Good Investment in Coimbatore Right Now"
-      excerpt="A ₹5 crore property decision should be driven by fundamentals: location quality, land ownership, supply scarcity, and the timing of entry."
+      title="Is a Luxury Villa a Good Investment in Coimbatore Right Now"
+      excerpt="A luxury property decision should be driven by fundamentals: location quality, land ownership, supply scarcity, and the timing of entry."
       time="5"
       img="https://zenvistas.co.in/img/master-bedroom-view-1.jpg"
     />
@@ -425,7 +425,7 @@ const ArticleInvest = ({ onBack, onArticleSelect }: any) => (
       <ADivider />
 
       <AH2>What makes a villa investment work at this level</AH2>
-      <AP>At the ₹5 crore mark, the question is not whether real estate is expensive. The question is whether the asset justifies its pricing through land value, location strength, product quality, and scarcity. A premium villa can make sense if all four of these align.</AP>
+      <AP>In this segment, the question is not whether real estate is expensive. The question is whether the asset justifies its pricing through land value, location strength, product quality, and scarcity. A premium villa can make sense if all four of these align.</AP>
       <AUL>
         <ALI>Location strength creates the base layer of demand.</ALI>
         <ALI>Freehold land ownership protects the long-term value logic better than purely built-up ownership.</ALI>
@@ -440,7 +440,7 @@ const ArticleInvest = ({ onBack, onArticleSelect }: any) => (
       <ADivider />
 
       <AH2>Why the specific villa matters more than the price tag</AH2>
-      <AP>Not every ₹5 crore asset behaves the same way. A villa with freehold land in a strong locality is very different from a premium apartment with no meaningful land ownership component. The asset structure changes the long-term thesis.</AP>
+      <AP>Not every premium asset behaves the same way. A villa with freehold land in a strong locality is very different from a premium apartment with no meaningful land ownership component. The asset structure changes the long-term thesis.</AP>
       <AP>A premium villa is rarely judged only by current market value. It is judged by how well the land, location, and livability story continue to hold together five to ten years later.</AP>
 
       <AH2>How scarcity influences value</AH2>
