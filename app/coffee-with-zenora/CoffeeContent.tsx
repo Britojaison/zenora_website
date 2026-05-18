@@ -176,7 +176,7 @@ export default function CoffeeContent() {
 
         <FadeIn delay={400}>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-16">
-            <a href="/zenora" className="border border-[#e1b258]/60 text-[#e1b258] font-body text-[10px] uppercase tracking-[2px] px-8 py-4 hover:bg-[#e1b258] hover:text-white transition-all duration-300">
+            <a href="/" className="border border-[#e1b258]/60 text-[#e1b258] font-body text-[10px] uppercase tracking-[2px] px-8 py-4 hover:bg-[#e1b258] hover:text-white transition-all duration-300">
               Explore Zenora → 
             </a>
           </div>

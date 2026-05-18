@@ -46,6 +46,7 @@ export default async function RootLayout({
     <html lang="en">
       {isAccepted && <GoogleTagManager gtmId="GTM-5FNDNF5D" />}
       <head>
+        <meta name="google-site-verification" content="O8T6ZrpCr0t3UMgXa6EqKRKKS4tzh3RBagwngU3UN7s" />
         {isAccepted && (
           <>
             <Script
