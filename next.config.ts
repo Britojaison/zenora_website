@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
+  trailingSlash: false,
   images: {
     remotePatterns: [
       {
@@ -9,6 +10,15 @@ const nextConfig: NextConfig = {
         hostname: "**",
       },
     ],
+  },
+  async redirects() {
+    return [
+      {
+        source: "/zenora",
+        destination: "/",
+        permanent: true,
+      },
+    ];
   },
 };
 

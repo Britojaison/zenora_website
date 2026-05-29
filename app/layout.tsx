@@ -10,23 +10,62 @@ import { GoogleTagManager } from '@next/third-parties/google';
 import { cookies } from 'next/headers';
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.zenvistas.co.in"),
-  title: "Zenora · Crafted for the Chosen",
+  metadataBase: new URL("https://www.zenoravillas.in"),
+  title: {
+    default: "Zenora Villas · Luxury Villas in Coimbatore | Crafted for the Chosen",
+    template: "%s | Zenora Villas",
+  },
   description:
-    "An affordable luxury villa community in Goldwins, Coimbatore. Sky Garden, Aqua Lounge, Star Deck — elevation without compromise.",
+    "Zenora Villas — An affordable luxury villa community in Goldwins, Coimbatore. 60 exclusive villas with Sky Garden, Aqua Lounge, Star Deck, Private Theatre & more. Starting from 5.5 cents.",
+  keywords: [
+    "Zenora Villas",
+    "Zenora",
+    "luxury villas Coimbatore",
+    "villas in Goldwins Coimbatore",
+    "affordable luxury villas",
+    "ZenVistas",
+    "premium villas Coimbatore",
+    "gated community Coimbatore",
+    "villa projects in Coimbatore",
+    "Goldwins villas",
+  ],
+  alternates: {
+    canonical: "https://www.zenoravillas.in",
+  },
   openGraph: {
-    title: "Zenora by ZenVistas",
-    description: "Rise to elevated living.",
-    url: "https://www.zenvistas.co.in",
-    siteName: "Zenora",
+    title: "Zenora Villas — Luxury Villa Community in Coimbatore",
+    description:
+      "An exclusive community of 60 luxury villas in Goldwins, Coimbatore. Sky Garden, Aqua Lounge, Star Deck — elevation without compromise.",
+    url: "https://www.zenoravillas.in",
+    siteName: "Zenora Villas",
     locale: "en_IN",
     type: "website",
+    images: [
+      {
+        url: "/img/aerial-view-club-hosue.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Zenora Villas — Luxury Villa Community in Goldwins, Coimbatore",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Zenora · Crafted for the Chosen",
+    title: "Zenora Villas · Luxury Villas in Coimbatore",
     description:
       "An affordable luxury villa community in Goldwins, Coimbatore. Sky Garden, Aqua Lounge, Star Deck — elevation without compromise.",
+    images: ["/img/aerial-view-club-hosue.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   verification: {
     google: "T6IyrQzCmAV1Qkz2kVz5gkhIPsObZw6tE_MOLVAeD3s",

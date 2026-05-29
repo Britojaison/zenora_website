@@ -6,12 +6,12 @@ import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 
 const CARDS = [
-  { key: "rera", tag: "Legal", img: "https://zenvistas.co.in/img/7-cent-side.jpg", title: "RERA Registration in Tamil Nadu for Villa Buyers: What to Verify Before Booking", excerpt: "RERA should be treated as a due diligence checkpoint, not as decorative compliance language buried inside a brochure." },
-  { key: "lifestyle", tag: "Lifestyle", img: "https://zenvistas.co.in/img/amenities/meditation-centre.jpg", title: "Best Villas in Coimbatore for Established Families | Buyer Guide 2026", excerpt: "What Coimbatore's established families are really looking for in their next villa, and why lifestyle quality has become just as important as location and land ownership." },
-  { key: "gated", tag: "Market", img: "https://zenvistas.co.in/img/aerial-view-club-hosue.jpg", title: "Gated Villas vs Independent House in Coimbatore: The Real Buying Trade Off", excerpt: "The real decision is not luxury versus non-luxury. It is whether ownership, privacy, and ease of living can exist together in one buying structure." },
-  { key: "goldwins", tag: "Market", img: "https://zenvistas.co.in/img/street-view.jpg", title: "Luxury Villas in Goldwins Coimbatore: Why This Address Holds Long Term Value", excerpt: "Established infrastructure, airport proximity, and limited new luxury supply make Goldwins one of the strongest location-led plays for villa buyers in Coimbatore." },
-  { key: "prices", tag: "Market", img: "https://zenvistas.co.in/img/amenities/swimming-pool.jpg", title: "Property Prices in Coimbatore 2026: Luxury Villas Locality Guide", excerpt: "Luxury villa pricing in Coimbatore is not one flat market. It changes meaningfully by locality, maturity, access, and the kind of buyer each micro-market attracts." },
-  { key: "invest", tag: "Investment", img: "https://zenvistas.co.in/img/master-bedroom-view-1.jpg", title: "Is a Luxury Villa a Good Investment in Coimbatore Right Now", excerpt: "A luxury property decision should be driven by fundamentals: location quality, land ownership, supply scarcity, and the timing of entry." }
+  { key: "rera", tag: "Legal", img: "https://www.zenoravillas.in/img/7-cent-side.jpg", title: "RERA Registration in Tamil Nadu for Villa Buyers: What to Verify Before Booking", excerpt: "RERA should be treated as a due diligence checkpoint, not as decorative compliance language buried inside a brochure." },
+  { key: "lifestyle", tag: "Lifestyle", img: "https://www.zenoravillas.in/img/amenities/meditation-centre.jpg", title: "Best Villas in Coimbatore for Established Families | Buyer Guide 2026", excerpt: "What Coimbatore's established families are really looking for in their next villa, and why lifestyle quality has become just as important as location and land ownership." },
+  { key: "gated", tag: "Market", img: "https://www.zenoravillas.in/img/aerial-view-club-hosue.jpg", title: "Gated Villas vs Independent House in Coimbatore: The Real Buying Trade Off", excerpt: "The real decision is not luxury versus non-luxury. It is whether ownership, privacy, and ease of living can exist together in one buying structure." },
+  { key: "goldwins", tag: "Market", img: "https://www.zenoravillas.in/img/street-view.jpg", title: "Luxury Villas in Goldwins Coimbatore: Why This Address Holds Long Term Value", excerpt: "Established infrastructure, airport proximity, and limited new luxury supply make Goldwins one of the strongest location-led plays for villa buyers in Coimbatore." },
+  { key: "prices", tag: "Market", img: "https://www.zenoravillas.in/img/amenities/swimming-pool.jpg", title: "Property Prices in Coimbatore 2026: Luxury Villas Locality Guide", excerpt: "Luxury villa pricing in Coimbatore is not one flat market. It changes meaningfully by locality, maturity, access, and the kind of buyer each micro-market attracts." },
+  { key: "invest", tag: "Investment", img: "https://www.zenoravillas.in/img/master-bedroom-view-1.jpg", title: "Is a Luxury Villa a Good Investment in Coimbatore Right Now", excerpt: "A luxury property decision should be driven by fundamentals: location quality, land ownership, supply scarcity, and the timing of entry." }
 ];
 
 export default function InsightsClient({ initialArticle = null }: { initialArticle?: string | null } = {}) {
@@ -311,7 +311,7 @@ const ArticleGoldwins = ({ onBack, onArticleSelect }: any) => (
       title="Luxury Villas in Goldwins Coimbatore: Why This Address Holds Long Term Value"
       excerpt="Established infrastructure, airport proximity, and limited new luxury supply make Goldwins one of the strongest location-led plays for villa buyers in Coimbatore."
       time="5"
-      img="https://zenvistas.co.in/img/street-view.jpg"
+      img="https://www.zenoravillas.in/img/street-view.jpg"
     />
     <div className="px-6 md:px-12 max-w-screen-xl mx-auto pb-12">
       <AP>Goldwins sits on the Avinashi Road corridor, which gives it something many emerging micro-markets still do not have: real infrastructure that already exists. Buyers are not betting on a future promise here. Roads, hospitals, retail access, connectivity, and a mature residential character are already in place.</AP>
@@ -364,7 +364,7 @@ const ArticleGated = ({ onBack, onArticleSelect }: any) => (
       title="Gated Villas vs Independent House in Coimbatore: The Real Buying Trade Off"
       excerpt="The real decision is not luxury versus non-luxury. It is whether ownership, privacy, and ease of living can exist together in one buying structure."
       time="5"
-      img="https://zenvistas.co.in/img/aerial-view-club-hosue.jpg"
+      img="https://www.zenoravillas.in/img/aerial-view-club-hosue.jpg"
     />
     <div className="px-6 md:px-12 max-w-screen-xl mx-auto pb-12">
       <AP>Many premium buyers in Coimbatore are not choosing between an apartment and a villa. They are choosing between a gated villa community and an independent house. That is a much more specific comparison, and it deserves a much more honest answer.</AP>
@@ -417,7 +417,7 @@ const ArticleInvest = ({ onBack, onArticleSelect }: any) => (
       title="Is a Luxury Villa a Good Investment in Coimbatore Right Now"
       excerpt="A luxury property decision should be driven by fundamentals: location quality, land ownership, supply scarcity, and the timing of entry."
       time="5"
-      img="https://zenvistas.co.in/img/master-bedroom-view-1.jpg"
+      img="https://www.zenoravillas.in/img/master-bedroom-view-1.jpg"
     />
     <div className="px-6 md:px-12 max-w-screen-xl mx-auto pb-12">
       <AP>Coimbatore's upper-end property market tends to move on fundamentals rather than pure sentiment. Buyers at this level are not looking for noise. They want durable value, practical utility, and an asset that can sit comfortably across many years.</AP>
@@ -465,7 +465,7 @@ const ArticleRera = ({ onBack, onArticleSelect }: any) => (
       title="RERA Registration in Tamil Nadu for Villa Buyers: What to Verify Before Booking"
       excerpt="RERA should be treated as a due diligence checkpoint, not as decorative compliance language buried inside a brochure."
       time="5"
-      img="https://zenvistas.co.in/img/7-cent-side.jpg"
+      img="https://www.zenoravillas.in/img/7-cent-side.jpg"
     />
     <div className="px-6 md:px-12 max-w-screen-xl mx-auto pb-12">
       <AP>The TNRERA portal matters because it allows buyers to verify core project information independently. That matters even more in premium villa purchases, where ticket size is high and trust should never depend only on the sales conversation.</AP>
@@ -522,7 +522,7 @@ const ArticleLifestyle = ({ onBack, onArticleSelect }: any) => (
       title="Best Villas in Coimbatore for Established Families | Buyer Guide 2026"
       excerpt="What Coimbatore's established families are really looking for in their next villa, and why lifestyle quality has become just as important as location and land ownership."
       time="5"
-      img="https://zenvistas.co.in/img/amenities/meditation-centre.jpg"
+      img="https://www.zenoravillas.in/img/amenities/meditation-centre.jpg"
     />
     <div className="px-6 md:px-12 max-w-screen-xl mx-auto pb-12">
       <AP>Goldwins sits on the Avinashi Road corridor, which gives it something many emerging micro-markets still do not have: real infrastructure that already exists. Buyers are not betting on a future promise here. Roads, hospitals, retail access, connectivity, and a mature residential character are already in place.</AP>
@@ -575,7 +575,7 @@ const ArticlePrices = ({ onBack, onArticleSelect }: any) => (
       title="Property Prices in Coimbatore 2026: Luxury Villas Locality Guide"
       excerpt="Luxury villa pricing in Coimbatore is not one flat market. It changes meaningfully by locality, maturity, access, and the kind of buyer each micro-market attracts."
       time="5"
-      img="https://zenvistas.co.in/img/amenities/swimming-pool.jpg"
+      img="https://www.zenoravillas.in/img/amenities/swimming-pool.jpg"
     />
     <div className="px-6 md:px-12 max-w-screen-xl mx-auto pb-12">
       <AP>When buyers ask about property prices in Coimbatore, the answer usually becomes confusing because all property types get discussed together. Apartments, plots, independent homes, and luxury villas do not move in the same way. For premium villa buyers, locality quality matters more than citywide averages.</AP>

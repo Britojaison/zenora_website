@@ -22,7 +22,7 @@ export default function PrivacyPolicy() {
               <span className="font-body font-bold text-[#e1b258] mt-1">1.</span> Who We Are
             </h2>
             <p className="pl-6">
-              ZenVistas Realty is the developer behind Zenora, a luxury villa community in Goldwins, Coimbatore, Tamil Nadu. Our website is zenvistas.co.in. This Privacy Policy explains what personal data we collect through this website, how we use it, who we share it with, and what rights you hold under Indian law.
+              ZenVistas Realty is the developer behind Zenora, a luxury villa community in Goldwins, Coimbatore, Tamil Nadu. Our website is zenoravillas.in. This Privacy Policy explains what personal data we collect through this website, how we use it, who we share it with, and what rights you hold under Indian law.
             </p>
 
             <h2 className="font-display text-2xl text-[#28362b] mt-8 mb-4 flex items-start gap-3">

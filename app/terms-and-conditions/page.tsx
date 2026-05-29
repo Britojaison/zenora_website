@@ -22,7 +22,7 @@ export default function TermsAndConditions() {
               <span className="font-body font-bold text-[#e1b258] mt-1">1.</span> Acceptance of Terms
             </h2>
             <p className="pl-6">
-              Access to and use of the website zenvistas.co.in constitutes your acceptance of these Terms &amp; Conditions. If you do not agree, you should not use this website. These terms apply to all users — including visitors, enquirers, and anyone registering for ZenVistas events.
+              Access to and use of the website zenoravillas.in constitutes your acceptance of these Terms &amp; Conditions. If you do not agree, you should not use this website. These terms apply to all users — including visitors, enquirers, and anyone registering for ZenVistas events.
             </p>
 
             <h2 className="font-display text-2xl text-[#28362b] mt-8 mb-4 flex items-start gap-3">
