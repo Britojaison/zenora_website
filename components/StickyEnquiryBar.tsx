@@ -157,24 +157,10 @@ export default function StickyEnquiryBar() {
             transition={{ type: "spring", damping: 30, stiffness: 200 }}
             className="fixed bottom-0 left-0 right-0 w-full bg-[#28362b] text-[#f5f1ed] border-t border-[#e1b258]/30 shadow-2xl z-40 py-4 px-5 font-body"
           >
-            <div className="max-w-full xl:max-w-[1550px] mx-auto flex items-center justify-between gap-4">
+            <div className="max-w-full xl:max-w-[1550px] mx-auto flex items-center justify-between gap-4 md:gap-6 lg:gap-12">
               
-              {/* Left section: Logo & Title */}
-              <div className="flex items-center gap-3 flex-shrink-0">
-                <img 
-                  src="/images/zenora_logo.svg" 
-                  alt="Zenora Logo" 
-                  className="h-10 w-auto"
-                />
-                <div>
-                  <span className="font-display text-base tracking-wider text-[#e1b258] block not-italic font-light leading-tight">
-                    DISCOVER ZENORA
-                  </span>
-                  <span className="text-[9px] uppercase tracking-widest text-[#ab948a] block">
-                    Exclusive Enquiry
-                  </span>
-                </div>
-              </div>
+              {/* Invisible spacer to balance the right buttons for true centering (laptop only) */}
+              <div className="hidden lg:block w-[100px] flex-shrink-0" aria-hidden="true" />
 
               {/* Form Section */}
               {submitted ? (
@@ -182,10 +168,10 @@ export default function StickyEnquiryBar() {
                   <Check className="mr-2" size={18} /> Thank you. We will get back to you shortly.
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="flex-1 flex items-center justify-between gap-3 xl:gap-4">
+                <form onSubmit={handleSubmit} className="flex-1 lg:max-w-[900px] xl:max-w-[1050px] mx-auto flex items-center justify-between gap-3 md:gap-4 lg:gap-8">
                   
                   {/* Inputs Grid */}
-                  <div className="grid grid-cols-5 gap-2.5 xl:gap-3.5 flex-1">
+                  <div className="grid grid-cols-5 gap-2 md:gap-3 lg:gap-6 w-full">
                     
                     {/* Name */}
                     <div>
@@ -196,7 +182,7 @@ export default function StickyEnquiryBar() {
                         value={form.name}
                         onChange={handleInputChange}
                         placeholder="Your Name *"
-                        className="w-full bg-transparent border-b border-[#ab948a]/30 focus:border-[#e1b258] outline-none text-xs xl:text-sm py-2 text-[#f5f1ed] placeholder:text-[#ab948a]/50 transition-colors"
+                        className="w-full bg-transparent border-b border-[#ab948a]/30 focus:border-[#e1b258] outline-none text-xs md:text-sm py-2 text-[#f5f1ed] placeholder:text-[#ab948a]/50 transition-colors"
                       />
                     </div>
 
@@ -209,7 +195,7 @@ export default function StickyEnquiryBar() {
                         value={form.phone}
                         onChange={handleInputChange}
                         placeholder="Contact Number *"
-                        className="w-full bg-transparent border-b border-[#ab948a]/30 focus:border-[#e1b258] outline-none text-xs xl:text-sm py-2 text-[#f5f1ed] placeholder:text-[#ab948a]/50 transition-colors"
+                        className="w-full bg-transparent border-b border-[#ab948a]/30 focus:border-[#e1b258] outline-none text-xs md:text-sm py-2 text-[#f5f1ed] placeholder:text-[#ab948a]/50 transition-colors"
                       />
                     </div>
 
@@ -222,18 +208,18 @@ export default function StickyEnquiryBar() {
                         value={form.email}
                         onChange={handleInputChange}
                         placeholder="Email Address *"
-                        className="w-full bg-transparent border-b border-[#ab948a]/30 focus:border-[#e1b258] outline-none text-xs xl:text-sm py-2 text-[#f5f1ed] placeholder:text-[#ab948a]/50 transition-colors"
+                        className="w-full bg-transparent border-b border-[#ab948a]/30 focus:border-[#e1b258] outline-none text-xs md:text-sm py-2 text-[#f5f1ed] placeholder:text-[#ab948a]/50 transition-colors"
                       />
                     </div>
 
                     {/* Dropdown 1 */}
-                    <div>
+                    <div className="relative">
                       <select
                         required
                         name="option1"
                         value={form.option1}
                         onChange={handleInputChange}
-                        className="w-full bg-transparent border-b border-[#ab948a]/30 focus:border-[#e1b258] outline-none text-xs xl:text-sm py-2.5 text-[#f5f1ed] transition-colors cursor-pointer appearance-none"
+                        className="w-full bg-transparent border-b border-[#ab948a]/30 focus:border-[#e1b258] outline-none text-xs md:text-sm py-2.5 text-[#f5f1ed] transition-colors cursor-pointer appearance-none pr-5"
                       >
                         <option value="" disabled className="bg-[#28362b] text-[#ab948a]/50">{optLabel1} *</option>
                         {dropdown1Options.map((opt) => (
@@ -242,16 +228,21 @@ export default function StickyEnquiryBar() {
                           </option>
                         ))}
                       </select>
+                      <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-[#ab948a]/50">
+                        <svg className="w-3 h-3 fill-current" viewBox="0 0 20 20">
+                          <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+                        </svg>
+                      </div>
                     </div>
 
                     {/* Dropdown 2 */}
-                    <div>
+                    <div className="relative">
                       <select
                         required
                         name="option2"
                         value={form.option2}
                         onChange={handleInputChange}
-                        className="w-full bg-transparent border-b border-[#ab948a]/30 focus:border-[#e1b258] outline-none text-xs xl:text-sm py-2.5 text-[#f5f1ed] transition-colors cursor-pointer appearance-none"
+                        className="w-full bg-transparent border-b border-[#ab948a]/30 focus:border-[#e1b258] outline-none text-xs md:text-sm py-2.5 text-[#f5f1ed] transition-colors cursor-pointer appearance-none pr-5"
                       >
                         <option value="" disabled className="bg-[#28362b] text-[#ab948a]/50">{optLabel2} *</option>
                         {dropdown2Options.map((opt) => (
@@ -260,6 +251,11 @@ export default function StickyEnquiryBar() {
                           </option>
                         ))}
                       </select>
+                      <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-[#ab948a]/50">
+                        <svg className="w-3 h-3 fill-current" viewBox="0 0 20 20">
+                          <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+                        </svg>
+                      </div>
                     </div>
 
                   </div>
@@ -268,7 +264,7 @@ export default function StickyEnquiryBar() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="bg-[#e1b258] text-[#28362b] font-body text-[9px] xl:text-[10px] uppercase font-bold tracking-widest px-4 xl:px-6 py-3 hover:bg-[#f5f1ed] transition-colors disabled:opacity-50 flex-shrink-0 cursor-pointer"
+                    className="bg-[#e1b258] text-[#28362b] font-body text-[9px] md:text-xs uppercase font-bold tracking-widest px-4 md:px-6 py-3 hover:bg-[#f5f1ed] transition-colors disabled:opacity-50 flex-shrink-0 cursor-pointer"
                   >
                     {loading ? "Submitting..." : "Submit"}
                   </button>
@@ -458,45 +454,59 @@ export default function StickyEnquiryBar() {
                   </div>
 
                   {/* Option 1 Dropdown */}
-                  <div className="flex flex-col gap-1.5">
+                  <div className="flex flex-col gap-2">
                     <label className="text-[10px] uppercase tracking-wider text-[#ab948a]">
                       {optLabel1} *
                     </label>
-                    <select
-                      required
-                      name="option1"
-                      value={form.option1}
-                      onChange={handleInputChange}
-                      className="bg-transparent border-b border-[#ab948a]/20 focus:border-[#e1b258] outline-none text-base py-2.5 text-[#f5f1ed] transition-colors cursor-pointer appearance-none"
-                    >
-                      <option value="" disabled className="bg-[#28362b] text-[#ab948a]/50">Select preference</option>
-                      {dropdown1Options.map((opt) => (
-                        <option key={opt} value={opt} className="bg-[#28362b] text-[#f5f1ed]">
-                          {opt}
-                        </option>
-                      ))}
-                    </select>
+                    <div className="relative">
+                      <select
+                        required
+                        name="option1"
+                        value={form.option1}
+                        onChange={handleInputChange}
+                        className="w-full bg-transparent border-b border-[#ab948a]/20 focus:border-[#e1b258] outline-none text-base md:text-lg py-3 text-[#f5f1ed] transition-colors cursor-pointer appearance-none pr-6"
+                      >
+                        <option value="" disabled className="bg-[#28362b] text-[#ab948a]/50">Select preference</option>
+                        {dropdown1Options.map((opt) => (
+                          <option key={opt} value={opt} className="bg-[#28362b] text-[#f5f1ed]">
+                            {opt}
+                          </option>
+                        ))}
+                      </select>
+                      <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-[#ab948a]/50">
+                        <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                          <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Option 2 Dropdown */}
-                  <div className="flex flex-col gap-1.5">
+                  <div className="flex flex-col gap-2">
                     <label className="text-[10px] uppercase tracking-wider text-[#ab948a]">
                       {optLabel2} *
                     </label>
-                    <select
-                      required
-                      name="option2"
-                      value={form.option2}
-                      onChange={handleInputChange}
-                      className="bg-transparent border-b border-[#ab948a]/20 focus:border-[#e1b258] outline-none text-base py-2.5 text-[#f5f1ed] transition-colors cursor-pointer appearance-none"
-                    >
-                      <option value="" disabled className="bg-[#28362b] text-[#ab948a]/50">Select option</option>
-                      {dropdown2Options.map((opt) => (
-                        <option key={opt} value={opt} className="bg-[#28362b] text-[#f5f1ed]">
-                          {opt}
-                        </option>
-                      ))}
-                    </select>
+                    <div className="relative">
+                      <select
+                        required
+                        name="option2"
+                        value={form.option2}
+                        onChange={handleInputChange}
+                        className="w-full bg-transparent border-b border-[#ab948a]/20 focus:border-[#e1b258] outline-none text-base md:text-lg py-3 text-[#f5f1ed] transition-colors cursor-pointer appearance-none pr-6"
+                      >
+                        <option value="" disabled className="bg-[#28362b] text-[#ab948a]/50">Select option</option>
+                        {dropdown2Options.map((opt) => (
+                          <option key={opt} value={opt} className="bg-[#28362b] text-[#f5f1ed]">
+                            {opt}
+                          </option>
+                        ))}
+                      </select>
+                      <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-[#ab948a]/50">
+                        <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                          <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Error display */}
