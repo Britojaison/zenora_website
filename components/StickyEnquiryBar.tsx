@@ -270,7 +270,7 @@ export default function StickyEnquiryBar() {
                     disabled={loading}
                     className="bg-[#e1b258] text-[#28362b] font-body text-[9px] xl:text-[10px] uppercase font-bold tracking-widest px-4 xl:px-6 py-3 hover:bg-[#f5f1ed] transition-colors disabled:opacity-50 flex-shrink-0 cursor-pointer"
                   >
-                    {loading ? "Submitting..." : "Request Callback"}
+                    {loading ? "Submitting..." : "Submit"}
                   </button>
 
                 </form>
@@ -510,7 +510,7 @@ export default function StickyEnquiryBar() {
                     disabled={loading}
                     className="mt-4 w-full bg-[#e1b258] text-[#28362b] font-body text-xs font-bold uppercase tracking-widest py-4 hover:bg-[#f5f1ed] transition-all disabled:opacity-50 cursor-pointer"
                   >
-                    {loading ? "Submitting..." : "Submit Enquiry"}
+                    {loading ? "Submitting..." : "Submit"}
                   </button>
 
                   <p className="text-[10px] text-[#ab948a]/60 text-center mt-2 leading-relaxed">
