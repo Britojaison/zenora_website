@@ -3,9 +3,8 @@ import Script from "next/script";
 import "./globals.css";
 import Clarity from "../components/Clarity";
 import MetaPixel from "../components/MetaPixel";
-import WhatsAppButton from "../components/WhatsAppButton";
-import CallButton from "../components/CallButton";
 import CookieBanner from "../components/CookieBanner";
+import StickyEnquiryBar from "../components/StickyEnquiryBar";
 import { GoogleTagManager } from '@next/third-parties/google';
 import { cookies } from 'next/headers';
 
@@ -161,8 +160,7 @@ export default async function RootLayout({
           strategy="beforeInteractive" 
         />
         {children}
-        <WhatsAppButton />
-        <CallButton />
+        <StickyEnquiryBar />
         <CookieBanner />
       </body>
     </html>
