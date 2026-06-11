@@ -99,6 +99,10 @@ export default function CoffeeWithZenora() {
       });
 
       if (res.ok) {
+        // Taboola Lead event tracking
+        if (typeof window !== "undefined" && (window as any)._tfa) {
+          (window as any)._tfa.push({ notify: "event", name: "lead", id: 2046888 });
+        }
         setSubmitted(true);
       } else {
         const errData = await res.json();

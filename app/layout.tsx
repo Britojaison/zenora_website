@@ -3,6 +3,7 @@ import Script from "next/script";
 import "./globals.css";
 import Clarity from "../components/Clarity";
 import MetaPixel from "../components/MetaPixel";
+import TaboolaPixel from "../components/TaboolaPixel";
 import WhatsAppButton from "../components/WhatsAppButton";
 import CallButton from "../components/CallButton";
 import CookieBanner from "../components/CookieBanner";
@@ -102,12 +103,7 @@ export default async function RootLayout({
             }} />
           </>
         )}
-        <link
-          rel="preload"
-          href="https://qgulurniv017kjjt.public.blob.vercel-storage.com/zenora_main_video.mp4"
-          as="video"
-          type="video/mp4"
-        />
+
         <link
           rel="preload"
           href="/fonts/blacker-display-webfont/Blacker-Display-Light-Italic-trial.woff"
@@ -154,6 +150,7 @@ export default async function RootLayout({
           <>
             <Clarity />
             <MetaPixel />
+            <TaboolaPixel />
           </>
         )}
         <Script 

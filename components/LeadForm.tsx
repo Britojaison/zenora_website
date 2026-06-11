@@ -74,6 +74,11 @@ export default function LeadForm({ open, onClose, redirectUrl }: LeadFormProps) 
         if (!redirectUrl) throw new Error("Submission failed");
       }
 
+      // Taboola Lead event tracking
+      if (typeof window !== "undefined" && (window as any)._tfa) {
+        (window as any)._tfa.push({ notify: "event", name: "lead", id: 2046888 });
+      }
+
       if (redirectUrl) {
         // Redirect to the provided URL after form submission
         setSubmitted(true);

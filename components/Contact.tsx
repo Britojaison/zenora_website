@@ -25,6 +25,12 @@ export default function Contact() {
       });
 
       if (!res.ok) throw new Error("Submission failed");
+      
+      // Taboola Lead event tracking
+      if (typeof window !== "undefined" && (window as any)._tfa) {
+        (window as any)._tfa.push({ notify: "event", name: "lead", id: 2046888 });
+      }
+
       setSent(true);
     } catch {
       setError("Something went wrong. Please try again.");
