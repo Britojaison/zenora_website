@@ -7,6 +7,7 @@ import TaboolaPixel from "../components/TaboolaPixel";
 import WhatsAppButton from "../components/WhatsAppButton";
 import CallButton from "../components/CallButton";
 import CookieBanner from "../components/CookieBanner";
+import StickyEnquiryBar from "../components/StickyEnquiryBar";
 import { GoogleTagManager } from '@next/third-parties/google';
 import { cookies } from 'next/headers';
 
@@ -153,13 +154,12 @@ export default async function RootLayout({
             <TaboolaPixel />
           </>
         )}
-        <Script 
-          src="//forms.cdn.sell.do/t/665d85d70d1851dc7c28dd6a.js" 
-          strategy="beforeInteractive" 
+        <Script
+          src="//forms.cdn.sell.do/t/665d85d70d1851dc7c28dd6a.js"
+          strategy="beforeInteractive"
         />
         {children}
-        <WhatsAppButton />
-        <CallButton />
+        <StickyEnquiryBar />
         <CookieBanner />
       </body>
     </html>
