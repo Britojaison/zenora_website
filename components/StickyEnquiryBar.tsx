@@ -39,14 +39,6 @@ export default function StickyEnquiryBar() {
     handleResize();
     window.addEventListener("resize", handleResize);
 
-    // Prefill form from cookies
-    setForm((prev) => ({
-      ...prev,
-      name: Cookies.get("user_name") || "",
-      phone: Cookies.get("user_phone") || "",
-      email: Cookies.get("user_email") || "",
-    }));
-
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
