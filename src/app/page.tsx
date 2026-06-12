@@ -1,66 +1,126 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
 
-export default function Home() {
+import Image from "next/image";
+import { useState } from "react";
+
+export default function ComingSoon() {
+  const [email, setEmail] = useState("");
+  const [formStatus, setFormStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [formMessage, setFormMessage] = useState("");
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+
+    // Basic client-side email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setFormStatus("error");
+      setFormMessage("Please enter a valid email address.");
+      return;
+    }
+
+    setFormStatus("loading");
+    setFormMessage("");
+
+    // Simulate API request delay
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1200));
+      setFormStatus("success");
+      setFormMessage("Success! You've been added to the VIP preview list.");
+      setEmail("");
+    } catch {
+      setFormStatus("error");
+      setFormMessage("Something went wrong. Please try again.");
+    }
+  };
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
+    <main className="page-container">
+      {/* Cinematic Background */}
+      <div className="bg-container">
         <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
+          src="/images/villa_hero.png"
+          alt="Luxury modernist villa by the ocean"
+          fill
           priority
+          sizes="100vw"
+          className="bg-image"
         />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
+        <div className="bg-overlay" />
+      </div>
+
+      {/* Main Glassmorphic Card */}
+      <section className="hero-card" aria-label="Subscription Info">
+        <header className="logo-container">
+          <Image
+            src="/images/ZV.jpg"
+            alt="Zen Vistas Logo"
+            width={64}
+            height={64}
+            priority
+            className="logo-img"
+          />
+          <span className="logo-text">Zen Vistas</span>
+          <span className="status-badge">Under Construction</span>
+        </header>
+
+        <div className="content-container">
+          <h1 className="main-title">
+            Redefining <span className="highlight">Refined Living</span>
+          </h1>
+          <p className="tagline" style={{ marginTop: "1rem" }}>
+            Our digital presentation is currently <span className="highlight">under construction</span>.<br></br> Zen Vistas website is launching soon.
           </p>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+
+        {/* Action Form */}
+        <form onSubmit={handleSubscribe} className="subscribe-form" noValidate>
+          <div className="input-group">
+            <input
+              type="email"
+              placeholder="Enter your email for VIP access"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                if (formStatus !== "idle") setFormStatus("idle");
+              }}
+              disabled={formStatus === "loading"}
+              className="email-input"
+              required
+              aria-label="Email address"
             />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            <button
+              type="submit"
+              disabled={formStatus === "loading" || !email}
+              className="submit-btn"
+            >
+              {formStatus === "loading" ? "Registering..." : "Notify Me"}
+            </button>
+          </div>
+          {formMessage && (
+            <div
+              className={`form-message ${formStatus === "success" ? "success" : "error"
+                }`}
+              role="alert"
+            >
+              {formMessage}
+            </div>
+          )}
+        </form>
+
+        {/* Footer info */}
+        <footer>
+          <p className="footer-text">Be the first to receive updates on private listings.</p>
+          <div className="social-links" style={{ justifyContent: "center" }}>
+            <a href="#" className="social-link" aria-label="Instagram">Instagram</a>
+            <span style={{ color: "var(--text-secondary)", opacity: 0.3 }}>•</span>
+            <a href="#" className="social-link" aria-label="LinkedIn">LinkedIn</a>
+            <span style={{ color: "var(--text-secondary)", opacity: 0.3 }}>•</span>
+            <a href="#" className="social-link" aria-label="Email Contact">Contact</a>
+          </div>
+        </footer>
+      </section>
+    </main>
   );
 }
