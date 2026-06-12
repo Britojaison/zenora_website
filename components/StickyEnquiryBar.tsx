@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 
 // Configuration Toggle: Set this to true to use the educational options from lakshyacommerce.com
-const USE_EDUCATIONAL_FIELDS = false; 
+const USE_EDUCATIONAL_FIELDS = false;
 
 export default function StickyEnquiryBar() {
   const pathname = usePathname();
@@ -93,7 +93,7 @@ export default function StickyEnquiryBar() {
       });
 
       if (!res.ok) throw new Error("Submission failed");
-      
+
       setSubmitted(true);
       setTimeout(() => {
         setSubmitted(false);
@@ -128,7 +128,8 @@ export default function StickyEnquiryBar() {
   return (
     <>
       {/* Inject custom body padding to ensure footer content is not cut off */}
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         body {
           padding-bottom: 82px !important;
         }
@@ -150,7 +151,7 @@ export default function StickyEnquiryBar() {
             className="fixed bottom-0 left-0 right-0 w-full bg-[#28362b] text-[#f5f1ed] border-t border-[#e1b258]/30 shadow-2xl z-40 py-4 px-5 font-body"
           >
             <div className="max-w-full xl:max-w-[1550px] mx-auto flex items-center justify-between gap-4 md:gap-6 lg:gap-12">
-              
+
               {/* Invisible spacer to balance the right buttons for true centering (laptop only) */}
               <div className="hidden lg:block w-[100px] flex-shrink-0" aria-hidden="true" />
 
@@ -161,10 +162,10 @@ export default function StickyEnquiryBar() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex-1 lg:max-w-[900px] xl:max-w-[1050px] mx-auto flex items-center justify-between gap-3 md:gap-4 lg:gap-8">
-                  
+
                   {/* Inputs Grid */}
                   <div className="grid grid-cols-5 gap-2 md:gap-3 lg:gap-6 w-full">
-                    
+
                     {/* Name */}
                     <div>
                       <input
@@ -174,7 +175,7 @@ export default function StickyEnquiryBar() {
                         value={form.name}
                         onChange={handleInputChange}
                         placeholder="Your Name *"
-                        className="w-full bg-transparent border-b border-[#ab948a]/30 focus:border-[#e1b258] outline-none text-xs md:text-sm py-2 text-[#f5f1ed] placeholder:text-[#ab948a]/50 transition-colors"
+                        className="w-full bg-transparent border-b border-[#ab948a]/30 focus:border-[#e1b258] outline-none text-xs md:text-sm py-2 text-white placeholder:text-[#e1b258] transition-colors"
                       />
                     </div>
 
@@ -187,7 +188,7 @@ export default function StickyEnquiryBar() {
                         value={form.phone}
                         onChange={handleInputChange}
                         placeholder="Contact Number *"
-                        className="w-full bg-transparent border-b border-[#ab948a]/30 focus:border-[#e1b258] outline-none text-xs md:text-sm py-2 text-[#f5f1ed] placeholder:text-[#ab948a]/50 transition-colors"
+                        className="w-full bg-transparent border-b border-[#ab948a]/30 focus:border-[#e1b258] outline-none text-xs md:text-sm py-2 text-white placeholder:text-[#e1b258] transition-colors"
                       />
                     </div>
 
@@ -200,7 +201,7 @@ export default function StickyEnquiryBar() {
                         value={form.email}
                         onChange={handleInputChange}
                         placeholder="Email Address *"
-                        className="w-full bg-transparent border-b border-[#ab948a]/30 focus:border-[#e1b258] outline-none text-xs md:text-sm py-2 text-[#f5f1ed] placeholder:text-[#ab948a]/50 transition-colors"
+                        className="w-full bg-transparent border-b border-[#ab948a]/30 focus:border-[#e1b258] outline-none text-xs md:text-sm py-2 text-white placeholder:text-[#e1b258] transition-colors"
                       />
                     </div>
 
@@ -211,16 +212,16 @@ export default function StickyEnquiryBar() {
                         name="option1"
                         value={form.option1}
                         onChange={handleInputChange}
-                        className="w-full bg-transparent border-b border-[#ab948a]/30 focus:border-[#e1b258] outline-none text-xs md:text-sm py-2.5 text-[#f5f1ed] transition-colors cursor-pointer appearance-none pr-5"
+                        className={`w-full bg-transparent border-b border-[#ab948a]/30 focus:border-[#e1b258] outline-none text-xs md:text-sm py-2.5 transition-colors cursor-pointer appearance-none pr-5 ${form.option1 === "" ? "text-[#e1b258]" : "text-white"}`}
                       >
-                        <option value="" disabled className="bg-[#28362b] text-[#ab948a]/50">{optLabel1} *</option>
+                        <option value="" disabled className="bg-[#28362b] text-[#e1b258]">{optLabel1} *</option>
                         {dropdown1Options.map((opt) => (
-                          <option key={opt} value={opt} className="bg-[#28362b] text-[#f5f1ed]">
+                          <option key={opt} value={opt} className="bg-[#28362b] text-white">
                             {opt}
                           </option>
                         ))}
                       </select>
-                      <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-[#ab948a]/50">
+                      <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-[#e1b258]">
                         <svg className="w-3 h-3 fill-current" viewBox="0 0 20 20">
                           <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
                         </svg>
@@ -234,11 +235,11 @@ export default function StickyEnquiryBar() {
                         name="option2"
                         value={form.option2}
                         onChange={handleInputChange}
-                        className="w-full bg-transparent border-b border-[#ab948a]/30 focus:border-[#e1b258] outline-none text-xs md:text-sm py-2.5 text-[#f5f1ed] transition-colors cursor-pointer appearance-none pr-5"
+                        className={`w-full bg-transparent border-b border-[#ab948a]/30 focus:border-[#e1b258] outline-none text-xs md:text-sm py-2.5 transition-colors cursor-pointer appearance-none pr-5 ${form.option2 === "" ? "text-[#e1b258]" : "text-white"}`}
                       >
-                        <option value="" disabled className="bg-[#28362b] text-[#ab948a]/50">{optLabel2} *</option>
+                        <option value="" disabled className="bg-[#28362b] text-[#e1b258]">{optLabel2} *</option>
                         {dropdown2Options.map((opt) => (
-                          <option key={opt} value={opt} className="bg-[#28362b] text-[#f5f1ed]">
+                          <option key={opt} value={opt} className="bg-[#28362b] text-white">
                             {opt}
                           </option>
                         ))}
@@ -396,7 +397,7 @@ export default function StickyEnquiryBar() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-                  
+
                   {/* Name */}
                   <div className="flex flex-col gap-1.5">
                     <label className="text-[10px] uppercase tracking-wider text-[#ab948a]">
@@ -409,7 +410,7 @@ export default function StickyEnquiryBar() {
                       value={form.name}
                       onChange={handleInputChange}
                       placeholder="Your name"
-                      className="bg-transparent border-b border-[#ab948a]/20 focus:border-[#e1b258] outline-none text-base py-2.5 text-[#f5f1ed] placeholder:text-[#ab948a]/30 transition-colors"
+                      className="bg-transparent border-b border-[#ab948a]/20 focus:border-[#e1b258] outline-none text-base py-2.5 text-white placeholder:text-[#e1b258] transition-colors"
                     />
                   </div>
 
@@ -425,7 +426,7 @@ export default function StickyEnquiryBar() {
                       value={form.phone}
                       onChange={handleInputChange}
                       placeholder="+91"
-                      className="bg-transparent border-b border-[#ab948a]/20 focus:border-[#e1b258] outline-none text-base py-2.5 text-[#f5f1ed] placeholder:text-[#ab948a]/30 transition-colors"
+                      className="bg-transparent border-b border-[#ab948a]/20 focus:border-[#e1b258] outline-none text-base py-2.5 text-white placeholder:text-[#e1b258] transition-colors"
                     />
                   </div>
 
@@ -441,7 +442,7 @@ export default function StickyEnquiryBar() {
                       value={form.email}
                       onChange={handleInputChange}
                       placeholder="you@example.com"
-                      className="bg-transparent border-b border-[#ab948a]/20 focus:border-[#e1b258] outline-none text-base py-2.5 text-[#f5f1ed] placeholder:text-[#ab948a]/30 transition-colors"
+                      className="bg-transparent border-b border-[#ab948a]/20 focus:border-[#e1b258] outline-none text-base py-2.5 text-white placeholder:text-[#e1b258] transition-colors"
                     />
                   </div>
 
@@ -456,16 +457,16 @@ export default function StickyEnquiryBar() {
                         name="option1"
                         value={form.option1}
                         onChange={handleInputChange}
-                        className="w-full bg-transparent border-b border-[#ab948a]/20 focus:border-[#e1b258] outline-none text-base md:text-lg py-3 text-[#f5f1ed] transition-colors cursor-pointer appearance-none pr-6"
+                        className={`w-full bg-transparent border-b border-[#ab948a]/20 focus:border-[#e1b258] outline-none text-base md:text-lg py-3 transition-colors cursor-pointer appearance-none pr-6 ${form.option1 === "" ? "text-[#e1b258]" : "text-white"}`}
                       >
-                        <option value="" disabled className="bg-[#28362b] text-[#ab948a]/50">Select preference</option>
+                        <option value="" disabled className="bg-[#28362b] text-[#e1b258]">Select preference</option>
                         {dropdown1Options.map((opt) => (
-                          <option key={opt} value={opt} className="bg-[#28362b] text-[#f5f1ed]">
+                          <option key={opt} value={opt} className="bg-[#28362b] text-white">
                             {opt}
                           </option>
                         ))}
                       </select>
-                      <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-[#ab948a]/50">
+                      <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-[#e1b258]">
                         <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
                           <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
                         </svg>
@@ -484,11 +485,11 @@ export default function StickyEnquiryBar() {
                         name="option2"
                         value={form.option2}
                         onChange={handleInputChange}
-                        className="w-full bg-transparent border-b border-[#ab948a]/20 focus:border-[#e1b258] outline-none text-base md:text-lg py-3 text-[#f5f1ed] transition-colors cursor-pointer appearance-none pr-6"
+                        className={`w-full bg-transparent border-b border-[#ab948a]/20 focus:border-[#e1b258] outline-none text-base md:text-lg py-3 transition-colors cursor-pointer appearance-none pr-6 ${form.option2 === "" ? "text-[#e1b258]" : "text-white"}`}
                       >
-                        <option value="" disabled className="bg-[#28362b] text-[#ab948a]/50">Select option</option>
+                        <option value="" disabled className="bg-[#28362b] text-[#e1b258]">Select option</option>
                         {dropdown2Options.map((opt) => (
-                          <option key={opt} value={opt} className="bg-[#28362b] text-[#f5f1ed]">
+                          <option key={opt} value={opt} className="bg-[#28362b] text-white">
                             {opt}
                           </option>
                         ))}

@@ -36,12 +36,6 @@ export default function LeadForm({ open, onClose, redirectUrl }: LeadFormProps) 
       const storedSrd = sessionStorage.getItem("lead_srd");
       if (storedSrd) setSrd(storedSrd);
     }
-
-    setFormDataState({
-      name: Cookies.get("user_name") || "",
-      phone: Cookies.get("user_phone") || "",
-      email: Cookies.get("user_email") || "",
-    });
   }, []);
 
   if (!open) return null;
