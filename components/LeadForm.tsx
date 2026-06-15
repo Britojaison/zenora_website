@@ -27,6 +27,14 @@ export default function LeadForm({ open, onClose, redirectUrl }: LeadFormProps) 
     let resolvedSrd = null;
     if (utmSource === "Website" && utmMedium === "WATI" && utmCampaign === "Zenora_Brochure_WATI") {
       resolvedSrd = "69c50198735daf0afb3b7ec6";
+    } else if (utmSource === "Google" && utmMedium === "Branded_Search" && utmCampaign === "Zenora_Search_Branded") {
+      resolvedSrd = "69b90eb8735dafb5321577e7";
+    } else if (utmSource === "Google" && utmMedium === "Generic_Search" && utmCampaign === "Zenora_Search_Generic") {
+      resolvedSrd = "69b90eef2f31c6356115c183";
+    } else if (utmSource === "Google" && utmMedium === "PMax" && utmCampaign === "Zenora_PMax") {
+      resolvedSrd = "69b90fe19403685816f40d24";
+    } else if (utmSource === "Taboola" && utmMedium === "General" && utmCampaign === "Zenora_Taboola") {
+      resolvedSrd = "69b9100b2f31c686cd170812";
     }
 
     if (resolvedSrd) {

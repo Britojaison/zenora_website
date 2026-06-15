@@ -13,6 +13,7 @@ export default function Contact() {
     setError("");
 
     try {
+      const storedSrd = typeof window !== "undefined" ? sessionStorage.getItem("lead_srd") : null;
       const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -21,6 +22,7 @@ export default function Contact() {
           phone: form.phone,
           email: form.email,
           note: form.message || "Enquiry from Contact section",
+          ...(storedSrd ? { srd: storedSrd } : {}),
         }),
       });
 

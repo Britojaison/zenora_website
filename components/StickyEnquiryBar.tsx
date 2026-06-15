@@ -81,6 +81,7 @@ export default function StickyEnquiryBar() {
     Cookies.set("user_email", form.email, { expires: 365 });
 
     try {
+      const storedSrd = typeof window !== "undefined" ? sessionStorage.getItem("lead_srd") : null;
       const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -89,6 +90,7 @@ export default function StickyEnquiryBar() {
           phone: form.phone,
           email: form.email,
           note: note,
+          ...(storedSrd ? { srd: storedSrd } : {}),
         }),
       });
 
