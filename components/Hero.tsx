@@ -15,11 +15,11 @@ export default function Hero() {
       <video
         ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover"
-        src="/videos/zenora_compressed.mp4"
+        src="/videos/zenora_hero_optimized.mp4"
         muted
         loop
         playsInline
-        preload="auto"
+        preload="metadata"
         poster="/img/street-view.jpg"
       />
       <div className="absolute inset-0 bg-[#0e0c0b]/40" />

@@ -39,7 +39,7 @@ const amenities = [
   {
     name: "Community Lounge",
     desc: "An informal setting for conversation and connection. A place where neighbours meet beyond the everyday.",
-    img: "/img/amenities/Community Lounge.png",
+    img: "/img/amenities/Community Lounge.jpg",
   },
   {
     name: "Cricket Turf",

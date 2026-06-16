@@ -5,11 +5,11 @@ import { join } from 'path';
 async function uploadVideo() {
   try {
     // Read the video file
-    const videoPath = join(process.cwd(), 'public/videos/zenora_main_video.mp4');
+    const videoPath = join(process.cwd(), 'public/videos/zenora_hero_optimized.mp4');
     const videoBuffer = readFileSync(videoPath);
     
     // Upload to Vercel Blob
-    const blob = await put('zenora_main_video.mp4', videoBuffer, {
+    const blob = await put('zenora_hero_optimized.mp4', videoBuffer, {
       access: 'public',
       token: process.env.BLOB_READ_WRITE_TOKEN,
     });

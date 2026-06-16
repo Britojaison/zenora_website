@@ -127,7 +127,7 @@ export default function CoffeeWithZenora() {
       >
         {/* ─── Full Bleed Background Image ─── */}
         <Image
-          src="/images/coffee_with_Zenora.png"
+          src="/images/coffee_with_Zenora.jpg"
           alt="Coffee with Zenora – Exclusive Dinner Experience"
           fill
           sizes="100vw"

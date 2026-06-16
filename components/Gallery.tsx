@@ -11,39 +11,39 @@ const indoorImages = [
   "/indoor/Dinning  (1).jpg",
   "/indoor/Master Bedroom View 1.jpg",
   "/indoor/View-10.jpg",
-  "/indoor/View-11.png",
-  "/indoor/View-42.png",
-  "/indoor/View-48.png",
+  "/indoor/View-11.jpg",
+  "/indoor/View-42.jpg",
+  "/indoor/View-48.jpg",
 ];
 
 const outdoorImages = [
-  "/outdoor/View-01.png",
-  "/outdoor/View-03.png",
-  "/outdoor/View-04.png",
-  "/outdoor/View-05.png",
-  "/outdoor/View-06.png",
-  "/outdoor/View-08.png",
-  "/outdoor/View-09.png",
-  "/outdoor/View-12.png",
-  "/outdoor/View-14.png",
-  "/outdoor/View-34.png",
-  "/outdoor/View-41.png",
-  "/outdoor/View-46.png",
-  "/outdoor/View-47.png",
+  "/outdoor/View-01.jpg",
+  "/outdoor/View-03.jpg",
+  "/outdoor/View-04.jpg",
+  "/outdoor/View-05.jpg",
+  "/outdoor/View-06.jpg",
+  "/outdoor/View-08.jpg",
+  "/outdoor/View-09.jpg",
+  "/outdoor/View-12.jpg",
+  "/outdoor/View-14.jpg",
+  "/outdoor/View-34.jpg",
+  "/outdoor/View-41.jpg",
+  "/outdoor/View-46.jpg",
+  "/outdoor/View-47.jpg",
 ];
 
 const clubhouseImages = [
-  "/clubhouse/View-06.png",
-  "/clubhouse/View-12.png",
-  "/clubhouse/clubgouseimg.png",
-  "/clubhouse/clubhouseimg2.png",
+  "/outdoor/View-06.jpg",
+  "/outdoor/View-12.jpg",
+  "/clubhouse/clubgouseimg.jpg",
+  "/clubhouse/clubhouseimg2.jpg",
   "/clubhouse/Gym.jpg",
   "/clubhouse/Spa & Saloon .jpg",
   "/clubhouse/Yoga.jpg",
 ];
 
 const galleryVideos = [
-  { src: "/videos/video1-web.mp4", title: "Zenora Walkthrough" },
+  { src: "/videos/video1_optimized.mp4", title: "Zenora Walkthrough" },
 ];
 
 const tabs = ["indoor", "outdoor", "clubhouse", "videos"] as const;
