@@ -59,6 +59,18 @@ export default function CoffeeWithZenora() {
       resolvedSrd = "69c24a7a58f1e788e307696d";
     } else if (utmSource === "Website" && utmMedium === "WATI" && utmCampaign === "Zenora_Brochure_WATI") {
       resolvedSrd = "69c50198735daf0afb3b7ec6";
+    } else if (utmSource === "Google" && utmMedium === "Branded_Search" && utmCampaign === "Zenora_Search_Branded") {
+      resolvedSrd = "698309f658f1e7c46b1b85db";
+    } else if (utmSource === "Google" && utmMedium === "Generic_Search" && utmCampaign === "Zenora_Search_Generic") {
+      resolvedSrd = "698309f658f1e7c46b1b85db";
+    } else if (utmSource === "Google" && (utmMedium === "YouTube" || utmMedium === "Youtube") && utmCampaign === "Zenora_YouTube") {
+      resolvedSrd = "698309cd0d1851f862bb4caf";
+    } else if (utmSource === "Google" && utmMedium === "Display" && utmCampaign === "Zenora_Display") {
+      resolvedSrd = "69830a1c5d8def9f8ae95753";
+    } else if (utmSource === "Google" && utmMedium === "DemandGen" && utmCampaign === "Zenora_DemandGen") {
+      resolvedSrd = "69830a61e11487c872a310f9";
+    } else if (utmSource === "Google" && utmMedium === "PMax" && utmCampaign === "Zenora_PMax") {
+      resolvedSrd = "69830a42e1148719002c7ef0";
     }
 
     if (resolvedSrd) {
