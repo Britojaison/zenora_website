@@ -85,8 +85,12 @@ export default function StickyEnquiryBar() {
       resolvedSrd = "69b9100b2f31c686cd170812";
     }
 
-    if (resolvedSrd) {
-      sessionStorage.setItem("lead_srd", resolvedSrd);
+    try {
+      if (resolvedSrd) {
+        sessionStorage.setItem("lead_srd", resolvedSrd);
+      }
+    } catch (e) {
+      console.warn("sessionStorage is not accessible:", e);
     }
   }, []);
 
@@ -112,7 +116,12 @@ export default function StickyEnquiryBar() {
     Cookies.set("user_email", form.email, { expires: 365 });
 
     try {
-      const storedSrd = typeof window !== "undefined" ? sessionStorage.getItem("lead_srd") : null;
+      let storedSrd = null;
+      try {
+        storedSrd = typeof window !== "undefined" ? sessionStorage.getItem("lead_srd") : null;
+      } catch (e) {
+        console.warn("sessionStorage read failed:", e);
+      }
       const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

@@ -13,6 +13,7 @@ import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
+import AutoLeadForm from "@/components/AutoLeadForm";
 import Script from "next/script";
 
 const jsonLd = {
@@ -97,6 +98,7 @@ export default function Home() {
       <FAQ />
       <Contact />
       <Footer />
+      <AutoLeadForm />
     </main>
   );
 }

@@ -87,6 +87,14 @@ export default function LeadForm({ open, onClose, redirectUrl }: LeadFormProps) 
         (window as any)._tfa.push({ notify: "event", name: "lead", id: 2046888 });
       }
 
+      if (typeof window !== "undefined") {
+        try {
+          sessionStorage.setItem("lead_submitted", "true");
+        } catch (e) {
+          console.warn("Failed to save submission state to sessionStorage:", e);
+        }
+      }
+
       if (redirectUrl) {
         // Redirect to the provided URL after form submission
         setSubmitted(true);

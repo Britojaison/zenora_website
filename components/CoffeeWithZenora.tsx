@@ -73,12 +73,16 @@ export default function CoffeeWithZenora() {
       resolvedSrd = "69830a42e1148719002c7ef0";
     }
 
-    if (resolvedSrd) {
-      setSrd(resolvedSrd);
-      sessionStorage.setItem("cwz_srd", resolvedSrd);
-    } else {
-      const storedSrd = sessionStorage.getItem("cwz_srd");
-      if (storedSrd) setSrd(storedSrd);
+    try {
+      if (resolvedSrd) {
+        setSrd(resolvedSrd);
+        sessionStorage.setItem("cwz_srd", resolvedSrd);
+      } else {
+        const storedSrd = sessionStorage.getItem("cwz_srd");
+        if (storedSrd) setSrd(storedSrd);
+      }
+    } catch (e) {
+      console.warn("sessionStorage is not accessible:", e);
     }
 
     setFormDataState({
