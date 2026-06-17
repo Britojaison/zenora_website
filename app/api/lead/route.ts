@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
     }
 
     const params = new URLSearchParams({
-      "api_key": process.env.SELLDO_API_KEY || "dcd0a73f1b64ef2fbba09fd6ea8bb50b",
+      "api_key": "69f342a7632e73e6f895191899e2537d",
       "sell_do[form][lead][name]": name,
       "sell_do[form][lead][email]": email,
       "sell_do[form][lead][phone]": phone,

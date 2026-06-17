@@ -265,15 +265,32 @@
   scrollbar-width: none;
 }
 
-/* Fix autofill background */
+/* Fix autofill background and text color dynamic inheritance */
+input, textarea, select {
+  --autofill-color: #28362b; /* Default text color for light forms */
+}
+
+/* Overrides for dark backgrounds */
+#contact input,
+#contact textarea,
+#contact select,
+.bg-forest input,
+.bg-forest textarea,
+.bg-forest select {
+  --autofill-color: #e1d5c9 !important;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,
-textarea:-webkit-autofill:focus {
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
   box-shadow: 0 0 0 1000px transparent inset !important;
-  -webkit-text-fill-color: inherit !important;
+  -webkit-text-fill-color: var(--autofill-color) !important;
   transition: background-color 5000s ease-in-out 0s;
 }
