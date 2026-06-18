@@ -458,40 +458,48 @@ export default function Home() {
       </section>
 
       {/* 2. Corporate Profile & Founder Story */}
-      <section ref={profileRef} style={{ padding: '140px 0 120px', backgroundColor: 'var(--white)', overflow: 'hidden' }}>
+      <section ref={profileRef} style={{ padding: '130px 0', backgroundColor: 'var(--white)', overflow: 'hidden', position: 'relative' }}>
+        <div style={{
+          position: 'absolute',
+          left: 0,
+          top: 0,
+          bottom: 0,
+          width: '38%',
+          backgroundColor: 'var(--cream)',
+          pointerEvents: 'none',
+        }}></div>
         <div className="container-custom">
           <div className="grid-2-responsive" style={{
             display: 'grid',
-            gridTemplateColumns: '1.2fr 1fr',
-            gap: '4rem',
-            alignItems: 'center',
+            gridTemplateColumns: 'minmax(0, 1.12fr) minmax(360px, 0.88fr)',
+            gap: 'clamp(3rem, 7vw, 7rem)',
+            alignItems: 'stretch',
+            position: 'relative',
+            zIndex: 2,
           }}>
             {/* Left Side: Statement + Stats */}
-            <div className="profile-text">
+            <div className="profile-text" style={{ padding: '20px 0' }}>
               <span className="profile-label eyebrow">About</span>
 
               {/* Word-by-word reveal heading */}
               <h2 className="profile-heading" style={{
-                fontSize: 'clamp(1.8rem, 3.5vw, 2.6rem)',
-                lineHeight: 1.4,
+                fontSize: 'clamp(2.35rem, 5vw, 4.6rem)',
+                lineHeight: 1.05,
                 fontFamily: 'var(--font-serif)',
-                fontWeight: 400,
-                margin: '0 0 0 0',
-                maxWidth: '750px',
+                fontWeight: 300,
+                margin: 0,
+                maxWidth: '900px',
               }}>
                 {(() => {
                   const parts = [
-                    { text: 'Our approach to real estate goes beyond conventional offerings.', highlight: false },
-                    { text: ' We create spaces that combine ', highlight: false },
-                    { text: 'contemporary design,', highlight: true },
-                    { text: ' comfort and exceptional quality.', highlight: false },
+                    { text: 'We build slowly, with founder capital, ', highlight: false },
+                    { text: 'clear accountability,', highlight: true },
+                    { text: ' and a bias for homes we would live in ourselves.', highlight: false },
                   ];
-                  let wordIndex = 0;
                   return parts.map((part, pIdx) => {
                     if (part.highlight) {
                       const words = part.text.split(' ');
                       return words.map((word, wIdx) => {
-                        wordIndex++;
                         return (
                           <span key={`h-${pIdx}-${wIdx}`} className="reveal-word" style={{
                             display: 'inline-block',
@@ -507,7 +515,6 @@ export default function Home() {
                     } else {
                       const words = part.text.split(' ').filter(w => w.length > 0);
                       return words.map((word, wIdx) => {
-                        wordIndex++;
                         return (
                           <span key={`w-${pIdx}-${wIdx}`} className="reveal-word" style={{
                             display: 'inline-block',
@@ -529,13 +536,23 @@ export default function Home() {
                 width: '0%',
                 height: '1px',
                 backgroundColor: 'var(--gold)',
-                margin: '50px 0',
-                maxWidth: '700px',
+                margin: '48px 0 28px',
+                maxWidth: '760px',
               }}></div>
 
+              <p style={{
+                maxWidth: '700px',
+                margin: '0 0 54px',
+                color: 'var(--charcoal-3)',
+                fontSize: '1.05rem',
+                lineHeight: 1.85,
+              }}>
+                Zenvistas is shaped by industrial families who understand long-cycle value. Our model is intentionally conservative: fewer projects, sharper oversight, no external debt pressure, and a constant focus on liveability.
+              </p>
+
               {/* Stats Row */}
-              <div className="profile-stats-row" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2.5rem', maxWidth: '700px' }}>
-                <div className="stat-item" style={{ opacity: 0, transform: 'translateY(30px)' }}>
+              <div className="profile-stats-row" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 0, maxWidth: '820px', borderTop: '1px solid rgba(171,148,138,0.28)', borderBottom: '1px solid rgba(171,148,138,0.28)' }}>
+                <div className="stat-item no-border-mobile" style={{ opacity: 0, transform: 'translateY(30px)', padding: '26px 26px 26px 0', borderRight: '1px solid rgba(171,148,138,0.22)' }}>
                   <div className="stat-number" data-target="13" style={{
                     fontSize: 'clamp(2.2rem, 4vw, 3rem)',
                     fontFamily: 'var(--font-serif)',
@@ -548,7 +565,7 @@ export default function Home() {
                     Industrial mill-owner families backing every project
                   </p>
                 </div>
-                <div className="stat-item" style={{ opacity: 0, transform: 'translateY(30px)' }}>
+                <div className="stat-item no-border-mobile" style={{ opacity: 0, transform: 'translateY(30px)', padding: '26px', borderRight: '1px solid rgba(171,148,138,0.22)' }}>
                   <div className="stat-number" data-target="100" style={{
                     fontSize: 'clamp(2.2rem, 4vw, 3rem)',
                     fontFamily: 'var(--font-serif)',
@@ -561,7 +578,7 @@ export default function Home() {
                     Zero external debt — built entirely on partner capital reserves
                   </p>
                 </div>
-                <div className="stat-item" style={{ opacity: 0, transform: 'translateY(30px)' }}>
+                <div className="stat-item" style={{ opacity: 0, transform: 'translateY(30px)', padding: '26px 0 26px 26px' }}>
                   <div className="stat-number-text" style={{
                     fontSize: 'clamp(2.2rem, 4vw, 3rem)',
                     fontFamily: 'var(--font-serif)',
@@ -584,137 +601,68 @@ export default function Home() {
               width: '100%',
               opacity: 0,
               transform: 'translateY(40px)',
+              minHeight: '100%',
             }}>
               <div style={{
                 width: '100%',
-                aspectRatio: '4/3',
+                height: '100%',
+                minHeight: '520px',
                 position: 'relative',
                 overflow: 'hidden',
-                background: 'linear-gradient(135deg, #f8f5ef 0%, #efe7dc 100%)',
-                border: '1px solid var(--gold-border)',
+                background: '#28362b',
+                color: 'var(--white)',
+                border: '1px solid rgba(224, 177, 76, 0.28)',
                 borderRadius: '4px',
-                boxShadow: '0 18px 44px rgba(40, 54, 43, 0.08)',
+                boxShadow: '0 22px 60px rgba(40, 54, 43, 0.14)',
+                padding: 'clamp(34px, 5vw, 54px)',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
               }}>
                 <div style={{
                   position: 'absolute',
                   inset: 0,
                   pointerEvents: 'none',
-                  backgroundImage: `
-                    linear-gradient(rgba(171, 148, 138, 0.12) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(171, 148, 138, 0.12) 1px, transparent 1px)
-                  `,
-                  backgroundSize: '54px 54px',
-                  opacity: 0.75,
+                  background: 'radial-gradient(circle at 82% 16%, rgba(224,177,76,0.18), transparent 28%), linear-gradient(135deg, rgba(255,255,255,0.07) 0%, transparent 42%)',
                 }}></div>
-                <div style={{
-                  position: 'absolute',
-                  width: '82%',
-                  height: '1px',
-                  left: '8%',
-                  top: '39%',
-                  background: 'linear-gradient(90deg, transparent, rgba(224, 177, 76, 0.68), transparent)',
-                  transform: 'rotate(-14deg)',
-                  transformOrigin: 'center',
-                }}></div>
-                <div style={{
-                  position: 'absolute',
-                  width: '64%',
-                  height: '1px',
-                  right: '8%',
-                  top: '57%',
-                  background: 'linear-gradient(90deg, transparent, rgba(40, 54, 43, 0.42), transparent)',
-                  transform: 'rotate(22deg)',
-                  transformOrigin: 'center',
-                }}></div>
-                <div style={{
-                  position: 'absolute',
-                  width: '56%',
-                  height: '1px',
-                  left: '18%',
-                  top: '68%',
-                  background: 'linear-gradient(90deg, transparent, rgba(171, 148, 138, 0.48), transparent)',
-                  transform: 'rotate(-7deg)',
-                  transformOrigin: 'center',
-                }}></div>
-                <div style={{
-                  position: 'absolute',
-                  left: '50%',
-                  top: '50%',
-                  width: '142px',
-                  height: '142px',
-                  borderRadius: '50%',
-                  border: '1px solid rgba(224, 177, 76, 0.34)',
-                  transform: 'translate(-50%, -50%)',
-                }}></div>
-                <div style={{
-                  position: 'absolute',
-                  left: '50%',
-                  top: '50%',
-                  width: '82px',
-                  height: '82px',
-                  borderRadius: '50%',
-                  border: '1px solid rgba(224, 177, 76, 0.55)',
-                  transform: 'translate(-50%, -50%)',
-                }}></div>
-                <div style={{
-                  position: 'absolute',
-                  left: '50%',
-                  top: '50%',
-                  width: '18px',
-                  height: '18px',
-                  borderRadius: '50%',
-                  backgroundColor: 'var(--gold)',
-                  border: '5px solid rgba(255, 255, 255, 0.92)',
-                  boxShadow: '0 10px 28px rgba(40, 54, 43, 0.22)',
-                  transform: 'translate(-50%, -50%)',
-                }}></div>
-                <div style={{
-                  position: 'absolute',
-                  left: 'clamp(22px, 5vw, 44px)',
-                  top: 'clamp(22px, 5vw, 42px)',
-                }}>
-                  <span className="eyebrow" style={{ color: 'var(--gold)', marginBottom: '14px' }}>Presence</span>
-                  <h3 style={{
+                <div style={{ position: 'relative', zIndex: 2 }}>
+                  <span className="eyebrow" style={{ color: 'var(--gold)', marginBottom: '18px' }}>Our operating lens</span>
+                  <p style={{
                     margin: 0,
                     fontFamily: 'var(--font-serif)',
                     fontWeight: 300,
-                    fontSize: 'clamp(2rem, 4vw, 3.1rem)',
-                    color: 'var(--forest)',
-                    lineHeight: 1,
+                    fontSize: 'clamp(1.9rem, 3vw, 2.75rem)',
+                    lineHeight: 1.12,
+                    color: 'var(--white)',
                   }}>
-                    Coimbatore
-                  </h3>
+                    Every project is filtered through ownership, restraint, and long-term community value.
+                  </p>
                 </div>
-                <div style={{
-                  position: 'absolute',
-                  right: 'clamp(18px, 4vw, 34px)',
-                  bottom: 'clamp(18px, 4vw, 34px)',
-                  maxWidth: '260px',
-                  padding: '20px 22px',
-                  backgroundColor: 'rgba(255, 255, 255, 0.72)',
-                  border: '1px solid rgba(171, 148, 138, 0.24)',
-                  backdropFilter: 'blur(14px)',
-                  boxShadow: '0 16px 34px rgba(40, 54, 43, 0.08)',
-                }}>
-                  <p style={{
-                    margin: '0 0 9px',
-                    fontFamily: 'var(--font-ui)',
-                    fontSize: '0.68rem',
-                    fontWeight: 700,
-                    letterSpacing: '0.16em',
-                    textTransform: 'uppercase',
-                    color: 'var(--gold)',
-                  }}>
-                    Zenora Address
-                  </p>
-                  <p style={{
-                    margin: 0,
-                    color: 'var(--forest)',
-                    fontSize: '1rem',
-                    lineHeight: 1.55,
-                  }}>
-                    Goldwins, Avinashi Road, with quick access to the city&apos;s established residential and business corridors.
-                  </p>
+
+                <div style={{ position: 'relative', zIndex: 2, display: 'grid', gap: '24px', margin: '60px 0' }}>
+                  {[
+                    ['01', 'Founder proximity', 'Decision-makers stay close to design, construction, and buyer experience.'],
+                    ['02', 'Capital discipline', 'Projects are planned around equity strength rather than pressure-led expansion.'],
+                    ['03', 'Limited release', 'We prefer considered communities over high-volume residential inventory.'],
+                  ].map(([num, title, copy]) => (
+                    <div key={num} style={{ display: 'grid', gridTemplateColumns: '44px 1fr', gap: '18px', paddingTop: '22px', borderTop: '1px solid rgba(255,255,255,0.16)' }}>
+                      <span style={{ fontFamily: 'var(--font-ui)', color: 'var(--gold)', fontSize: '0.75rem', fontWeight: 700 }}>{num}</span>
+                      <div>
+                        <h3 style={{ margin: '0 0 8px', color: 'var(--white)', fontFamily: 'var(--font-serif)', fontWeight: 300, fontSize: '1.35rem' }}>{title}</h3>
+                        <p style={{ margin: 0, color: 'rgba(255,255,255,0.7)', lineHeight: 1.65, fontSize: '0.92rem' }}>{copy}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div style={{ position: 'relative', zIndex: 2, display: 'flex', justifyContent: 'space-between', gap: '1.5rem', alignItems: 'flex-end', borderTop: '1px solid rgba(224,177,76,0.35)', paddingTop: '22px', flexWrap: 'wrap' }}>
+                  <div>
+                    <span style={{ display: 'block', fontFamily: 'var(--font-ui)', fontSize: '0.68rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--gold)', fontWeight: 700, marginBottom: '8px' }}>Current focus</span>
+                    <p style={{ margin: 0, color: 'rgba(255,255,255,0.78)', lineHeight: 1.55 }}>Coimbatore / Goldwins corridor</p>
+                  </div>
+                  <Link href="/about" style={{ fontFamily: 'var(--font-ui)', fontSize: '0.75rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--gold)', fontWeight: 700, borderBottom: '1px solid var(--gold)', paddingBottom: '4px' }}>
+                    Our profile &rarr;
+                  </Link>
                 </div>
               </div>
             </div>

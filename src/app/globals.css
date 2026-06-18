@@ -583,6 +583,13 @@ a {
   .connect-grid {
     grid-template-columns: 1fr !important;
   }
+  .leadership-card {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  .gov-col {
+    position: static !important;
+  }
   #expertise .values-interactive-container {
     max-width: none !important;
   }
@@ -604,6 +611,21 @@ a {
   .grid-2-responsive {
     grid-template-columns: 1fr !important;
     gap: 2rem !important;
+  }
+  .profile-stats-row {
+    grid-template-columns: 1fr !important;
+  }
+  .profile-stats-row .stat-item {
+    padding: 22px 0 !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(171, 148, 138, 0.22);
+  }
+  .profile-stats-row .stat-item:last-child {
+    border-bottom: none;
+  }
+  .history-card > div {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
   }
   .hide-mobile {
     display: none !important;

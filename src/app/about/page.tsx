@@ -164,84 +164,109 @@ export default function About() {
   return (
     <div>
       {/* Page Hero */}
-      <section ref={heroRef} className="page-hero page-hero-about" style={{ display: 'flex', alignItems: 'center', minHeight: '40vh', position: 'relative', overflow: 'hidden' }}>
+      <section ref={heroRef} className="page-hero page-hero-about" style={{ minHeight: '78vh', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'flex-end' }}>
+        <Image
+          src="/images/View-47.jpg"
+          alt="Zenvistas residential community"
+          fill
+          priority
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
+          sizes="100vw"
+        />
         <div style={{
           position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          backgroundImage: "url('/images/villa.jpg')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          filter: 'brightness(0.55)',
-          zIndex: 1
+          inset: 0,
+          background: 'linear-gradient(90deg, rgba(15, 28, 21, 0.88) 0%, rgba(15, 28, 21, 0.46) 48%, rgba(15, 28, 21, 0.1) 100%)',
+          zIndex: 1,
         }}></div>
-        <div className="container-custom page-hero-content" style={{ zIndex: 2, color: 'var(--white)' }}>
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(180deg, rgba(15, 28, 21, 0.12) 0%, rgba(15, 28, 21, 0.34) 55%, rgba(15, 28, 21, 0.86) 100%)',
+          zIndex: 1,
+        }}></div>
+        <div className="container-custom page-hero-content" style={{ zIndex: 2, color: 'var(--white)', paddingBottom: 'clamp(70px, 10vw, 120px)' }}>
           <span className="hero-eyebrow eyebrow" style={{ color: 'var(--gold)' }}>Who We Are</span>
-          <h1 className="hero-title" style={{ color: 'var(--white)', fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontFamily: 'var(--font-serif)', fontWeight: 300, lineHeight: 1.1 }}>
-            Our Legacy, <span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>Your Future</span>
+          <h1 className="hero-title" style={{ color: 'var(--white)', fontSize: 'clamp(3.2rem, 8vw, 7rem)', fontFamily: 'var(--font-serif)', fontWeight: 300, lineHeight: 0.96, maxWidth: '980px', margin: '0 0 28px' }}>
+            Founder-backed communities, built with <span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>restraint.</span>
           </h1>
-          <p className="hero-subtitle" style={{ color: 'rgba(255, 255, 255, 0.9)', maxWidth: '600px', fontSize: '1.1rem', marginTop: '1rem', lineHeight: '1.7' }}>
-            Built on over a half-century of industrial excellence, bringing precision and integrity to real estate development.
+          <p className="hero-subtitle" style={{ color: 'rgba(255, 255, 255, 0.82)', maxWidth: '660px', fontSize: '1.08rem', lineHeight: '1.8', margin: 0 }}>
+            Zenvistas brings industrial discipline, patient capital, and personal accountability into residential development.
           </p>
         </div>
       </section>
 
       {/* 1. Group History */}
-      <section ref={historyRef} style={{ backgroundColor: 'var(--white)', padding: '80px 0' }}>
+      <section ref={historyRef} style={{ backgroundColor: 'var(--white)', padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '34%', backgroundColor: 'var(--cream)', pointerEvents: 'none' }}></div>
         <div className="container-custom">
-          <div className="grid-2" style={{ gap: '4rem', alignItems: 'center' }}>
+          <div className="grid-2-responsive" style={{ display: 'grid', gridTemplateColumns: '0.95fr 1.05fr', gap: 'clamp(3rem, 7vw, 7rem)', alignItems: 'start', position: 'relative', zIndex: 2 }}>
             <div className="history-text">
               <span className="eyebrow">A Rich Heritage</span>
-              <h2 style={{ fontFamily: 'var(--font-serif)', fontWeight: 300, marginBottom: '1.5rem' }}>
-                Decades of Industrial <span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>Excellence</span>
+              <h2 style={{ fontFamily: 'var(--font-serif)', fontWeight: 300, fontSize: 'clamp(2.4rem, 5vw, 4.8rem)', lineHeight: 1, margin: '0 0 32px' }}>
+                Capital with memory. Development with patience.
               </h2>
-              <div className="section-rule"></div>
-              <p style={{ marginBottom: '1.2rem', color: 'var(--forest)' }}>
-                ZenVistas stems from the long-standing tradition of leading industrialists in Coimbatore. With strong roots in textile, engineering, and manufacturing sectors, we have built a reputation on high standards, strict adherence to deadlines, and unparalleled client focus.
-              </p>
-              <p style={{ color: 'var(--forest)' }}>
-                This legacy of building enterprise infrastructure translates seamlessly into the residential sector. We understand that a home is more than an asset; it is the physical space for generations of memory.
+              <div className="section-rule" style={{ margin: '0 0 36px' }}></div>
+              <p style={{ margin: 0, color: 'var(--charcoal-3)', fontSize: '1.05rem', lineHeight: 1.9, maxWidth: '560px' }}>
+                ZenVistas stems from Coimbatore industrial families with roots in textile, engineering, and manufacturing enterprise. The same operating discipline that built long-standing businesses now guides how we select land, assemble teams, and deliver homes.
               </p>
             </div>
-            <div className="history-card" style={{ backgroundColor: 'var(--cream)', padding: '2.5rem', borderRadius: '4px', borderLeft: '4px solid var(--gold)' }}>
-              <h4 style={{ fontFamily: 'var(--font-serif)', fontWeight: 400, fontSize: '1.3rem', marginBottom: '1rem' }}>Our Milestones</h4>
-              <ul style={{ listStyleType: 'none', paddingLeft: 0 }}>
-                <li style={{ marginBottom: '1.5rem', display: 'flex', gap: '1rem' }}>
-                  <strong style={{ color: 'var(--gold)', minWidth: '60px' }}>1970s</strong>
-                  <span style={{ fontSize: '0.95rem' }}>Pioneered state-of-the-art textile manufacturing facilities in South India.</span>
-                </li>
-                <li style={{ marginBottom: '1.5rem', display: 'flex', gap: '1rem' }}>
-                  <strong style={{ color: 'var(--gold)', minWidth: '60px' }}>2000s</strong>
-                  <span style={{ fontSize: '0.95rem' }}>Expanded into precision engineering and infrastructure development.</span>
-                </li>
-                <li style={{ display: 'flex', gap: '1rem' }}>
-                  <strong style={{ color: 'var(--gold)', minWidth: '60px' }}>Present</strong>
-                  <span style={{ fontSize: '0.95rem' }}>Delivering landmark residential spaces matching international design benchmarks.</span>
-                </li>
-              </ul>
+            <div className="history-card" style={{ borderTop: '1px solid rgba(40,54,43,0.24)' }}>
+              {[
+                ['Industrial origin', 'Experience in capital-intensive businesses where timelines, quality control, and governance matter.'],
+                ['Founder proximity', 'The ownership group remains close to every project, from land evaluation to customer experience.'],
+                ['Residential focus', 'Limited, high-consideration communities rather than volume-led development.'],
+              ].map(([title, copy], idx) => (
+                <div key={title} style={{ display: 'grid', gridTemplateColumns: '70px 1fr', gap: '2rem', padding: '30px 0', borderBottom: '1px solid rgba(171,148,138,0.22)' }}>
+                  <span style={{ fontFamily: 'var(--font-ui)', color: 'var(--gold)', fontWeight: 700, fontSize: '0.8rem' }}>{String(idx + 1).padStart(2, '0')}</span>
+                  <div>
+                    <h3 style={{ margin: '0 0 10px', fontFamily: 'var(--font-serif)', fontWeight: 300, fontSize: '1.7rem' }}>{title}</h3>
+                    <p style={{ margin: 0, color: 'var(--charcoal-3)', lineHeight: 1.75 }}>{copy}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
       {/* 2. Vision & Mission */}
-      <section ref={visionRef} style={{ backgroundColor: 'var(--cream)', padding: '80px 0' }}>
+      <section ref={visionRef} style={{ backgroundColor: '#28362b', padding: '110px 0', color: 'var(--white)', position: 'relative', overflow: 'hidden' }}>
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'radial-gradient(circle at 86% 18%, rgba(224,177,76,0.18), transparent 30%), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px)',
+          backgroundSize: 'auto, 80px 80px',
+          pointerEvents: 'none',
+        }}></div>
         <div className="container-custom">
-          <div className="grid-2" style={{ gap: '3rem' }}>
-            <div className="vision-box" style={{ backgroundColor: 'var(--white)', padding: '2.5rem', borderRadius: '4px', boxShadow: '0 4px 15px rgba(0,0,0,0.02)' }}>
-              <span className="eyebrow" style={{ fontSize: '0.75rem' }}>Our Vision</span>
-              <h3 style={{ fontFamily: 'var(--font-serif)', fontWeight: 300, marginBottom: '1rem' }}>Redefining Real Estate</h3>
-              <p style={{ fontSize: '0.95rem', color: 'var(--forest)', lineHeight: '1.7' }}>
-                To become South India’s most trusted developer of luxury communities, admired for precision engineering, innovative architecture, and an unwavering commitment to quality and transparency.
+          <div style={{ position: 'relative', zIndex: 2, marginBottom: '70px', maxWidth: '820px' }}>
+            <span className="eyebrow" style={{ color: 'var(--gold)' }}>Operating Model</span>
+            <h2 style={{ color: 'var(--white)', fontFamily: 'var(--font-serif)', fontWeight: 300, fontSize: 'clamp(2.2rem, 5vw, 4.5rem)', lineHeight: 1, margin: 0 }}>
+              Fewer projects. Better oversight. Longer-term value.
+            </h2>
+          </div>
+
+          <div className="grid-3" style={{ gap: 0, position: 'relative', zIndex: 2, borderTop: '1px solid rgba(255,255,255,0.18)', borderBottom: '1px solid rgba(255,255,255,0.18)' }}>
+            <div className="vision-box no-border-mobile" style={{ padding: '36px 34px 36px 0', borderRight: '1px solid rgba(255,255,255,0.16)' }}>
+              <span className="eyebrow" style={{ fontSize: '0.75rem', color: 'var(--gold)' }}>01 / Capital</span>
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontWeight: 300, color: 'var(--white)', marginBottom: '1rem' }}>Equity-first growth</h3>
+              <p style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.72)', lineHeight: '1.75', margin: 0 }}>
+                We avoid debt-led pressure so project decisions can stay aligned with quality, timing, and buyer confidence.
               </p>
             </div>
-            <div className="vision-box" style={{ backgroundColor: 'var(--white)', padding: '2.5rem', borderRadius: '4px', boxShadow: '0 4px 15px rgba(0,0,0,0.02)' }}>
-              <span className="eyebrow" style={{ fontSize: '0.75rem' }}>Our Mission</span>
-              <h3 style={{ fontFamily: 'var(--font-serif)', fontWeight: 300, marginBottom: '1rem' }}>Crafting Perfection</h3>
-              <p style={{ fontSize: '0.95rem', color: 'var(--forest)', lineHeight: '1.7' }}>
-                To create living spaces that stand the test of time. We aim to deliver exceptional customer journeys through professional management, strict regulatory compliance, and a focus on community-centric living.
+            <div className="vision-box no-border-mobile" style={{ padding: '36px 34px', borderRight: '1px solid rgba(255,255,255,0.16)' }}>
+              <span className="eyebrow" style={{ fontSize: '0.75rem', color: 'var(--gold)' }}>02 / Design</span>
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontWeight: 300, color: 'var(--white)', marginBottom: '1rem' }}>Liveability over density</h3>
+              <p style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.72)', lineHeight: '1.75', margin: 0 }}>
+                Our planning preference is spacious, lower-density residential environments with lasting privacy and comfort.
+              </p>
+            </div>
+            <div className="vision-box" style={{ padding: '36px 0 36px 34px' }}>
+              <span className="eyebrow" style={{ fontSize: '0.75rem', color: 'var(--gold)' }}>03 / Trust</span>
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontWeight: 300, color: 'var(--white)', marginBottom: '1rem' }}>Compliance as default</h3>
+              <p style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.72)', lineHeight: '1.75', margin: 0 }}>
+                Clear documentation, regulatory discipline, and professional custody sit inside the operating process.
               </p>
             </div>
           </div>
@@ -249,74 +274,51 @@ export default function About() {
       </section>
 
       {/* 3. Leadership Team */}
-      <section ref={leadershipRef} style={{ backgroundColor: 'var(--white)', padding: '80px 0' }}>
+      <section ref={leadershipRef} style={{ backgroundColor: 'var(--white)', padding: '120px 0' }}>
         <div className="container-custom">
-          <div className="leadership-title" style={{ textAlign: 'center', marginBottom: '4rem' }}>
-            <span className="eyebrow">The Minds Behind</span>
-            <h2 style={{ fontFamily: 'var(--font-serif)', fontWeight: 300 }}>
-              Our Executive <span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>Leadership</span>
+          <div className="leadership-title" style={{ marginBottom: '70px', maxWidth: '760px' }}>
+            <span className="eyebrow">Leadership</span>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontWeight: 300, fontSize: 'clamp(2.4rem, 5vw, 4.6rem)', lineHeight: 1, margin: 0 }}>
+              Built by people who understand ownership risk.
             </h2>
-            <div className="section-rule" style={{ margin: '1.5rem auto 0' }}></div>
+            <div className="section-rule" style={{ margin: '30px 0 0' }}></div>
           </div>
 
-          <div className="grid-3" style={{ gap: '3rem' }}>
-            <div className="leadership-card" style={{ textAlign: 'center' }}>
-              <div style={{ width: '150px', height: '150px', borderRadius: '50%', backgroundColor: 'var(--cream-2)', margin: '0 auto 1.5rem', overflow: 'hidden' }}>
-                <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--forest)', fontWeight: 'bold', fontSize: '1.5rem' }}>M.R</div>
+          <div style={{ borderTop: '1px solid rgba(40,54,43,0.22)' }}>
+            {[
+              ['Founding families', 'Industrial mill-owner capital and governance experience backing every development decision.'],
+              ['Development leadership', 'Project, design, finance, and approval workflows managed through professional specialists.'],
+              ['Partner network', 'Boutique architects, structural consultants, landscape experts, and site teams selected for fit, not volume.'],
+            ].map(([title, copy], idx) => (
+              <div key={title} className="leadership-card" style={{ display: 'grid', gridTemplateColumns: '120px 1fr minmax(220px, 0.55fr)', gap: '2.5rem', padding: '34px 0', borderBottom: '1px solid rgba(171,148,138,0.22)', alignItems: 'baseline' }}>
+                <span style={{ fontFamily: 'var(--font-ui)', color: 'var(--gold)', fontWeight: 700, letterSpacing: '0.12em' }}>{String(idx + 1).padStart(2, '0')}</span>
+                <h3 style={{ margin: 0, fontFamily: 'var(--font-serif)', fontWeight: 300, fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', lineHeight: 1.05 }}>{title}</h3>
+                <p style={{ margin: 0, color: 'var(--charcoal-3)', lineHeight: 1.7 }}>{copy}</p>
               </div>
-              <h4 style={{ fontFamily: 'var(--font-serif)', fontWeight: 400, fontSize: '1.3rem', margin: '0 0 0.25rem' }}>M. Ramaswamy</h4>
-              <p style={{ fontSize: '0.85rem', color: 'var(--gold)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '1rem' }}>Chairman & Co-Founder</p>
-              <p style={{ fontSize: '0.9rem', color: 'var(--forest)' }}>
-                A veteran industrialist with over 40 years of experience in the textile sector, driving the group's legacy forward.
-              </p>
-            </div>
-            <div className="leadership-card" style={{ textAlign: 'center' }}>
-              <div style={{ width: '150px', height: '150px', borderRadius: '50%', backgroundColor: 'var(--cream-2)', margin: '0 auto 1.5rem', overflow: 'hidden' }}>
-                <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--forest)', fontWeight: 'bold', fontSize: '1.5rem' }}>S.K</div>
-              </div>
-              <h4 style={{ fontFamily: 'var(--font-serif)', fontWeight: 400, fontSize: '1.3rem', margin: '0 0 0.25rem' }}>S. Karthik</h4>
-              <p style={{ fontSize: '0.85rem', color: 'var(--gold)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '1rem' }}>Managing Director</p>
-              <p style={{ fontSize: '0.9rem', color: 'var(--forest)' }}>
-                Pioneering innovation and strategic expansion, shaping the vision of modern luxury communities in South India.
-              </p>
-            </div>
-            <div className="leadership-card" style={{ textAlign: 'center' }}>
-              <div style={{ width: '150px', height: '150px', borderRadius: '50%', backgroundColor: 'var(--cream-2)', margin: '0 auto 1.5rem', overflow: 'hidden' }}>
-                <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--forest)', fontWeight: 'bold', fontSize: '1.5rem' }}>R.N</div>
-              </div>
-              <h4 style={{ fontFamily: 'var(--font-serif)', fontWeight: 400, fontSize: '1.3rem', margin: '0 0 0.25rem' }}>R. Narayanan</h4>
-              <p style={{ fontSize: '0.85rem', color: 'var(--gold)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '1rem' }}>Director of Projects</p>
-              <p style={{ fontSize: '0.9rem', color: 'var(--forest)' }}>
-                Overseeing end-to-end development, engineering compliance, and timely project delivery.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* 4. Corporate Governance & 5. Brand Philosophy */}
-      <section ref={governanceRef} style={{ backgroundColor: 'var(--cream-2)', padding: '80px 0' }}>
+      <section ref={governanceRef} style={{ backgroundColor: 'var(--cream)', padding: '120px 0' }}>
         <div className="container-custom">
-          <div className="grid-2" style={{ gap: '4rem' }}>
-            <div className="gov-col">
+          <div className="grid-2-responsive" style={{ display: 'grid', gridTemplateColumns: '0.9fr 1.1fr', gap: 'clamp(3rem, 7vw, 7rem)', alignItems: 'start' }}>
+            <div className="gov-col" style={{ position: 'sticky', top: '120px' }}>
               <span className="eyebrow">Governance</span>
-              <h3 style={{ fontFamily: 'var(--font-serif)', fontWeight: 300, marginBottom: '1.5rem' }}>Transparency & Compliance</h3>
-              <p style={{ color: 'var(--forest)', marginBottom: '1rem' }}>
-                We believe that good governance is the bedrock of lasting relationships. Every transaction, contract, and project layout is fully vetted, compliant, and open to audit.
-              </p>
-              <p style={{ color: 'var(--forest)' }}>
-                RERA is integrated into our project schedules, giving you the complete peace of mind that timelines are strictly respected and backed by escrow and financial guarantees.
-              </p>
+              <h2 style={{ fontFamily: 'var(--font-serif)', fontWeight: 300, fontSize: 'clamp(2.2rem, 5vw, 4rem)', lineHeight: 1, margin: 0 }}>Trust is designed into the process.</h2>
             </div>
-            <div className="gov-col">
-              <span className="eyebrow">Our Philosophy</span>
-              <h3 style={{ fontFamily: 'var(--font-serif)', fontWeight: 300, marginBottom: '1.5rem' }}>Designed to Inspire</h3>
-              <p style={{ color: 'var(--forest)', marginBottom: '1rem' }}>
-                We do not build to maximum capacity; we design to maximum living quality. We create spacious homes with vast private areas and world-class landscaping to foster health, connection, and long-term peace of mind.
-              </p>
-              <p style={{ color: 'var(--forest)' }}>
-                Our philosophy prioritizes sustainable materials, natural lighting, energy efficiency, and modern architectural elegance.
-              </p>
+            <div className="gov-col" style={{ backgroundColor: 'var(--white)', border: '1px solid rgba(171,148,138,0.18)' }}>
+              {[
+                ['Compliance', 'Every transaction, contract, and project layout is vetted for regulatory clarity and buyer confidence.'],
+                ['Custody', 'Project schedules, approvals, vendor coordination, and handover commitments are managed through defined professional processes.'],
+                ['Philosophy', 'We do not build to maximum capacity; we design for privacy, light, movement, and long-term living quality.'],
+              ].map(([title, copy]) => (
+                <div key={title} style={{ padding: '34px', borderBottom: title === 'Philosophy' ? 'none' : '1px solid rgba(171,148,138,0.18)' }}>
+                  <span className="eyebrow" style={{ marginBottom: '12px' }}>{title}</span>
+                  <p style={{ color: 'var(--forest)', margin: 0, lineHeight: 1.85 }}>{copy}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
