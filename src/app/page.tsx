@@ -51,18 +51,6 @@ const valuesData = [
   },
   {
     num: "04",
-    title: "Zero-debt\noperations",
-    description: "Outright purchase of land parcels with clear title records before construction starts protects Zenvistas and partners from leverage risk.",
-    points: [
-      "Outright Land Purchase",
-      "Clean Title Verification",
-      "Comprehensive Legal Audit",
-      "Zero Mortgage Liability"
-    ],
-    image: "/images/villa_hero.jpg"
-  },
-  {
-    num: "05",
     title: "Curated\nengineering",
     description: "Collaborating only with award-winning boutique architects, structural designers, and landscape consultants to build works of art.",
     points: [
