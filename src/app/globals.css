@@ -599,4 +599,10 @@ a {
   .value-heading-item .mobile-val-details {
     display: block !important;
   }
+  .project-gallery-container {
+    height: 320px !important;
+  }
+  .project-details-container {
+    padding: 30px 20px !important;
+  }
 }

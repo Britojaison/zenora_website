@@ -74,12 +74,14 @@ export default function Home() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [responseMsg, setResponseMsg] = useState('');
 
+  const [projectTab, setProjectTab] = useState<'exterior' | 'interior'>('exterior');
+
   const [activeIndex, setActiveIndex] = useState(0);
   const detailsRef = useRef<HTMLDivElement>(null);
 
   const handleMouseEnter = (idx: number) => {
     if (idx === activeIndex) return;
-    
+
     if (detailsRef.current) {
       gsap.to(detailsRef.current, {
         opacity: 0,
@@ -117,19 +119,19 @@ export default function Home() {
         const subtitle = container.querySelector('.hero-subtitle');
         const buttons = container.querySelector('.hero-buttons');
 
-        gsap.fromTo(eyebrow, 
+        gsap.fromTo(eyebrow,
           { y: 30, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.3 }
         );
-        gsap.fromTo(title, 
+        gsap.fromTo(title,
           { y: 50, opacity: 0 },
           { y: 0, opacity: 1, duration: 1.2, ease: 'power4.out', delay: 0.5 }
         );
-        gsap.fromTo(subtitle, 
+        gsap.fromTo(subtitle,
           { y: 30, opacity: 0 },
           { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.8 }
         );
-        gsap.fromTo(buttons, 
+        gsap.fromTo(buttons,
           { y: 30, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 1.1 }
         );
@@ -345,7 +347,7 @@ export default function Home() {
           left: 0,
           width: '100%',
           height: '100%',
-          backgroundImage: "linear-gradient(to bottom, rgba(40,54,43,0.85) 0%, rgba(40,54,43,0.6) 50%, rgba(40,54,43,0.9) 100%), url('/images/villa_hero.jpg')",
+          backgroundImage: "url('/images/7cents.png')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           zIndex: 1
@@ -364,9 +366,7 @@ export default function Home() {
           }}>
             Creating Landmark <span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>Communities</span> Across South India
           </h1>
-          <p className="hero-subtitle" style={{ fontSize: 'clamp(1rem, 2vw, 1.25rem)', maxWidth: '640px', color: 'var(--linen)', marginBottom: '40px', fontWeight: 300, lineHeight: 1.7 }}>
-            Born from Coimbatore's rich industrial heritage, we design and build luxury residential spaces committed to precision engineering, absolute transparency, and architectural perfection.
-          </p>
+
           <div className="hero-buttons" style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
             <Link href="/projects" className="btn-gold">Explore Projects</Link>
             <Link href="/partnerships" className="btn-outline-white">Partner With Us</Link>
@@ -375,98 +375,263 @@ export default function Home() {
       </section>
 
       {/* 2. Corporate Profile & Founder Story */}
-      <section ref={profileRef} style={{ padding: '100px 0', backgroundColor: 'var(--white)' }}>
+      <section ref={profileRef} style={{ padding: '120px 0', backgroundColor: 'var(--white)' }}>
         <div className="container-custom">
-          <div className="grid-2" style={{ gap: '5rem', alignItems: 'center' }}>
+
+            {/* Statement + Stats */}
             <div className="profile-text">
-              <span className="eyebrow">Corporate Profile</span>
-              <h2 style={{ fontSize: 'clamp(2rem, 4vw, 2.75rem)', marginBottom: '24px', fontFamily: 'var(--font-serif)', fontWeight: 300 }}>
-                Founded by Coimbatore's <span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>industrial families.</span>
+              <span style={{
+                fontSize: '0.8rem',
+                color: 'var(--muted)',
+                letterSpacing: '0.05em',
+                display: 'block',
+                marginBottom: '30px',
+              }}>[ About ]</span>
+
+              <h2 style={{
+                fontSize: 'clamp(1.8rem, 3.5vw, 2.6rem)',
+                lineHeight: 1.35,
+                fontFamily: 'var(--font-serif)',
+                fontWeight: 400,
+                color: 'var(--forest)',
+                margin: '0 0 60px 0',
+                maxWidth: '700px',
+              }}>
+                Our approach to real estate goes beyond conventional offerings. We create spaces that combine <span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>contemporary design</span>, comfort and exceptional quality.
               </h2>
-              <div className="section-rule"></div>
-              <p style={{ color: 'var(--charcoal-3)', marginBottom: '1.5rem', fontSize: '1.05rem' }}>
-                The textile and manufacturing families behind ZenVistas have been building businesses in Coimbatore for generations. They understand what it means to make a long-term commitment to quality — and to be accountable for the outcome.
-              </p>
-              <p style={{ color: 'var(--charcoal-3)', marginBottom: '20px' }}>
-                When this group of 13+ mill owners and investing partners came together, the conversation was not about quick returns. It was about what kind of residential community Coimbatore's established families deserved, and what it would take to build it without compromise.
-              </p>
-              <Link href="/about" className="btn-outline" style={{ marginTop: '10px' }}>Read Our Story</Link>
-            </div>
-            <div className="profile-image" style={{ position: 'relative' }}>
-              <div style={{ border: '1px solid var(--gold)', padding: '12px', borderRadius: '4px', backgroundColor: 'var(--cream)' }}>
-                <Image
-                  src="/images/seat.jpg"
-                  alt="Zenvistas Executive Space"
-                  width={600}
-                  height={450}
-                  style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '2px' }}
-                />
+
+              {/* Stats Row */}
+              <div className="profile-stats-row" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem', maxWidth: '700px' }}>
+                <div>
+                  <div style={{
+                    fontSize: 'clamp(2rem, 4vw, 2.8rem)',
+                    fontFamily: 'var(--font-serif)',
+                    fontWeight: 400,
+                    color: 'var(--forest)',
+                    lineHeight: 1,
+                    marginBottom: '10px',
+                  }}>13+</div>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--muted)', lineHeight: 1.5, margin: 0 }}>
+                    Industrial mill-owner families backing every project
+                  </p>
+                </div>
+                <div>
+                  <div style={{
+                    fontSize: 'clamp(2rem, 4vw, 2.8rem)',
+                    fontFamily: 'var(--font-serif)',
+                    fontWeight: 400,
+                    color: 'var(--forest)',
+                    lineHeight: 1,
+                    marginBottom: '10px',
+                  }}>100%</div>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--muted)', lineHeight: 1.5, margin: 0 }}>
+                    Zero external debt — built entirely on partner capital reserves
+                  </p>
+                </div>
+                <div>
+                  <div style={{
+                    fontSize: 'clamp(2rem, 4vw, 2.8rem)',
+                    fontFamily: 'var(--font-serif)',
+                    fontWeight: 400,
+                    color: 'var(--forest)',
+                    lineHeight: 1,
+                    marginBottom: '10px',
+                  }}>TNRERA</div>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--muted)', lineHeight: 1.5, margin: 0 }}>
+                    Fully registered & compliant with all regulatory standards
+                  </p>
+                </div>
               </div>
-              <div style={{
-                position: 'absolute',
-                bottom: '-25px',
-                right: '25px',
-                backgroundColor: 'var(--forest)',
-                color: 'var(--white)',
-                padding: '20px 30px',
-                borderRadius: '2px',
-                borderLeft: '4px solid var(--gold)',
-                boxShadow: '0 10px 30px rgba(0,0,0,0.1)'
-              }} className="hide-mobile">
-                <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', color: 'var(--gold)', lineHeight: 1 }}>13+</div>
-                <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.15em', marginTop: '4px' }}>Industrial Founders</div>
-              </div>
             </div>
-          </div>
+
         </div>
       </section>
 
       {/* 3. Current Projects Showcase */}
-      <section ref={projectRef} style={{ padding: '100px 0', backgroundColor: 'var(--cream)' }}>
+      <section ref={projectRef} style={{ padding: '120px 0', backgroundColor: 'var(--cream)' }} id="portfolio">
         <div className="container-custom">
-          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-            <span className="eyebrow">Portfolio</span>
-            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 2.75rem)', fontFamily: 'var(--font-serif)', fontWeight: 300 }}>
-              Current <span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>Projects</span>
-            </h2>
-            <div className="section-rule" style={{ margin: '20px auto 0' }}></div>
+
+          {/* Header */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '60px', flexWrap: 'wrap', gap: '20px' }}>
+            <div>
+              <span className="eyebrow">Portfolio</span>
+              <h2 style={{ fontSize: 'clamp(2rem, 4vw, 2.75rem)', fontFamily: 'var(--font-serif)', fontWeight: 300, margin: 0 }}>
+                Featured <span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>Developments</span>
+              </h2>
+            </div>
+            <Link href="/projects" className="btn-outline" style={{ padding: '12px 24px', fontSize: '0.75rem' }}>
+              view full portfolio ↗
+            </Link>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '4rem', alignItems: 'center', backgroundColor: 'var(--white)', padding: '40px', borderRadius: '4px', border: '1px solid rgba(171,148,138,0.15)' }} className="grid-2-responsive">
-            <div className="project-image">
-              <Image
-                src="/images/villa.jpg"
-                alt="Zenora Villa Community"
-                width={800}
-                height={500}
-                style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '2px' }}
-              />
+          {/* Premium Showcase — open layout, no card */}
+          <div className="project-showcase-card grid-2-responsive" style={{
+            display: 'grid',
+            gridTemplateColumns: '1.2fr 1fr',
+            gap: '4rem',
+            alignItems: 'center',
+          }}>
+
+            {/* Left: Interactive Image Gallery */}
+            <div className="project-gallery-container project-image" style={{ position: 'relative', height: '480px', overflow: 'hidden', borderRadius: '6px' }}>
+              {/* Exterior Image */}
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                opacity: projectTab === 'exterior' ? 1 : 0,
+                transform: projectTab === 'exterior' ? 'scale(1)' : 'scale(1.05)',
+                transition: 'opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)',
+                zIndex: projectTab === 'exterior' ? 2 : 1
+              }}>
+                <Image
+                  src="/images/villa.jpg"
+                  alt="Zenora Villa Exterior"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+
+              {/* Interior Image */}
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                opacity: projectTab === 'interior' ? 1 : 0,
+                transform: projectTab === 'interior' ? 'scale(1)' : 'scale(1.05)',
+                transition: 'opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)',
+                zIndex: projectTab === 'interior' ? 2 : 1
+              }}>
+                <Image
+                  src="/images/living room.jpg"
+                  alt="Zenora Villa Interior"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+
+              {/* Floating Badge (Top Left) */}
+              <div style={{
+                position: 'absolute',
+                top: '25px',
+                left: '25px',
+                backgroundColor: 'rgba(40,54,43,0.9)',
+                backdropFilter: 'blur(5px)',
+                color: 'var(--white)',
+                padding: '6px 14px',
+                fontSize: '0.65rem',
+                textTransform: 'uppercase',
+                letterSpacing: '2px',
+                fontWeight: 600,
+                borderRadius: '2px',
+                borderLeft: '2px solid var(--gold)',
+                zIndex: 10
+              }}>
+                TNRERA REGISTERED
+              </div>
+
+              {/* Toggle Controls (Bottom Left) */}
+              <div style={{
+                position: 'absolute',
+                bottom: '25px',
+                left: '25px',
+                display: 'flex',
+                gap: '8px',
+                backgroundColor: 'rgba(255,255,255,0.15)',
+                backdropFilter: 'blur(10px)',
+                padding: '4px',
+                borderRadius: '30px',
+                border: '1px solid rgba(255,255,255,0.2)',
+                zIndex: 10
+              }}>
+                <button
+                  onClick={() => setProjectTab('exterior')}
+                  style={{
+                    border: 'none',
+                    padding: '8px 16px',
+                    fontSize: '0.7rem',
+                    fontWeight: 600,
+                    textTransform: 'uppercase',
+                    letterSpacing: '1px',
+                    borderRadius: '20px',
+                    cursor: 'pointer',
+                    backgroundColor: projectTab === 'exterior' ? 'var(--forest)' : 'transparent',
+                    color: projectTab === 'exterior' ? 'var(--white)' : 'var(--forest)',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
+                  Exterior
+                </button>
+                <button
+                  onClick={() => setProjectTab('interior')}
+                  style={{
+                    border: 'none',
+                    padding: '8px 16px',
+                    fontSize: '0.7rem',
+                    fontWeight: 600,
+                    textTransform: 'uppercase',
+                    letterSpacing: '1px',
+                    borderRadius: '20px',
+                    cursor: 'pointer',
+                    backgroundColor: projectTab === 'interior' ? 'var(--forest)' : 'transparent',
+                    color: projectTab === 'interior' ? 'var(--white)' : 'var(--forest)',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
+                  Interior
+                </button>
+              </div>
+
             </div>
-            <div className="project-text">
-              <span className="eyebrow" style={{ color: 'var(--taupe)' }}>Ongoing Development</span>
-              <h3 style={{ fontSize: '2rem', marginBottom: '16px', fontFamily: 'var(--font-serif)' }}>Zenora</h3>
-              <p style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'var(--gold)', fontWeight: 600, marginBottom: '20px' }}>
+
+            {/* Right: Rich Details and Feature Grid */}
+            <div className="project-details-container project-text" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <span className="eyebrow" style={{ color: 'var(--taupe)' }}>Signature Masterplan</span>
+              <h3 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.2rem)', fontFamily: 'var(--font-serif)', margin: '10px 0 15px 0', fontWeight: 300, lineHeight: 1 }}>
+                Zenora
+              </h3>
+              <p style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'var(--gold)', fontWeight: 600, marginBottom: '24px' }}>
                 Goldwins, Avinashi Road, Coimbatore
               </p>
-              <p style={{ color: 'var(--charcoal-3)', marginBottom: '24px' }}>
-                A highly curated luxury villa community featuring vast private plots, bespoke architecture, and state-of-the-art infrastructure. Designed for Coimbatore's most discerning families, Zenora brings international design standards to Coimbatore's premier residential hub.
+
+              <p style={{ color: 'var(--charcoal-3)', fontSize: '0.95rem', lineHeight: '1.7', marginBottom: '30px' }}>
+                A highly curated luxury villa community featuring vast private plots, bespoke architecture, and state-of-the-art infrastructure. Designed for Coimbatore's most discerning families, Zenora brings international design standards to Coimbatore's residential hub.
               </p>
-              <div style={{ marginBottom: '30px' }}>
-                <div style={{ display: 'flex', gap: '15px', marginBottom: '10px', fontSize: '0.9rem' }}>
-                  <strong style={{ color: 'var(--gold)' }}>✓</strong>
-                  <span>Plot Extents: 4,000 to 7,500 sq.ft.</span>
+
+              {/* 2x2 Feature Grid */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '35px' }} className="grid-2-spec">
+                <div style={{ border: '1px solid rgba(171,148,138,0.2)', padding: '15px 20px', borderRadius: '4px', backgroundColor: 'var(--cream)' }}>
+                  <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--muted)', fontWeight: 600, marginBottom: '4px' }}>PLOT EXTENTS</div>
+                  <div style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--forest)' }}>4,000 to 7,500 sq.ft.</div>
                 </div>
-                <div style={{ display: 'flex', gap: '15px', marginBottom: '10px', fontSize: '0.9rem' }}>
-                  <strong style={{ color: 'var(--gold)' }}>✓</strong>
-                  <span>Professional post-possession maintenance.</span>
+                <div style={{ border: '1px solid rgba(171,148,138,0.2)', padding: '15px 20px', borderRadius: '4px', backgroundColor: 'var(--cream)' }}>
+                  <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--muted)', fontWeight: 600, marginBottom: '4px' }}>COMMUNITY</div>
+                  <div style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--forest)' }}>Luxury Gated Villas</div>
                 </div>
-                <div style={{ display: 'flex', gap: '15px', fontSize: '0.9rem' }}>
-                  <strong style={{ color: 'var(--gold)' }}>✓</strong>
-                  <span>TNRERA Registered Development.</span>
+                <div style={{ border: '1px solid rgba(171,148,138,0.2)', padding: '15px 20px', borderRadius: '4px', backgroundColor: 'var(--cream)' }}>
+                  <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--muted)', fontWeight: 600, marginBottom: '4px' }}>MANAGEMENT</div>
+                  <div style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--forest)' }}>Professional Custody</div>
+                </div>
+                <div style={{ border: '1px solid rgba(171,148,138,0.2)', padding: '15px 20px', borderRadius: '4px', backgroundColor: 'var(--cream)' }}>
+                  <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--muted)', fontWeight: 600, marginBottom: '4px' }}>REGISTRATION</div>
+                  <div style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--forest)' }}>TNRERA Approved</div>
                 </div>
               </div>
-              <Link href="/projects" className="btn-gold">Explore Zenora</Link>
+
+              <div>
+                <Link href="/projects" className="btn-gold" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px' }}>
+                  explore community details ↗
+                </Link>
+              </div>
+
             </div>
+
           </div>
         </div>
       </section>
@@ -484,12 +649,12 @@ export default function Home() {
 
           {/* Interactive Values Container */}
           <div className="values-interactive-container" style={{ display: 'flex', gap: '3rem', marginTop: '40px' }}>
-            
+
             {/* Left Column: Headings */}
             <div className="values-headings-col" style={{ flex: '1.3', position: 'relative' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 {valuesData.map((val, idx) => (
-                  <div 
+                  <div
                     key={idx}
                     className={`value-heading-item ${activeIndex === idx ? 'active' : ''}`}
                     onMouseEnter={() => handleMouseEnter(idx)}
@@ -505,18 +670,18 @@ export default function Home() {
                     }}
                   >
                     <div style={{ display: 'flex', alignItems: 'flex-start' }}>
-                      <span style={{ 
-                        fontFamily: 'var(--font-ui)', 
-                        fontSize: 'clamp(0.8rem, 1.5vw, 1.1rem)', 
-                        fontWeight: 600, 
+                      <span style={{
+                        fontFamily: 'var(--font-ui)',
+                        fontSize: 'clamp(0.8rem, 1.5vw, 1.1rem)',
+                        fontWeight: 600,
                         color: 'var(--gold)',
                         marginRight: '1.5rem',
                         marginTop: '0.4rem'
                       }}>{val.num}</span>
-                      <h3 style={{ 
-                        fontSize: 'clamp(1.8rem, 3.5vw, 3rem)', 
-                        fontFamily: 'var(--font-sans)', 
-                        fontWeight: 700, 
+                      <h3 style={{
+                        fontSize: 'clamp(1.8rem, 3.5vw, 3rem)',
+                        fontFamily: 'var(--font-sans)',
+                        fontWeight: 700,
                         lineHeight: 1,
                         textTransform: 'none',
                         margin: 0,
@@ -526,7 +691,7 @@ export default function Home() {
                           <React.Fragment key={lIdx}>
                             {line}
                             {lIdx === val.title.split('\n').length - 1 && activeIndex === idx && (
-                              <span className="dot-marker" style={{ 
+                              <span className="dot-marker" style={{
                                 display: 'inline-block',
                                 width: '12px',
                                 height: '12px',
@@ -543,9 +708,9 @@ export default function Home() {
                     </div>
 
                     {/* Mobile Only inline details */}
-                    <div 
-                      className="mobile-val-details" 
-                      style={{ 
+                    <div
+                      className="mobile-val-details"
+                      style={{
                         display: 'none',
                         width: '100%'
                       }}
@@ -599,7 +764,7 @@ export default function Home() {
             {/* Right Column: Image Container */}
             <div className="values-image-col" style={{ flex: '1', position: 'relative', height: '320px', overflow: 'hidden', borderRadius: '4px', border: '1px solid rgba(171,148,138,0.15)', padding: '8px', backgroundColor: 'var(--cream)' }}>
               {valuesData.map((val, idx) => (
-                <div 
+                <div
                   key={idx}
                   className="values-image-wrapper"
                   style={{
