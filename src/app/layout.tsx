@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Outfit, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -18,8 +20,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Zen Vistas | Curated Luxury Real Estate",
-  description: "Experience a new vision of refined living.  Zen Vistas website is launching soon, featuring a handpicked portfolio of modern architectural masterpieces and luxury spaces.",
+  title: "Zenvistas | Curated Luxury Real Estate",
+  description: "Creating landmark residential communities across Coimbatore and South India. Deep industrial roots, transparent dealings, and premium execution.",
 };
 
 export default function RootLayout({
@@ -29,7 +31,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${outfit.variable} ${playfair.variable}`}>
-      <body>{children}</body>
+      <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <Header />
+        <main style={{ flex: '1 0 auto' }}>
+          {children}
+        </main>
+        <Footer />
+      </body>
     </html>
   );
 }
