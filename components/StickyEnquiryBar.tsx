@@ -136,6 +136,11 @@ export default function StickyEnquiryBar() {
 
       if (!res.ok) throw new Error("Submission failed");
 
+      // Taboola Lead event tracking
+      if (typeof window !== "undefined" && (window as any)._tfa) {
+        (window as any)._tfa.push({ notify: "event", name: "lead", id: 2046888 });
+      }
+
       setSubmitted(true);
       setTimeout(() => {
         setSubmitted(false);
@@ -190,7 +195,7 @@ export default function StickyEnquiryBar() {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
             transition={{ type: "spring", damping: 30, stiffness: 200 }}
-            className="fixed bottom-0 left-0 right-0 w-full bg-[#28362b] text-[#f5f1ed] border-t border-[#e1b258]/30 shadow-2xl z-40 py-4 px-5 font-body"
+            className="fixed bottom-0 left-0 right-0 w-full bg-[#28362b] text-[#f5f1ed] border-t border-[#e1b258]/30 shadow-2xl z-40 py-4 px-5 font-body dark-form"
           >
             <div className="max-w-full xl:max-w-[1550px] mx-auto flex items-center justify-between gap-4 md:gap-6 lg:gap-12">
 
@@ -409,7 +414,7 @@ export default function StickyEnquiryBar() {
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 220 }}
-              className="fixed bottom-0 left-0 right-0 w-full max-h-[90vh] overflow-y-auto bg-[#28362b] text-[#f5f1ed] border-t border-[#e1b258]/30 rounded-t-3xl shadow-2xl z-50 p-8 font-body"
+              className="fixed bottom-0 left-0 right-0 w-full max-h-[90vh] overflow-y-auto bg-[#28362b] text-[#f5f1ed] border-t border-[#e1b258]/30 rounded-t-3xl shadow-2xl z-50 p-8 font-body dark-form"
             >
               <div className="flex items-center justify-between mb-8 pb-4 border-b border-[#ab948a]/10">
                 <div>
