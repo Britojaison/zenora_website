@@ -74,8 +74,6 @@ export default function Home() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [responseMsg, setResponseMsg] = useState('');
 
-  const [projectTab, setProjectTab] = useState<'exterior' | 'interior'>('exterior');
-
   const [activeIndex, setActiveIndex] = useState(0);
   const detailsRef = useRef<HTMLDivElement>(null);
 
@@ -140,39 +138,111 @@ export default function Home() {
 
     // 2. Scroll Trigger Animations for Other Sections
     const scrollCtx = gsap.context(() => {
-      // Corporate Profile
+      // Corporate Profile — creative scroll-driven animations
       if (profileRef.current) {
-        const textCol = profileRef.current.querySelector('.profile-text');
-        const imgCol = profileRef.current.querySelector('.profile-image');
+        // 1. Label fade in
+        const label = profileRef.current.querySelector('.profile-label');
+        gsap.fromTo(label,
+          { opacity: 0, y: 15 },
+          {
+            opacity: 1, y: 0, duration: 0.6, ease: 'power2.out',
+            scrollTrigger: { trigger: profileRef.current, start: 'top 85%', toggleActions: 'play none none none' }
+          }
+        );
 
-        gsap.fromTo(textCol,
-          { x: -50, opacity: 0 },
-          {
-            x: 0,
-            opacity: 1,
-            duration: 1,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: profileRef.current,
-              start: 'top 80%',
-              toggleActions: 'play none none none'
+        // 2. Word-by-word scroll-driven color reveal
+        const words = profileRef.current.querySelectorAll('.reveal-word');
+        if (words.length > 0) {
+          words.forEach((word, i) => {
+            const isItalic = word.style.fontStyle === 'italic';
+            gsap.to(word, {
+              color: isItalic ? 'var(--gold)' : 'var(--forest)',
+              ease: 'none',
+              scrollTrigger: {
+                trigger: profileRef.current,
+                start: `top+=${60 + i * 28} 70%`,
+                end: `top+=${90 + i * 28} 70%`,
+                scrub: true,
+              }
+            });
+          });
+        }
+
+        // 3. Gold line draw animation
+        const line = profileRef.current.querySelector('.profile-line');
+        gsap.to(line, {
+          width: '100%',
+          duration: 1.2,
+          ease: 'power2.inOut',
+          scrollTrigger: {
+            trigger: line,
+            start: 'top 85%',
+            toggleActions: 'play none none none'
+          }
+        });
+
+        // 4. Stat items staggered entrance
+        const statItems = profileRef.current.querySelectorAll('.stat-item');
+        gsap.to(statItems, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: profileRef.current.querySelector('.profile-stats-row'),
+            start: 'top 85%',
+            toggleActions: 'play none none none'
+          },
+          onStart: () => {
+            // 5. Animate counting numbers
+            profileRef.current?.querySelectorAll('.stat-number').forEach((el) => {
+              const target = parseInt((el as HTMLElement).dataset.target || '0', 10);
+              const suffix = target === 13 ? '+' : '%';
+              const obj = { val: 0 };
+              gsap.to(obj, {
+                val: target,
+                duration: 2,
+                ease: 'power2.out',
+                onUpdate: () => {
+                  (el as HTMLElement).textContent = Math.round(obj.val) + suffix;
+                }
+              });
+            });
+
+            // 6. TNRERA letter-by-letter typewriter
+            const tnreraEl = profileRef.current?.querySelector('.stat-number-text') as HTMLElement;
+            if (tnreraEl) {
+              const text = 'TNRERA';
+              tnreraEl.textContent = '';
+              gsap.to(tnreraEl, { opacity: 1, duration: 0.1 });
+              text.split('').forEach((char, i) => {
+                gsap.delayedCall(0.3 + i * 0.12, () => {
+                  tnreraEl.textContent = text.substring(0, i + 1);
+                });
+              });
             }
           }
-        );
-        gsap.fromTo(imgCol,
-          { x: 50, opacity: 0 },
-          {
-            x: 0,
-            opacity: 1,
-            duration: 1,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: profileRef.current,
-              start: 'top 80%',
-              toggleActions: 'play none none none'
+        });
+
+        // 7. Profile heritage right side container animation
+        const heritage = profileRef.current.querySelector('.profile-heritage');
+        if (heritage) {
+          gsap.fromTo(heritage,
+            { opacity: 0, y: 40 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 1.0,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: heritage,
+                start: 'top 80%',
+                toggleActions: 'play none none none'
+              }
             }
-          }
-        );
+          );
+        }
       }
 
       // Current Project
@@ -234,14 +304,27 @@ export default function Home() {
 
         tl.fromTo(headingItems,
           { x: -30, opacity: 0 },
-          { x: 0, opacity: 1, duration: 0.6, stagger: 0.08, ease: 'power2.out', clearProps: 'opacity,transform' },
+          {
+            x: 0,
+            opacity: (_idx, item) => item.classList.contains('active') ? 1 : 0.4,
+            duration: 0.6,
+            stagger: 0.08,
+            ease: 'power2.out',
+            clearProps: 'transform',
+          },
           '-=0.3'
         );
 
-        tl.fromTo([details, imageCol],
+        tl.fromTo(details,
           { y: 30, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'power2.out' },
+          { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' },
           '-=0.4'
+        );
+
+        tl.fromTo(imageCol,
+          { opacity: 0 },
+          { opacity: 1, duration: 0.8, ease: 'power2.out' },
+          '<'
         );
 
         tl.fromTo(bottomBar,
@@ -375,67 +458,118 @@ export default function Home() {
       </section>
 
       {/* 2. Corporate Profile & Founder Story */}
-      <section ref={profileRef} style={{ padding: '120px 0', backgroundColor: 'var(--white)' }}>
+      <section ref={profileRef} style={{ padding: '140px 0 120px', backgroundColor: 'var(--white)', overflow: 'hidden' }}>
         <div className="container-custom">
-
-            {/* Statement + Stats */}
+          <div className="grid-2-responsive" style={{
+            display: 'grid',
+            gridTemplateColumns: '1.2fr 1fr',
+            gap: '4rem',
+            alignItems: 'center',
+          }}>
+            {/* Left Side: Statement + Stats */}
             <div className="profile-text">
-              <span style={{
-                fontSize: '0.8rem',
-                color: 'var(--muted)',
-                letterSpacing: '0.05em',
-                display: 'block',
-                marginBottom: '30px',
-              }}>[ About ]</span>
+              <span className="profile-label eyebrow">About</span>
 
-              <h2 style={{
+              {/* Word-by-word reveal heading */}
+              <h2 className="profile-heading" style={{
                 fontSize: 'clamp(1.8rem, 3.5vw, 2.6rem)',
-                lineHeight: 1.35,
+                lineHeight: 1.4,
                 fontFamily: 'var(--font-serif)',
                 fontWeight: 400,
-                color: 'var(--forest)',
-                margin: '0 0 60px 0',
-                maxWidth: '700px',
+                margin: '0 0 0 0',
+                maxWidth: '750px',
               }}>
-                Our approach to real estate goes beyond conventional offerings. We create spaces that combine <span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>contemporary design</span>, comfort and exceptional quality.
+                {(() => {
+                  const parts = [
+                    { text: 'Our approach to real estate goes beyond conventional offerings.', highlight: false },
+                    { text: ' We create spaces that combine ', highlight: false },
+                    { text: 'contemporary design,', highlight: true },
+                    { text: ' comfort and exceptional quality.', highlight: false },
+                  ];
+                  let wordIndex = 0;
+                  return parts.map((part, pIdx) => {
+                    if (part.highlight) {
+                      const words = part.text.split(' ');
+                      return words.map((word, wIdx) => {
+                        wordIndex++;
+                        return (
+                          <span key={`h-${pIdx}-${wIdx}`} className="reveal-word" style={{
+                            display: 'inline-block',
+                            color: 'rgba(171,148,138,0.25)',
+                            fontStyle: 'italic',
+                            transition: 'color 0.1s ease',
+                            marginRight: '0.3em',
+                          }}>
+                            {word}
+                          </span>
+                        );
+                      });
+                    } else {
+                      const words = part.text.split(' ').filter(w => w.length > 0);
+                      return words.map((word, wIdx) => {
+                        wordIndex++;
+                        return (
+                          <span key={`w-${pIdx}-${wIdx}`} className="reveal-word" style={{
+                            display: 'inline-block',
+                            color: 'rgba(40,54,43,0.12)',
+                            transition: 'color 0.1s ease',
+                            marginRight: '0.3em',
+                          }}>
+                            {word}
+                          </span>
+                        );
+                      });
+                    }
+                  });
+                })()}
               </h2>
 
+              {/* Animated Horizontal Line */}
+              <div className="profile-line" style={{
+                width: '0%',
+                height: '1px',
+                backgroundColor: 'var(--gold)',
+                margin: '50px 0',
+                maxWidth: '700px',
+              }}></div>
+
               {/* Stats Row */}
-              <div className="profile-stats-row" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem', maxWidth: '700px' }}>
-                <div>
-                  <div style={{
-                    fontSize: 'clamp(2rem, 4vw, 2.8rem)',
+              <div className="profile-stats-row" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2.5rem', maxWidth: '700px' }}>
+                <div className="stat-item" style={{ opacity: 0, transform: 'translateY(30px)' }}>
+                  <div className="stat-number" data-target="13" style={{
+                    fontSize: 'clamp(2.2rem, 4vw, 3rem)',
                     fontFamily: 'var(--font-serif)',
                     fontWeight: 400,
                     color: 'var(--forest)',
                     lineHeight: 1,
-                    marginBottom: '10px',
-                  }}>13+</div>
+                    marginBottom: '12px',
+                  }}>0+</div>
                   <p style={{ fontSize: '0.85rem', color: 'var(--muted)', lineHeight: 1.5, margin: 0 }}>
                     Industrial mill-owner families backing every project
                   </p>
                 </div>
-                <div>
-                  <div style={{
-                    fontSize: 'clamp(2rem, 4vw, 2.8rem)',
+                <div className="stat-item" style={{ opacity: 0, transform: 'translateY(30px)' }}>
+                  <div className="stat-number" data-target="100" style={{
+                    fontSize: 'clamp(2.2rem, 4vw, 3rem)',
                     fontFamily: 'var(--font-serif)',
                     fontWeight: 400,
                     color: 'var(--forest)',
                     lineHeight: 1,
-                    marginBottom: '10px',
-                  }}>100%</div>
+                    marginBottom: '12px',
+                  }}>0%</div>
                   <p style={{ fontSize: '0.85rem', color: 'var(--muted)', lineHeight: 1.5, margin: 0 }}>
                     Zero external debt — built entirely on partner capital reserves
                   </p>
                 </div>
-                <div>
-                  <div style={{
-                    fontSize: 'clamp(2rem, 4vw, 2.8rem)',
+                <div className="stat-item" style={{ opacity: 0, transform: 'translateY(30px)' }}>
+                  <div className="stat-number-text" style={{
+                    fontSize: 'clamp(2.2rem, 4vw, 3rem)',
                     fontFamily: 'var(--font-serif)',
                     fontWeight: 400,
                     color: 'var(--forest)',
                     lineHeight: 1,
-                    marginBottom: '10px',
+                    marginBottom: '12px',
+                    opacity: 0,
                   }}>TNRERA</div>
                   <p style={{ fontSize: '0.85rem', color: 'var(--muted)', lineHeight: 1.5, margin: 0 }}>
                     Fully registered & compliant with all regulatory standards
@@ -444,201 +578,288 @@ export default function Home() {
               </div>
             </div>
 
+            {/* Right Side: Coimbatore Location Card */}
+            <div className="profile-heritage" style={{
+              position: 'relative',
+              width: '100%',
+              opacity: 0,
+              transform: 'translateY(40px)',
+            }}>
+              <div style={{
+                width: '100%',
+                aspectRatio: '4/3',
+                position: 'relative',
+                overflow: 'hidden',
+                background: 'linear-gradient(135deg, #f8f5ef 0%, #efe7dc 100%)',
+                border: '1px solid var(--gold-border)',
+                borderRadius: '4px',
+                boxShadow: '0 18px 44px rgba(40, 54, 43, 0.08)',
+              }}>
+                <div style={{
+                  position: 'absolute',
+                  inset: 0,
+                  pointerEvents: 'none',
+                  backgroundImage: `
+                    linear-gradient(rgba(171, 148, 138, 0.12) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(171, 148, 138, 0.12) 1px, transparent 1px)
+                  `,
+                  backgroundSize: '54px 54px',
+                  opacity: 0.75,
+                }}></div>
+                <div style={{
+                  position: 'absolute',
+                  width: '82%',
+                  height: '1px',
+                  left: '8%',
+                  top: '39%',
+                  background: 'linear-gradient(90deg, transparent, rgba(224, 177, 76, 0.68), transparent)',
+                  transform: 'rotate(-14deg)',
+                  transformOrigin: 'center',
+                }}></div>
+                <div style={{
+                  position: 'absolute',
+                  width: '64%',
+                  height: '1px',
+                  right: '8%',
+                  top: '57%',
+                  background: 'linear-gradient(90deg, transparent, rgba(40, 54, 43, 0.42), transparent)',
+                  transform: 'rotate(22deg)',
+                  transformOrigin: 'center',
+                }}></div>
+                <div style={{
+                  position: 'absolute',
+                  width: '56%',
+                  height: '1px',
+                  left: '18%',
+                  top: '68%',
+                  background: 'linear-gradient(90deg, transparent, rgba(171, 148, 138, 0.48), transparent)',
+                  transform: 'rotate(-7deg)',
+                  transformOrigin: 'center',
+                }}></div>
+                <div style={{
+                  position: 'absolute',
+                  left: '50%',
+                  top: '50%',
+                  width: '142px',
+                  height: '142px',
+                  borderRadius: '50%',
+                  border: '1px solid rgba(224, 177, 76, 0.34)',
+                  transform: 'translate(-50%, -50%)',
+                }}></div>
+                <div style={{
+                  position: 'absolute',
+                  left: '50%',
+                  top: '50%',
+                  width: '82px',
+                  height: '82px',
+                  borderRadius: '50%',
+                  border: '1px solid rgba(224, 177, 76, 0.55)',
+                  transform: 'translate(-50%, -50%)',
+                }}></div>
+                <div style={{
+                  position: 'absolute',
+                  left: '50%',
+                  top: '50%',
+                  width: '18px',
+                  height: '18px',
+                  borderRadius: '50%',
+                  backgroundColor: 'var(--gold)',
+                  border: '5px solid rgba(255, 255, 255, 0.92)',
+                  boxShadow: '0 10px 28px rgba(40, 54, 43, 0.22)',
+                  transform: 'translate(-50%, -50%)',
+                }}></div>
+                <div style={{
+                  position: 'absolute',
+                  left: 'clamp(22px, 5vw, 44px)',
+                  top: 'clamp(22px, 5vw, 42px)',
+                }}>
+                  <span className="eyebrow" style={{ color: 'var(--gold)', marginBottom: '14px' }}>Presence</span>
+                  <h3 style={{
+                    margin: 0,
+                    fontFamily: 'var(--font-serif)',
+                    fontWeight: 300,
+                    fontSize: 'clamp(2rem, 4vw, 3.1rem)',
+                    color: 'var(--forest)',
+                    lineHeight: 1,
+                  }}>
+                    Coimbatore
+                  </h3>
+                </div>
+                <div style={{
+                  position: 'absolute',
+                  right: 'clamp(18px, 4vw, 34px)',
+                  bottom: 'clamp(18px, 4vw, 34px)',
+                  maxWidth: '260px',
+                  padding: '20px 22px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.72)',
+                  border: '1px solid rgba(171, 148, 138, 0.24)',
+                  backdropFilter: 'blur(14px)',
+                  boxShadow: '0 16px 34px rgba(40, 54, 43, 0.08)',
+                }}>
+                  <p style={{
+                    margin: '0 0 9px',
+                    fontFamily: 'var(--font-ui)',
+                    fontSize: '0.68rem',
+                    fontWeight: 700,
+                    letterSpacing: '0.16em',
+                    textTransform: 'uppercase',
+                    color: 'var(--gold)',
+                  }}>
+                    Zenora Address
+                  </p>
+                  <p style={{
+                    margin: 0,
+                    color: 'var(--forest)',
+                    fontSize: '1rem',
+                    lineHeight: 1.55,
+                  }}>
+                    Goldwins, Avinashi Road, with quick access to the city&apos;s established residential and business corridors.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* 3. Current Projects Showcase */}
-      <section ref={projectRef} style={{ padding: '120px 0', backgroundColor: 'var(--cream)' }} id="portfolio">
-        <div className="container-custom">
+      <section ref={projectRef} id="portfolio" style={{ position: 'relative', backgroundColor: 'var(--forest)' }}>
+        <div className="project-image" style={{
+          position: 'relative',
+          minHeight: 'clamp(620px, 86vh, 860px)',
+          width: '100%',
+          overflow: 'hidden',
+          display: 'flex',
+          alignItems: 'flex-end',
+        }}>
+          <Image
+            src="/images/View-47.jpg"
+            alt="Zenora luxury villa community"
+            fill
+            priority={false}
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+            sizes="100vw"
+          />
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(90deg, rgba(15, 28, 21, 0.86) 0%, rgba(15, 28, 21, 0.46) 42%, rgba(15, 28, 21, 0.08) 100%)',
+          }}></div>
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(180deg, rgba(15, 28, 21, 0.05) 0%, rgba(15, 28, 21, 0.12) 52%, rgba(15, 28, 21, 0.72) 100%)',
+          }}></div>
 
-          {/* Header */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '60px', flexWrap: 'wrap', gap: '20px' }}>
-            <div>
-              <span className="eyebrow">Portfolio</span>
-              <h2 style={{ fontSize: 'clamp(2rem, 4vw, 2.75rem)', fontFamily: 'var(--font-serif)', fontWeight: 300, margin: 0 }}>
-                Featured <span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>Developments</span>
-              </h2>
-            </div>
-            <Link href="/projects" className="btn-outline" style={{ padding: '12px 24px', fontSize: '0.75rem' }}>
-              view full portfolio ↗
-            </Link>
-          </div>
-
-          {/* Premium Showcase — open layout, no card */}
-          <div className="project-showcase-card grid-2-responsive" style={{
-            display: 'grid',
-            gridTemplateColumns: '1.2fr 1fr',
-            gap: '4rem',
-            alignItems: 'center',
+          <div className="container-custom project-text" style={{
+            position: 'relative',
+            zIndex: 2,
+            width: '100%',
+            paddingTop: '120px',
+            paddingBottom: 'clamp(70px, 9vw, 115px)',
           }}>
-
-            {/* Left: Interactive Image Gallery */}
-            <div className="project-gallery-container project-image" style={{ position: 'relative', height: '480px', overflow: 'hidden', borderRadius: '6px' }}>
-              {/* Exterior Image */}
-              <div style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                opacity: projectTab === 'exterior' ? 1 : 0,
-                transform: projectTab === 'exterior' ? 'scale(1)' : 'scale(1.05)',
-                transition: 'opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)',
-                zIndex: projectTab === 'exterior' ? 2 : 1
-              }}>
-                <Image
-                  src="/images/villa.jpg"
-                  alt="Zenora Villa Exterior"
-                  fill
-                  style={{ objectFit: 'cover' }}
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
-
-              {/* Interior Image */}
-              <div style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                opacity: projectTab === 'interior' ? 1 : 0,
-                transform: projectTab === 'interior' ? 'scale(1)' : 'scale(1.05)',
-                transition: 'opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)',
-                zIndex: projectTab === 'interior' ? 2 : 1
-              }}>
-                <Image
-                  src="/images/living room.jpg"
-                  alt="Zenora Villa Interior"
-                  fill
-                  style={{ objectFit: 'cover' }}
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
-
-              {/* Floating Badge (Top Left) */}
-              <div style={{
-                position: 'absolute',
-                top: '25px',
-                left: '25px',
-                backgroundColor: 'rgba(40,54,43,0.9)',
-                backdropFilter: 'blur(5px)',
+            <div style={{
+              maxWidth: '680px',
+              color: 'var(--white)',
+            }}>
+              <span className="eyebrow" style={{ color: 'var(--gold)' }}>Portfolio</span>
+              <h2 style={{
+                fontSize: 'clamp(3.4rem, 9vw, 7rem)',
+                fontFamily: 'var(--font-serif)',
+                fontWeight: 300,
+                lineHeight: 0.95,
+                margin: '0 0 22px',
                 color: 'var(--white)',
-                padding: '6px 14px',
-                fontSize: '0.65rem',
-                textTransform: 'uppercase',
-                letterSpacing: '2px',
-                fontWeight: 600,
-                borderRadius: '2px',
-                borderLeft: '2px solid var(--gold)',
-                zIndex: 10
               }}>
-                TNRERA REGISTERED
-              </div>
-
-              {/* Toggle Controls (Bottom Left) */}
-              <div style={{
-                position: 'absolute',
-                bottom: '25px',
-                left: '25px',
-                display: 'flex',
-                gap: '8px',
-                backgroundColor: 'rgba(255,255,255,0.15)',
-                backdropFilter: 'blur(10px)',
-                padding: '4px',
-                borderRadius: '30px',
-                border: '1px solid rgba(255,255,255,0.2)',
-                zIndex: 10
-              }}>
-                <button
-                  onClick={() => setProjectTab('exterior')}
-                  style={{
-                    border: 'none',
-                    padding: '8px 16px',
-                    fontSize: '0.7rem',
-                    fontWeight: 600,
-                    textTransform: 'uppercase',
-                    letterSpacing: '1px',
-                    borderRadius: '20px',
-                    cursor: 'pointer',
-                    backgroundColor: projectTab === 'exterior' ? 'var(--forest)' : 'transparent',
-                    color: projectTab === 'exterior' ? 'var(--white)' : 'var(--forest)',
-                    transition: 'all 0.3s ease'
-                  }}
-                >
-                  Exterior
-                </button>
-                <button
-                  onClick={() => setProjectTab('interior')}
-                  style={{
-                    border: 'none',
-                    padding: '8px 16px',
-                    fontSize: '0.7rem',
-                    fontWeight: 600,
-                    textTransform: 'uppercase',
-                    letterSpacing: '1px',
-                    borderRadius: '20px',
-                    cursor: 'pointer',
-                    backgroundColor: projectTab === 'interior' ? 'var(--forest)' : 'transparent',
-                    color: projectTab === 'interior' ? 'var(--white)' : 'var(--forest)',
-                    transition: 'all 0.3s ease'
-                  }}
-                >
-                  Interior
-                </button>
-              </div>
-
-            </div>
-
-            {/* Right: Rich Details and Feature Grid */}
-            <div className="project-details-container project-text" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <span className="eyebrow" style={{ color: 'var(--taupe)' }}>Signature Masterplan</span>
-              <h3 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.2rem)', fontFamily: 'var(--font-serif)', margin: '10px 0 15px 0', fontWeight: 300, lineHeight: 1 }}>
                 Zenora
-              </h3>
-              <p style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'var(--gold)', fontWeight: 600, marginBottom: '24px' }}>
+              </h2>
+              <p style={{
+                margin: '0 0 34px',
+                fontFamily: 'var(--font-ui)',
+                fontSize: '0.78rem',
+                fontWeight: 700,
+                letterSpacing: '0.18em',
+                textTransform: 'uppercase',
+                color: 'rgba(255, 255, 255, 0.82)',
+              }}>
                 Goldwins, Avinashi Road, Coimbatore
               </p>
-
-              <p style={{ color: 'var(--charcoal-3)', fontSize: '0.95rem', lineHeight: '1.7', marginBottom: '30px' }}>
-                A highly curated luxury villa community featuring vast private plots, bespoke architecture, and state-of-the-art infrastructure. Designed for Coimbatore's most discerning families, Zenora brings international design standards to Coimbatore's residential hub.
+              <div style={{
+                width: '72px',
+                height: '1px',
+                backgroundColor: 'var(--gold)',
+                marginBottom: '34px',
+              }}></div>
+              <p style={{
+                maxWidth: '520px',
+                margin: '0 0 38px',
+                color: 'rgba(255, 255, 255, 0.78)',
+                fontSize: 'clamp(1rem, 1.5vw, 1.12rem)',
+                lineHeight: 1.75,
+              }}>
+                A private villa address shaped around generous plots, quiet architecture, and a more considered way of living in Coimbatore.
               </p>
-
-              {/* 2x2 Feature Grid */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '35px' }} className="grid-2-spec">
-                <div style={{ border: '1px solid rgba(171,148,138,0.2)', padding: '15px 20px', borderRadius: '4px', backgroundColor: 'var(--cream)' }}>
-                  <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--muted)', fontWeight: 600, marginBottom: '4px' }}>PLOT EXTENTS</div>
-                  <div style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--forest)' }}>4,000 to 7,500 sq.ft.</div>
-                </div>
-                <div style={{ border: '1px solid rgba(171,148,138,0.2)', padding: '15px 20px', borderRadius: '4px', backgroundColor: 'var(--cream)' }}>
-                  <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--muted)', fontWeight: 600, marginBottom: '4px' }}>COMMUNITY</div>
-                  <div style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--forest)' }}>Luxury Gated Villas</div>
-                </div>
-                <div style={{ border: '1px solid rgba(171,148,138,0.2)', padding: '15px 20px', borderRadius: '4px', backgroundColor: 'var(--cream)' }}>
-                  <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--muted)', fontWeight: 600, marginBottom: '4px' }}>MANAGEMENT</div>
-                  <div style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--forest)' }}>Professional Custody</div>
-                </div>
-                <div style={{ border: '1px solid rgba(171,148,138,0.2)', padding: '15px 20px', borderRadius: '4px', backgroundColor: 'var(--cream)' }}>
-                  <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--muted)', fontWeight: 600, marginBottom: '4px' }}>REGISTRATION</div>
-                  <div style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--forest)' }}>TNRERA Approved</div>
-                </div>
-              </div>
-
-              <div>
-                <Link href="/projects" className="btn-gold" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px' }}>
-                  explore community details ↗
-                </Link>
-              </div>
-
+              <Link
+                href="/projects"
+                className="btn-gold"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '10px',
+                  backgroundColor: 'rgba(224, 177, 76, 0.95)',
+                  borderColor: 'rgba(224, 177, 76, 0.95)',
+                }}
+              >
+                View Full Project ↗
+              </Link>
             </div>
-
           </div>
         </div>
       </section>
 
       {/* 4. Development Expertise (Interactive Values Section) */}
-      <section ref={valuesRef} style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', backgroundColor: 'var(--white)', overflow: 'hidden', padding: '80px 0' }} id="expertise">
-        <div className="container-custom">
+      <section ref={valuesRef} style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', backgroundColor: 'var(--white)', overflow: 'hidden', padding: '80px 0', position: 'relative' }} id="expertise">
+        <div className="values-image-col" style={{
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          bottom: 0,
+          width: '38vw',
+          minWidth: '460px',
+          overflow: 'hidden',
+        }}>
+          {valuesData.map((val, idx) => (
+            <div
+              key={idx}
+              className="values-image-wrapper"
+              style={{
+                position: 'absolute',
+                inset: 0,
+                opacity: activeIndex === idx ? 1 : 0,
+                transform: activeIndex === idx ? 'scale(1)' : 'scale(1.04)',
+                transition: 'opacity 0.6s ease, transform 0.8s ease',
+                zIndex: activeIndex === idx ? 2 : 1
+              }}
+            >
+              <Image
+                src={val.image}
+                alt={val.title}
+                fill
+                style={{ objectFit: 'cover' }}
+                sizes="34vw"
+              />
+            </div>
+          ))}
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            zIndex: 3,
+            background: 'linear-gradient(90deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.78) 20%, rgba(255,255,255,0.24) 48%, rgba(255,255,255,0) 72%)',
+            pointerEvents: 'none',
+          }}></div>
+        </div>
+
+        <div className="container-custom" style={{ position: 'relative', zIndex: 4 }}>
           <div style={{ marginBottom: '60px' }}>
             <span className="eyebrow">Development Expertise</span>
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 2.75rem)', fontFamily: 'var(--font-serif)', fontWeight: 300 }}>
@@ -648,7 +869,7 @@ export default function Home() {
           </div>
 
           {/* Interactive Values Container */}
-          <div className="values-interactive-container" style={{ display: 'flex', gap: '3rem', marginTop: '40px' }}>
+          <div className="values-interactive-container" style={{ display: 'flex', gap: '3rem', marginTop: '40px', maxWidth: 'calc(62vw - 4rem)' }}>
 
             {/* Left Column: Headings */}
             <div className="values-headings-col" style={{ flex: '1.3', position: 'relative' }}>
@@ -746,7 +967,7 @@ export default function Home() {
             </div>
 
             {/* Middle Column: Details & Points */}
-            <div className="values-details-col" style={{ flex: '0.9', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div className="values-details-col" style={{ flex: '0 0 330px', maxWidth: '330px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
               <div ref={detailsRef} style={{ opacity: 1 }}>
                 <p style={{ fontSize: '0.95rem', color: 'var(--charcoal-3)', lineHeight: '1.7', marginBottom: '24px' }}>
                   {valuesData[activeIndex].description}
@@ -759,35 +980,6 @@ export default function Home() {
                   ))}
                 </div>
               </div>
-            </div>
-
-            {/* Right Column: Image Container */}
-            <div className="values-image-col" style={{ flex: '1', position: 'relative', height: '320px', overflow: 'hidden', borderRadius: '4px', border: '1px solid rgba(171,148,138,0.15)', padding: '8px', backgroundColor: 'var(--cream)' }}>
-              {valuesData.map((val, idx) => (
-                <div
-                  key={idx}
-                  className="values-image-wrapper"
-                  style={{
-                    position: 'absolute',
-                    top: '8px',
-                    left: '8px',
-                    right: '8px',
-                    bottom: '8px',
-                    opacity: activeIndex === idx ? 1 : 0,
-                    transform: activeIndex === idx ? 'scale(1)' : 'scale(1.05)',
-                    transition: 'opacity 0.6s ease, transform 0.6s ease',
-                    zIndex: activeIndex === idx ? 2 : 1
-                  }}
-                >
-                  <Image
-                    src={val.image}
-                    alt={val.title}
-                    fill
-                    style={{ objectFit: 'cover', borderRadius: '2px' }}
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
-                </div>
-              ))}
             </div>
 
           </div>
@@ -845,44 +1037,64 @@ export default function Home() {
       </section>
 
       {/* 6. Media & News Section */}
-      <section ref={mediaRef} style={{ padding: '100px 0', backgroundColor: 'var(--white)' }}>
+      <section ref={mediaRef} style={{ padding: '120px 0', backgroundColor: 'var(--white)', borderTop: '1px solid rgba(171,148,138,0.14)' }}>
         <div className="container-custom">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '50px', flexWrap: 'wrap', gap: '20px' }}>
-            <div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 0.9fr) minmax(0, 1.1fr)', gap: 'clamp(3rem, 7vw, 7rem)', alignItems: 'start', marginBottom: '70px' }} className="insights-header-grid">
+            <div style={{ position: 'sticky', top: '120px' }}>
               <span className="eyebrow">Insights</span>
-              <h2 style={{ fontSize: '2.5rem', fontFamily: 'var(--font-serif)', fontWeight: 300 }}>
-                Recent <span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>Media</span>
+              <h2 style={{ fontSize: 'clamp(2.6rem, 5vw, 4.75rem)', fontFamily: 'var(--font-serif)', fontWeight: 300, lineHeight: 0.98, margin: '0 0 30px' }}>
+                Notes from the <span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>market</span>
               </h2>
+              <div className="section-rule" style={{ margin: 0 }}></div>
             </div>
-            <Link href="/media" style={{ fontFamily: 'var(--font-ui)', fontSize: '0.8rem', fontWeight: 600, color: 'var(--gold)', borderBottom: '1px solid var(--gold)', paddingBottom: '2px', textTransform: 'uppercase', letterSpacing: '0.1em' }}>View All Insights &rarr;</Link>
+
+            <div>
+              <article className="media-card" style={{ borderTop: '1px solid rgba(40,54,43,0.22)', paddingTop: '28px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '90px 1fr', gap: '2rem', alignItems: 'start' }}>
+                  <span style={{ fontFamily: 'var(--font-ui)', fontSize: '0.72rem', color: 'var(--taupe)', textTransform: 'uppercase', letterSpacing: '0.16em', lineHeight: 1.6 }}>June<br />10<br />2026</span>
+                  <div>
+                    <h3 style={{ fontSize: 'clamp(2rem, 4vw, 3.4rem)', lineHeight: 1.05, margin: '0 0 24px', fontFamily: 'var(--font-serif)', fontWeight: 300 }}>
+                      <Link href="/media#future" style={{ color: 'var(--forest)' }}>
+                        Coimbatore is moving toward quieter, more curated residential formats.
+                      </Link>
+                    </h3>
+                    <p style={{ fontSize: '1rem', color: 'var(--charcoal-3)', lineHeight: 1.8, maxWidth: '620px', margin: '0 0 30px' }}>
+                      A read on why industrial families and business owners are choosing boutique, master-planned enclaves over denser residential products.
+                    </p>
+                    <Link href="/media#future" style={{ fontFamily: 'var(--font-ui)', color: 'var(--gold)', fontWeight: 700, fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.14em', borderBottom: '1px solid var(--gold)', paddingBottom: '4px' }}>Read the note &rarr;</Link>
+                  </div>
+                </div>
+              </article>
+
+              <div style={{ height: '1px', backgroundColor: 'rgba(171,148,138,0.22)', margin: '48px 0 0' }}></div>
+              <div style={{ marginTop: '22px', display: 'flex', justifyContent: 'space-between', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                <span style={{ fontSize: '0.9rem', color: 'var(--muted)' }}>Research, market notes, and development perspectives from Zenvistas.</span>
+                <Link href="/media" style={{ fontFamily: 'var(--font-ui)', fontSize: '0.78rem', fontWeight: 700, color: 'var(--gold)', borderBottom: '1px solid var(--gold)', paddingBottom: '3px', textTransform: 'uppercase', letterSpacing: '0.14em' }}>View all insights &rarr;</Link>
+              </div>
+            </div>
+
           </div>
 
-          <div className="grid-2" style={{ gap: '3rem' }}>
-            <div className="media-card" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-              <div style={{ backgroundColor: 'var(--cream)', padding: '30px', borderRadius: '4px', borderLeft: '3px solid var(--gold)', display: 'flex', flexDirection: 'column', height: '100%' }}>
-                <span style={{ fontSize: '0.8rem', color: 'var(--taupe)', textTransform: 'uppercase', letterSpacing: '1px', display: 'block', marginBottom: '8px' }}>June 10, 2026</span>
-                <h4 style={{ fontSize: '1.35rem', marginBottom: '10px', fontFamily: 'var(--font-serif)' }}>
-                  <Link href="/media#future" style={{ color: 'var(--forest)' }}>The Future of Coimbatore Real Estate: A Shift Towards Curated Living</Link>
-                </h4>
-                <p style={{ fontSize: '0.9rem', color: 'var(--charcoal-3)', marginBottom: '15px' }}>
-                  Explore how Coimbatore's top business leaders are pivoting towards boutique, master-planned residential enclaves over dense multi-storey developments.
-                </p>
-                <Link href="/media#future" style={{ color: 'var(--gold)', fontWeight: 600, fontSize: '0.85rem', marginTop: 'auto' }}>Read Article &rarr;</Link>
-              </div>
+          <article className="media-card insights-secondary" style={{
+            marginLeft: 'min(24vw, 340px)',
+            borderTop: '1px solid rgba(40,54,43,0.18)',
+            paddingTop: '28px',
+            display: 'grid',
+            gridTemplateColumns: '120px 1fr auto',
+            gap: '2rem',
+            alignItems: 'start',
+          }}>
+            <span style={{ fontFamily: 'var(--font-ui)', fontSize: '0.72rem', color: 'var(--taupe)', textTransform: 'uppercase', letterSpacing: '0.16em' }}>May 24, 2026</span>
+            <div>
+              <h4 style={{ fontSize: 'clamp(1.35rem, 2.2vw, 2rem)', lineHeight: 1.15, margin: '0 0 12px', fontFamily: 'var(--font-serif)', fontWeight: 300 }}>
+                <Link href="/media#jv" style={{ color: 'var(--forest)' }}>Joint development is becoming the more disciplined landowner conversation.</Link>
+              </h4>
+              <p style={{ fontSize: '0.92rem', color: 'var(--charcoal-3)', lineHeight: 1.7, margin: 0, maxWidth: '600px' }}>
+                Why structured JDAs are gaining preference in primary southern markets.
+              </p>
             </div>
-            <div className="media-card" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-              <div style={{ backgroundColor: 'var(--cream)', padding: '30px', borderRadius: '4px', borderLeft: '3px solid var(--gold)', display: 'flex', flexDirection: 'column', height: '100%' }}>
-                <span style={{ fontSize: '0.8rem', color: 'var(--taupe)', textTransform: 'uppercase', letterSpacing: '1px', display: 'block', marginBottom: '8px' }}>May 24, 2026</span>
-                <h4 style={{ fontSize: '1.35rem', marginBottom: '10px', fontFamily: 'var(--font-serif)' }}>
-                  <Link href="/media#jv" style={{ color: 'var(--forest)' }}>Why Joint Development Models Are Growing In Southern Markets</Link>
-                </h4>
-                <p style={{ fontSize: '0.9rem', color: 'var(--charcoal-3)', marginBottom: '15px' }}>
-                  For landowners in primary urban hubs, Joint Development Agreements (JDAs) offer high revenue potential and structured transparency when partnering with established names.
-                </p>
-                <Link href="/media#jv" style={{ color: 'var(--gold)', fontWeight: 600, fontSize: '0.85rem', marginTop: 'auto' }}>Read Article &rarr;</Link>
-              </div>
-            </div>
-          </div>
+            <Link href="/media#jv" style={{ fontFamily: 'var(--font-ui)', color: 'var(--gold)', fontWeight: 700, fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.14em', whiteSpace: 'nowrap', borderBottom: '1px solid var(--gold)', paddingBottom: '3px' }}>Read &rarr;</Link>
+          </article>
         </div>
       </section>
 

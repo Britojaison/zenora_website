@@ -535,6 +535,38 @@ a {
     grid-template-columns: 1fr !important;
     gap: 2.5rem !important;
   }
+  .insights-header-grid {
+    grid-template-columns: 1fr !important;
+    gap: 3rem !important;
+  }
+  .insights-header-grid > div:first-child {
+    position: static !important;
+  }
+  .insights-header-grid .media-card > div {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  .insights-secondary {
+    margin-left: 0 !important;
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  #expertise .values-interactive-container {
+    max-width: none !important;
+  }
+  #expertise > .values-image-col {
+    display: none !important;
+  }
+}
+@media (min-width: 993px) and (max-width: 1280px) {
+  #expertise .values-interactive-container {
+    max-width: calc(60vw - 2rem) !important;
+    gap: 2rem !important;
+  }
+  #expertise .values-details-col {
+    flex-basis: 280px !important;
+    max-width: 280px !important;
+  }
 }
 @media (max-width: 768px) {
   .grid-2-responsive {
@@ -581,6 +613,7 @@ a {
   .values-interactive-container {
     flex-direction: column !important;
     gap: 1.5rem !important;
+    max-width: none !important;
   }
   .values-headings-col {
     width: 100% !important;
@@ -605,4 +638,9 @@ a {
   .project-details-container {
     padding: 30px 20px !important;
   }
+}
+
+.heritage-map:hover {
+  opacity: 0.95 !important;
+  filter: saturate(0.6) brightness(1.0) contrast(0.95) !important;
 }
