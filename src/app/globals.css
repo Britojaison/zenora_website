@@ -383,6 +383,35 @@ a {
   border-color: var(--forest);
 }
 
+.connect-section .form-group label {
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.connect-section .form-group input,
+.connect-section .form-group textarea {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: var(--white);
+}
+
+.connect-section .form-group input::placeholder,
+.connect-section .form-group textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.connect-section .form-group input:focus,
+.connect-section .form-group select:focus,
+.connect-section .form-group textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(224, 177, 76, 0.16);
+}
+
+.connect-section .form-submit:hover {
+  background-color: var(--white);
+  color: #34090D;
+  border-color: var(--white);
+}
+
 /* Header & Footer classes */
 .navbar-header {
   height: 80px;
@@ -550,6 +579,9 @@ a {
     margin-left: 0 !important;
     grid-template-columns: 1fr !important;
     gap: 1rem !important;
+  }
+  .connect-grid {
+    grid-template-columns: 1fr !important;
   }
   #expertise .values-interactive-container {
     max-width: none !important;

@@ -1099,20 +1099,37 @@ export default function Home() {
       </section>
 
       {/* 7. Enquiry CTA Form Section */}
-      <section style={{ padding: '100px 0', backgroundColor: 'var(--cream)', borderTop: '1px solid rgba(171,148,138,0.15)' }} id="enquiry">
-        <div className="container-custom" style={{ maxWidth: '800px' }}>
-          <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-            <span className="eyebrow">Connect</span>
-            <h2 style={{ fontSize: '2.5rem', fontFamily: 'var(--font-serif)', fontWeight: 300 }}>
-              Speak with the <span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>Zenvistas Team</span>
+      <section className="connect-section" style={{ padding: '120px 0', backgroundColor: '#34090D', color: 'var(--white)', position: 'relative', overflow: 'hidden' }} id="enquiry">
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'radial-gradient(circle at 18% 20%, rgba(224,177,76,0.16), transparent 28%), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)',
+          backgroundSize: 'auto, 76px 76px',
+          pointerEvents: 'none',
+        }}></div>
+        <div className="container-custom connect-grid" style={{ position: 'relative', zIndex: 2, display: 'grid', gridTemplateColumns: '0.92fr 1.08fr', gap: 'clamp(3rem, 7vw, 7rem)', alignItems: 'start' }}>
+          <div>
+            <span className="eyebrow" style={{ color: 'var(--gold)' }}>Connect</span>
+            <h2 style={{ fontSize: 'clamp(3rem, 7vw, 6rem)', fontFamily: 'var(--font-serif)', fontWeight: 300, lineHeight: 0.95, margin: '0 0 28px', color: 'var(--white)' }}>
+              Begin the <span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>conversation</span>
             </h2>
-            <p style={{ color: 'var(--charcoal-3)', marginTop: '10px', fontSize: '1rem' }}>
-              Have questions about projects, partnerships, or land sales? Submit your details below, and an executive will contact you directly.
+            <div className="section-rule" style={{ margin: '0 0 34px', backgroundColor: 'var(--gold)' }}></div>
+            <p style={{ color: 'rgba(255,255,255,0.74)', fontSize: '1.05rem', lineHeight: 1.85, maxWidth: '480px', margin: '0 0 48px' }}>
+              Speak to the Zenvistas team about projects, land partnerships, investment interest, or a private site conversation.
             </p>
-            <div className="section-rule" style={{ margin: '20px auto 0' }}></div>
+            <div style={{ display: 'grid', gap: '26px', maxWidth: '460px' }}>
+              <div style={{ borderTop: '1px solid rgba(255,255,255,0.18)', paddingTop: '18px' }}>
+                <span style={{ display: 'block', fontFamily: 'var(--font-ui)', fontSize: '0.68rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '8px', fontWeight: 700 }}>Response window</span>
+                <p style={{ margin: 0, color: 'rgba(255,255,255,0.72)', lineHeight: 1.6 }}>An executive will get back with the right next step.</p>
+              </div>
+              <div style={{ borderTop: '1px solid rgba(255,255,255,0.18)', paddingTop: '18px' }}>
+                <span style={{ display: 'block', fontFamily: 'var(--font-ui)', fontSize: '0.68rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '8px', fontWeight: 700 }}>For landowners</span>
+                <p style={{ margin: 0, color: 'rgba(255,255,255,0.72)', lineHeight: 1.6 }}>Share location, land extent, and ownership context in the message.</p>
+              </div>
+            </div>
           </div>
 
-          <div style={{ backgroundColor: 'var(--white)', padding: '40px', borderRadius: '4px', border: '1px solid rgba(171,148,138,0.15)', boxShadow: '0 4px 20px rgba(0,0,0,0.02)' }}>
+          <div className="connect-form-panel" style={{ padding: 'clamp(28px, 4vw, 48px)', border: '1px solid rgba(255,255,255,0.16)', backgroundColor: 'rgba(255,255,255,0.075)', backdropFilter: 'blur(18px)', boxShadow: '0 28px 70px rgba(0,0,0,0.22)' }}>
             <form onSubmit={handleSubmit}>
               <div className="grid-2" style={{ gap: '1.5rem', marginBottom: '1.5rem' }}>
                 <div className="form-group" style={{ marginBottom: 0 }}>
@@ -1164,14 +1181,14 @@ export default function Home() {
                     style={{
                       width: '100%',
                       padding: '14px 18px',
-                      backgroundColor: 'var(--white)',
-                      border: '1px solid rgba(171, 148, 138, 0.3)',
+                      backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                      border: '1px solid rgba(255, 255, 255, 0.18)',
                       borderRadius: '2px',
                       fontFamily: 'var(--font-sans)',
                       fontSize: '0.9rem',
-                      color: 'var(--forest)',
+                      color: 'var(--white)',
                       appearance: 'none',
-                      backgroundImage: "url(\"data:image/svg+xml;utf8,<svg fill='%2328362b' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>\")",
+                      backgroundImage: "url(\"data:image/svg+xml;utf8,<svg fill='%23e0b14c' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>\")",
                       backgroundRepeat: 'no-repeat',
                       backgroundPosition: 'right 15px center',
                       cursor: 'pointer'
