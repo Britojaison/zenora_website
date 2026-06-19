@@ -154,7 +154,7 @@ export default function Home() {
         const words = profileRef.current.querySelectorAll('.reveal-word');
         if (words.length > 0) {
           words.forEach((word, i) => {
-            const isItalic = word.style.fontStyle === 'italic';
+            const isItalic = (word as HTMLElement).style.fontStyle === 'italic';
             gsap.to(word, {
               color: isItalic ? 'var(--gold)' : 'var(--forest)',
               ease: 'none',
