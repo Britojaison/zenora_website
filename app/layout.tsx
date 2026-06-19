@@ -3,13 +3,11 @@ import Script from "next/script";
 import "./globals.css";
 import Clarity from "../components/Clarity";
 import MetaPixel from "../components/MetaPixel";
-import TaboolaPixel from "../components/TaboolaPixel";
 import WhatsAppButton from "../components/WhatsAppButton";
 import CallButton from "../components/CallButton";
 import CookieBanner from "../components/CookieBanner";
 import StickyEnquiryBar from "../components/StickyEnquiryBar";
 import { GoogleTagManager } from '@next/third-parties/google';
-import { cookies } from 'next/headers';
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.zenoravillas.in"),
@@ -74,36 +72,45 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const cookieStore = await cookies();
-  const consent = cookieStore.get("cookie_consent")?.value;
-  const isAccepted = consent === "accepted";
-
   return (
     <html lang="en">
-      {isAccepted && <GoogleTagManager gtmId="GTM-5FNDNF5D" />}
+      <GoogleTagManager gtmId="GTM-5FNDNF5D" />
       <head>
         <meta name="google-site-verification" content="O8T6ZrpCr0t3UMgXa6EqKRKKS4tzh3RBagwngU3UN7s" />
-        {isAccepted && (
-          <>
-            <Script
-              src="https://www.googletagmanager.com/gtag/js?id=AW-17832990826"
-              strategy="afterInteractive"
-            />
-            <Script id="google-ads-gtag" strategy="afterInteractive" dangerouslySetInnerHTML={{
-              __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', 'AW-17832990826');
-              `
-            }} />
-          </>
-        )}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17832990826"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads-gtag" strategy="afterInteractive" dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17832990826');
+          `
+        }} />
+        <MetaPixel />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window._tfa = window._tfa || [];
+              window._tfa.push({notify: 'event', name: 'page_view', id: 2046888});
+              !function (t, f, a, x) {
+                if (!document.getElementById(x)) {
+                  t.async = 1;t.src = a;t.id=x;f.parentNode.insertBefore(t, f);
+                }
+              }(document.createElement('script'),
+              document.getElementsByTagName('script')[0],
+              '//cdn.taboola.com/libtrc/unip/2046888/tfa.js',
+              'tb_tfa_script');
+            `,
+          }}
+        />
 
         <link
           rel="preload"
@@ -147,13 +154,7 @@ export default async function RootLayout({
         />
       </head>
       <body>
-        {isAccepted && (
-          <>
-            <Clarity />
-            <MetaPixel />
-            <TaboolaPixel />
-          </>
-        )}
+        <Clarity />
         <Script
           src="//forms.cdn.sell.do/t/665d85d70d1851dc7c28dd6a.js"
           strategy="beforeInteractive"

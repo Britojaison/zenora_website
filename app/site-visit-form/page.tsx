@@ -43,6 +43,11 @@ export default function SiteVisitForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form data:", formData);
+
+    // Taboola Lead event tracking
+    if (typeof window !== "undefined" && (window as any)._tfa) {
+      (window as any)._tfa.push({ notify: "event", name: "lead", id: 2046888 });
+    }
   };
 
   return (
