@@ -27,7 +27,7 @@ export default function Footer() {
               </div>
             </Link>
             <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.9rem', lineHeight: '1.7', maxWidth: '360px', marginBottom: '24px' }}>
-              A luxury real estate developer founded by Coimbatore's mill owners and industrialists — committed to building communities that match the standards of the families who created them.
+              A luxury real estate developer founded by Coimbatore&apos;s mill owners and industrialists — committed to building communities that match the standards of the families who created them.
             </p>
             <div style={{ display: 'flex', gap: '15px' }}>
               <a

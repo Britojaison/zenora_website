@@ -28,7 +28,7 @@ export async function POST(request: Request) {
       try {
         const fileContent = fs.readFileSync(filePath, 'utf8');
         leads = JSON.parse(fileContent);
-      } catch (err) {
+      } catch {
         // If file is empty or corrupted, reset to empty array
         leads = [];
       }

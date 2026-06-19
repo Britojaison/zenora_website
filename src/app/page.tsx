@@ -976,7 +976,7 @@ export default function Home() {
               <span className="eyebrow" style={{ color: 'var(--gold)' }}>Investors</span>
               <h3 style={{ fontSize: '1.75rem', color: 'var(--white)', marginBottom: '15px', fontFamily: 'var(--font-serif)' }}>Investment Relations</h3>
               <p style={{ color: 'rgba(255,255,255,0.8)', marginBottom: '30px', fontSize: '0.95rem' }}>
-                We invite NRIs, HNIs, Family Offices, and institutional partners to invest in Zenvistas' premium residential developments. Benefit from our zero-debt growth model, regulatory compliance, and high quality yield.
+                We invite NRIs, HNIs, Family Offices, and institutional partners to invest in Zenvistas&apos; premium residential developments. Benefit from our zero-debt growth model, regulatory compliance, and high quality yield.
               </p>
               <Link href="/investors" className="btn-outline-white" style={{ width: '100%' }}>Investment Opportunities</Link>
             </div>

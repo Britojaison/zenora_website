@@ -85,13 +85,13 @@ export default function Header() {
     return () => ctx.revert();
   }, []);
 
-  const isHome = pathname === '/';
+  const isOverlayHeader = !scrolled;
 
   return (
     <header
       ref={headerRef}
       className={`navbar-header ${
-        scrolled || !isHome ? 'scrolled' : ''
+        scrolled ? 'scrolled' : ''
       }`}
       style={{
         position: 'fixed',
@@ -103,9 +103,9 @@ export default function Header() {
         display: 'flex',
         alignItems: 'center',
         transition: 'background-color 0.3s ease, border-bottom 0.3s ease, backdrop-filter 0.3s ease',
-        backgroundColor: scrolled || !isHome ? 'rgba(245, 241, 237, 0.98)' : 'transparent',
-        borderBottom: scrolled || !isHome ? '1px solid rgba(171, 148, 138, 0.15)' : 'none',
-        backdropFilter: scrolled || !isHome ? 'blur(10px)' : 'none',
+        backgroundColor: isOverlayHeader ? 'transparent' : 'rgba(245, 241, 237, 0.98)',
+        borderBottom: isOverlayHeader ? 'none' : '1px solid rgba(171, 148, 138, 0.15)',
+        backdropFilter: isOverlayHeader ? 'none' : 'blur(10px)',
       }}
     >
       <div style={{
@@ -148,7 +148,7 @@ export default function Header() {
                   textDecoration: 'none',
                   position: 'relative',
                   padding: '6px 0',
-                  color: scrolled || !isHome ? 'var(--forest)' : 'var(--white)',
+                  color: isOverlayHeader ? 'var(--white)' : 'var(--forest)',
                   borderBottom: isActive ? '2px solid var(--gold)' : '2px solid transparent',
                   transition: 'color 0.3s ease, border-color 0.3s ease',
                 }}
@@ -171,8 +171,8 @@ export default function Header() {
               textTransform: 'uppercase',
               fontWeight: '700',
               borderRadius: '2px',
-              border: `1px solid ${scrolled || !isHome ? 'var(--gold)' : 'var(--white)'}`,
-              color: scrolled || !isHome ? 'var(--forest)' : 'var(--white)',
+              border: `1px solid ${isOverlayHeader ? 'var(--white)' : 'var(--gold)'}`,
+              color: isOverlayHeader ? 'var(--white)' : 'var(--forest)',
               backgroundColor: 'transparent',
               transition: 'all 0.3s ease',
               textDecoration: 'none',
@@ -196,12 +196,12 @@ export default function Header() {
             aria-label="Toggle Menu"
           >
             {open ? (
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={scrolled || !isHome ? 'var(--forest)' : 'var(--white)'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={isOverlayHeader ? 'var(--white)' : 'var(--forest)'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
                 <line x1="6" y1="6" x2="18" y2="18"></line>
               </svg>
             ) : (
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={scrolled || !isHome ? 'var(--forest)' : 'var(--white)'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={isOverlayHeader ? 'var(--white)' : 'var(--forest)'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="3" y1="12" x2="21" y2="12"></line>
                 <line x1="3" y1="6" x2="21" y2="6"></line>
                 <line x1="3" y1="18" x2="21" y2="18"></line>

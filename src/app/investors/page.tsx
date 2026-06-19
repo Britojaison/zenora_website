@@ -85,6 +85,24 @@ export default function Investors() {
             }
           }
         );
+
+        // Word-by-word reveal for strategy heading
+        const words = philosophyRef.current.querySelectorAll('.reveal-word');
+        if (words.length > 0) {
+          words.forEach((word, i) => {
+            const isItalic = (word as HTMLElement).style.fontStyle === 'italic';
+            gsap.to(word, {
+              color: isItalic ? 'var(--gold)' : 'var(--forest)',
+              ease: 'none',
+              scrollTrigger: {
+                trigger: philosophyRef.current,
+                start: `top+=${40 + i * 25} 75%`,
+                end: `top+=${70 + i * 25} 75%`,
+                scrub: true,
+              }
+            });
+          });
+        }
       }
 
       // Who We Serve & Form
@@ -170,92 +188,178 @@ export default function Investors() {
   return (
     <div>
       {/* Page Hero */}
-      <section ref={heroRef} className="page-hero" style={{ display: 'flex', alignItems: 'center', minHeight: '45vh', position: 'relative', overflow: 'hidden' }}>
+      <section ref={heroRef} className="page-hero" style={{ display: 'flex', alignItems: 'center', minHeight: '65vh', position: 'relative', overflow: 'hidden', padding: '120px 0 80px 0' }}>
         <div style={{
           position: 'absolute',
           top: 0,
           left: 0,
           width: '100%',
           height: '100%',
-          backgroundImage: "linear-gradient(to bottom, rgba(40,54,43,0.85) 0%, rgba(40,54,43,0.6) 100%), url('/images/living room.jpg')",
+          backgroundImage: "url('/images/living room.jpg')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           zIndex: 1
         }}></div>
-        <div className="container-custom page-hero-content" style={{ zIndex: 2, color: 'var(--white)' }}>
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(90deg, rgba(15, 28, 21, 0.88) 0%, rgba(15, 28, 21, 0.46) 48%, rgba(15, 28, 21, 0.1) 100%)',
+          zIndex: 2,
+        }}></div>
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(180deg, rgba(15, 28, 21, 0.12) 0%, rgba(15, 28, 21, 0.34) 55%, rgba(15, 28, 21, 0.86) 100%)',
+          zIndex: 2,
+        }}></div>
+        <div className="container-custom page-hero-content" style={{ zIndex: 3, color: 'var(--white)' }}>
           <span className="eyebrow" style={{ color: 'var(--gold)' }}>Capital Partners</span>
-          <h1 style={{ color: 'var(--white)', fontSize: 'clamp(2.2rem, 5vw, 4rem)', fontFamily: 'var(--font-serif)', fontWeight: 300, lineHeight: 1.1 }}>
+          <h1 style={{ color: 'var(--white)', fontSize: 'clamp(3.2rem, 8vw, 7rem)', fontFamily: 'var(--font-serif)', fontWeight: 300, lineHeight: 0.96, maxWidth: '980px', margin: '0 0 28px' }}>
             Investor <span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>Relations</span>
           </h1>
           <p style={{ color: 'rgba(255, 255, 255, 0.9)', maxWidth: '600px', fontSize: '1.1rem', marginTop: '1rem', lineHeight: '1.7' }}>
-            Unlocking high-yield real estate investments in South India's premier markets. Guided by industrial governance, backed by asset safety.
+            Unlocking high-yield real estate investments in South India&apos;s premier markets. Guided by industrial governance, backed by asset safety.
           </p>
         </div>
       </section>
 
       {/* Investment Philosophy */}
-      <section ref={philosophyRef} style={{ backgroundColor: 'var(--white)', padding: '100px 0' }}>
+      <section ref={philosophyRef} style={{ backgroundColor: 'var(--white)', padding: '120px 0' }}>
         <div className="container-custom">
-          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '70px' }}>
             <span className="eyebrow">Our Strategy</span>
-            <h2 style={{ fontSize: '2.5rem', fontFamily: 'var(--font-serif)', fontWeight: 300 }}>
-              Investment <span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>Philosophy</span>
+            <h2 style={{
+              fontSize: 'clamp(2.2rem, 5vw, 3.8rem)',
+              lineHeight: 1.1,
+              fontFamily: 'var(--font-serif)',
+              fontWeight: 300,
+              margin: '0 auto',
+            }}>
+              {(() => {
+                const parts = [
+                  { text: 'Investment ', highlight: false },
+                  { text: 'Philosophy', highlight: true },
+                ];
+                return parts.map((part, pIdx) => {
+                  if (part.highlight) {
+                    const words = part.text.split(' ');
+                    return words.map((word, wIdx) => (
+                      <span key={`h-${pIdx}-${wIdx}`} className="reveal-word" style={{
+                        display: 'inline-block',
+                        color: 'rgba(171,148,138,0.25)',
+                        fontStyle: 'italic',
+                        transition: 'color 0.1s ease',
+                        marginRight: '0.3em',
+                      }}>
+                        {word}
+                      </span>
+                    ));
+                  } else {
+                    const words = part.text.split(' ').filter(w => w.length > 0);
+                    return words.map((word, wIdx) => (
+                      <span key={`w-${pIdx}-${wIdx}`} className="reveal-word" style={{
+                        display: 'inline-block',
+                        color: 'rgba(40,54,43,0.12)',
+                        transition: 'color 0.1s ease',
+                        marginRight: '0.3em',
+                      }}>
+                        {word}
+                      </span>
+                    ));
+                  }
+                });
+              })()}
             </h2>
             <div className="section-rule" style={{ margin: '20px auto 0' }}></div>
           </div>
 
-          <div className="grid-3">
-            <div style={{ padding: '30px', backgroundColor: 'var(--cream)', borderRadius: '4px', borderTop: '3px solid var(--gold)' }}>
-              <h4 style={{ fontSize: '1.25rem', marginBottom: '12px', fontFamily: 'var(--font-serif)' }}>Zero-Debt Model</h4>
-              <p style={{ fontSize: '0.95rem', color: 'var(--charcoal-3)', margin: 0 }}>
-                Zenvistas operations are funded natively via equity from our industrialist founders and internal cash flow. By operating with zero external bank leverage, we cushion investments against market volatility and eliminate interest drag.
-              </p>
-            </div>
-            <div style={{ padding: '30px', backgroundColor: 'var(--cream)', borderRadius: '4px', borderTop: '3px solid var(--gold)' }}>
-              <h4 style={{ fontSize: '1.25rem', marginBottom: '12px', fontFamily: 'var(--font-serif)' }}>Capital Preservation</h4>
-              <p style={{ fontSize: '0.95rem', color: 'var(--charcoal-3)', margin: 0 }}>
-                Every project land parcel is acquired outright with clear, undisputed title records before development starts. Equity sits directly on real estate asset bases, securing partner capital effectively.
-              </p>
-            </div>
-            <div style={{ padding: '30px', backgroundColor: 'var(--cream)', borderRadius: '4px', borderTop: '3px solid var(--gold)' }}>
-              <h4 style={{ fontSize: '1.25rem', marginBottom: '12px', fontFamily: 'var(--font-serif)' }}>Focus on Premium Yield</h4>
-              <p style={{ fontSize: '0.95rem', color: 'var(--charcoal-3)', margin: 0 }}>
-                We address the underserved segment of ultra-luxury gated communities in Coimbatore. Our focus on quality and supply scarcity delivers premium pricing power and strong, risk-adjusted returns.
-              </p>
-            </div>
+          <div className="grid-3" style={{ gap: '24px' }}>
+            {[
+              ['Zero-Debt Model', 'Zenvistas operations are funded natively via equity from our industrialist founders and internal cash flow. By operating with zero external bank leverage, we cushion investments against market volatility and eliminate interest drag.'],
+              ['Capital Preservation', 'Every project land parcel is acquired outright with clear, undisputed title records before development starts. Equity sits directly on real estate asset bases, securing partner capital effectively.'],
+              ['Focus on Premium Yield', 'We address the underserved segment of ultra-luxury gated communities in Coimbatore. Our focus on quality and supply scarcity delivers premium pricing power and strong, risk-adjusted returns.'],
+            ].map(([title, copy], idx) => (
+              <div key={title} style={{
+                backgroundColor: 'var(--white)',
+                padding: '44px 34px',
+                borderRadius: '4px',
+                border: '1px solid rgba(171,148,138,0.18)',
+                borderTop: '3px solid var(--gold)',
+                boxShadow: '0 8px 30px rgba(40, 54, 43, 0.02)',
+                transition: 'all 0.4s ease',
+                position: 'relative',
+                overflow: 'hidden',
+              }}
+              onMouseEnter={(e) => {
+                const target = e.currentTarget;
+                target.style.transform = 'translateY(-5px)';
+                target.style.boxShadow = '0 16px 40px rgba(40, 54, 43, 0.08)';
+              }}
+              onMouseLeave={(e) => {
+                const target = e.currentTarget;
+                target.style.transform = 'translateY(0)';
+                target.style.boxShadow = '0 8px 30px rgba(40, 54, 43, 0.02)';
+              }}
+              >
+                <div style={{
+                  position: 'absolute',
+                  inset: 0,
+                  pointerEvents: 'none',
+                  background: 'radial-gradient(circle at 100% 0%, rgba(225, 178, 88, 0.04), transparent 45%)',
+                }}></div>
+                <span style={{ display: 'block', fontFamily: 'var(--font-ui)', color: 'var(--gold)', fontWeight: 700, fontSize: '0.75rem', marginBottom: '16px' }}>0{idx + 1}</span>
+                <h4 style={{ fontSize: '1.4rem', marginBottom: '14px', fontFamily: 'var(--font-serif)', fontWeight: 300, color: 'var(--forest)' }}>{title}</h4>
+                <p style={{ fontSize: '0.96rem', color: 'var(--charcoal-3)', margin: 0, lineHeight: 1.75 }}>{copy}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Target Audiences */}
-      <section ref={serveRef} style={{ backgroundColor: 'var(--cream)', padding: '100px 0' }}>
+      <section ref={serveRef} style={{ backgroundColor: 'var(--cream)', padding: '120px 0' }}>
         <div className="container-custom">
-          <div className="grid-2" style={{ gap: '4rem', alignItems: 'center' }}>
-            <div>
+          <div className="grid-2 grid-2-responsive" style={{ gap: '5rem', alignItems: 'center' }}>
+            <div style={{ padding: '20px 0' }}>
               <span className="eyebrow">Who We Serve</span>
-              <h2 style={{ fontSize: '2rem', marginBottom: '20px', fontFamily: 'var(--font-serif)', fontWeight: 300 }}>
+              <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', marginBottom: '20px', fontFamily: 'var(--font-serif)', fontWeight: 300, lineHeight: 1.1 }}>
                 Tailored Capital <span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>Structures</span>
               </h2>
-              <div className="section-rule"></div>
+              <div className="section-rule" style={{ margin: '20px 0 36px 0' }}></div>
               
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
                 <div>
-                  <h5 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.15rem', marginBottom: '5px' }}>NRIs & HNIs</h5>
-                  <p style={{ fontSize: '0.95rem', color: 'var(--charcoal-3)', margin: 0 }}>
-                    We offer compliant, high-end residential opportunities for Non-Resident Indians and High-Net-Worth individuals looking to build wealth in India's fastest-growing industrial corridors.
+                  <h5 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.35rem', fontWeight: 300, marginBottom: '8px', color: 'var(--forest)' }}>NRIs & HNIs</h5>
+                  <p style={{ fontSize: '0.96rem', color: 'var(--charcoal-3)', margin: 0, lineHeight: 1.7 }}>
+                    We offer compliant, high-end residential opportunities for Non-Resident Indians and High-Net-Worth individuals looking to build wealth in India&apos;s fastest-growing industrial corridors.
                   </p>
                 </div>
-                <div>
-                  <h5 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.15rem', marginBottom: '5px' }}>Family Offices</h5>
-                  <p style={{ fontSize: '0.95rem', color: 'var(--charcoal-3)', margin: 0 }}>
-                    Partner with us in larger equity tranches. We structure transparent joint venture terms with clear milestones, regular financial audits, and strict escrow compliance.
+                <div style={{ borderTop: '1px solid rgba(171,148,138,0.22)', paddingTop: '24px' }}>
+                  <h5 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.35rem', fontWeight: 300, marginBottom: '8px', color: 'var(--forest)' }}>Family Offices</h5>
+                  <p style={{ fontSize: '0.96rem', color: 'var(--charcoal-3)', margin: 0, lineHeight: 1.7 }}>
+                    Partner with us in larger equity tranches. We structure transparent joint venture terms with clear milestones, regular financial audits, and escrow compliance.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div style={{ backgroundColor: 'var(--white)', padding: '40px', borderRadius: '4px', boxShadow: '0 4px 20px rgba(0,0,0,0.02)', border: '1px solid rgba(171,148,138,0.15)' }}>
-              <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', marginBottom: '20px', textAlign: 'center' }}>Investor Inquiry</h4>
+            <div style={{
+              backgroundColor: 'var(--white)',
+              padding: '44px 38px',
+              borderRadius: '4px',
+              boxShadow: '0 16px 40px rgba(40, 54, 43, 0.04)',
+              border: '1px solid rgba(171,148,138,0.25)',
+              position: 'relative',
+              overflow: 'hidden'
+            }}>
+              <div style={{
+                position: 'absolute',
+                inset: 0,
+                pointerEvents: 'none',
+                background: 'radial-gradient(circle at 100% 0%, rgba(225, 178, 88, 0.04), transparent 50%)',
+              }}></div>
+              
+              <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.6rem', fontWeight: 300, marginBottom: '24px', textAlign: 'center', color: 'var(--forest)' }}>Investor Inquiry</h4>
               
               <form onSubmit={handleSubmit}>
                 <div className="form-group">

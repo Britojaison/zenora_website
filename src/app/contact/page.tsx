@@ -23,7 +23,6 @@ export default function Contact() {
   const heroRef = useRef<HTMLDivElement>(null);
   const bannerRef = useRef<HTMLDivElement>(null);
   const detailsRef = useRef<HTMLDivElement>(null);
-  const formRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Hero Entrance
@@ -145,21 +144,33 @@ export default function Contact() {
   return (
     <div>
       {/* Page Hero */}
-      <section ref={heroRef} className="page-hero" style={{ display: 'flex', alignItems: 'center', minHeight: '45vh', position: 'relative', overflow: 'hidden' }}>
+      <section ref={heroRef} className="page-hero" style={{ display: 'flex', alignItems: 'center', minHeight: '65vh', position: 'relative', overflow: 'hidden', padding: '120px 0 80px 0' }}>
         <div style={{
           position: 'absolute',
           top: 0,
           left: 0,
           width: '100%',
           height: '100%',
-          backgroundImage: "linear-gradient(to bottom, rgba(40,54,43,0.85) 0%, rgba(40,54,43,0.6) 100%), url('/images/living room.jpg')",
+          backgroundImage: "url('/images/living room.jpg')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           zIndex: 1
         }}></div>
-        <div className="container-custom page-hero-content" style={{ zIndex: 2, color: 'var(--white)' }}>
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(90deg, rgba(15, 28, 21, 0.88) 0%, rgba(15, 28, 21, 0.46) 48%, rgba(15, 28, 21, 0.1) 100%)',
+          zIndex: 2,
+        }}></div>
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(180deg, rgba(15, 28, 21, 0.12) 0%, rgba(15, 28, 21, 0.34) 55%, rgba(15, 28, 21, 0.86) 100%)',
+          zIndex: 2,
+        }}></div>
+        <div className="container-custom page-hero-content" style={{ zIndex: 3, color: 'var(--white)' }}>
           <span className="eyebrow" style={{ color: 'var(--gold)' }}>Reach Out</span>
-          <h1 style={{ color: 'var(--white)', fontSize: 'clamp(2.2rem, 5vw, 4rem)', fontFamily: 'var(--font-serif)', fontWeight: 300, lineHeight: 1.1 }}>
+          <h1 style={{ color: 'var(--white)', fontSize: 'clamp(3.2rem, 8vw, 7rem)', fontFamily: 'var(--font-serif)', fontWeight: 300, lineHeight: 0.96, maxWidth: '980px', margin: '0 0 28px' }}>
             Speak to the <span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>Zenvistas Team</span>
           </h1>
           <p style={{ color: 'rgba(255, 255, 255, 0.9)', maxWidth: '600px', fontSize: '1.1rem', marginTop: '1rem', lineHeight: '1.7' }}>
@@ -169,61 +180,79 @@ export default function Contact() {
       </section>
 
       {/* Prominent 7-day Land Evaluation Banner */}
-      <section ref={bannerRef} style={{ backgroundColor: 'var(--gold)', color: 'var(--forest)', padding: '40px 0', borderBottom: '1px solid rgba(40,54,43,0.1)' }}>
-        <div className="container-custom flex-responsive" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '30px', flexWrap: 'wrap' }}>
+      <section ref={bannerRef} style={{ backgroundColor: 'var(--forest)', color: 'var(--white)', padding: '60px 0', position: 'relative', overflow: 'hidden' }}>
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'radial-gradient(circle at 82% 16%, rgba(224,177,76,0.14), transparent 30%)',
+          pointerEvents: 'none',
+        }}></div>
+        <div className="container-custom flex-responsive" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '30px', flexWrap: 'wrap', position: 'relative', zIndex: 2 }}>
           <div style={{ maxWidth: '800px' }}>
-            <h4 style={{ fontSize: '1.4rem', fontFamily: 'var(--font-serif)', fontWeight: 500, marginBottom: '8px', color: 'var(--forest)' }}>
+            <span className="eyebrow" style={{ color: 'var(--gold)', marginBottom: '8px' }}>Land Evaluation</span>
+            <h4 style={{ fontSize: 'clamp(1.4rem, 3vw, 1.8rem)', fontFamily: 'var(--font-serif)', fontWeight: 300, marginBottom: '8px', color: 'var(--white)' }}>
               Own land suitable for residential development?
             </h4>
-            <p style={{ fontSize: '0.95rem', margin: 0, color: 'var(--forest)', fontWeight: 400 }}>
+            <p style={{ fontSize: '0.96rem', margin: 0, color: 'rgba(255,255,255,0.72)', fontWeight: 300 }}>
               Our acquisition and development team commits to evaluating your property surveys and legal title documentation within <strong>7 working days</strong>.
             </p>
           </div>
-          <a href="/acquisition" className="btn-gold" style={{ backgroundColor: 'var(--forest)', color: 'var(--white)', borderColor: 'var(--forest)', whiteSpace: 'nowrap' }}>
+          <a href="/acquisition" className="btn-gold" style={{ whiteSpace: 'nowrap' }}>
             Submit Property details
           </a>
         </div>
       </section>
 
       {/* Contact Details & Map */}
-      <section ref={detailsRef} style={{ backgroundColor: 'var(--white)', padding: '100px 0' }}>
+      <section ref={detailsRef} style={{ backgroundColor: 'var(--white)', padding: '120px 0' }}>
         <div className="container-custom">
-          <div className="grid-2" style={{ gap: '5rem' }}>
+          <div className="grid-2 grid-2-responsive" style={{ gap: '5rem' }}>
             
             {/* Contact details list */}
-            <div>
+            <div style={{ padding: '20px 0' }}>
               <span className="eyebrow">Our Offices</span>
-              <h2 style={{ fontSize: '2rem', marginBottom: '20px', fontFamily: 'var(--font-serif)', fontWeight: 300 }}>
+              <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', marginBottom: '20px', fontFamily: 'var(--font-serif)', fontWeight: 300, lineHeight: 1.1 }}>
                 Zenvistas <span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>Headquarters</span>
               </h2>
-              <div className="section-rule"></div>
+              <div className="section-rule" style={{ margin: '20px 0 36px 0' }}></div>
               
               <div style={{ marginBottom: '40px' }}>
-                <h5 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.15rem', marginBottom: '8px' }}>Office Address</h5>
+                <h5 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 300, marginBottom: '8px', color: 'var(--forest)' }}>Office Address</h5>
                 <p style={{ fontSize: '1rem', color: 'var(--charcoal-3)', lineHeight: '1.7' }}>
                   Goldwins, Avinashi Road,<br />
                   Coimbatore, Tamil Nadu - 641014
                 </p>
               </div>
 
-              <div style={{ marginBottom: '40px' }}>
-                <h5 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.15rem', marginBottom: '8px' }}>Direct Communication</h5>
-                <p style={{ fontSize: '1rem', color: 'var(--charcoal-3)', margin: '0 0 10px 0' }}>
-                  Phone Support: <a href="tel:+918870044213" style={{ color: 'var(--gold)', fontWeight: 'bold' }}>+91 88700 44213</a>
+              <div style={{ marginBottom: '48px' }}>
+                <h5 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 300, marginBottom: '12px', color: 'var(--forest)' }}>Direct Communication</h5>
+                <p style={{ fontSize: '1.02rem', color: 'var(--charcoal-3)', margin: '0 0 12px 0', lineHeight: 1.5 }}>
+                  Phone Support: <a href="tel:+918870044213" style={{ color: 'var(--gold)', fontWeight: 600, borderBottom: '1px solid transparent', transition: 'border-color 0.3s ease' }} onMouseEnter={(e) => e.currentTarget.style.borderColor = 'var(--gold)'} onMouseLeave={(e) => e.currentTarget.style.borderColor = 'transparent'}>+91 88700 44213</a>
                 </p>
-                <p style={{ fontSize: '1rem', color: 'var(--charcoal-3)', margin: '0 0 10px 0' }}>
-                  General Email: <a href="mailto:info@zenvistas.co.in" style={{ color: 'var(--gold)', fontWeight: 'bold' }}>info@zenvistas.co.in</a>
+                <p style={{ fontSize: '1.02rem', color: 'var(--charcoal-3)', margin: '0 0 12px 0', lineHeight: 1.5 }}>
+                  General Email: <a href="mailto:info@zenvistas.co.in" style={{ color: 'var(--gold)', fontWeight: 600, borderBottom: '1px solid transparent', transition: 'border-color 0.3s ease' }} onMouseEnter={(e) => e.currentTarget.style.borderColor = 'var(--gold)'} onMouseLeave={(e) => e.currentTarget.style.borderColor = 'transparent'}>info@zenvistas.co.in</a>
                 </p>
-                <p style={{ fontSize: '1rem', color: 'var(--charcoal-3)', margin: 0 }}>
-                  WhatsApp Direct: <a href="https://wa.me/918870044213" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)', fontWeight: 'bold' }}>Open WhatsApp us &rarr;</a>
+                <p style={{ fontSize: '1.02rem', color: 'var(--charcoal-3)', margin: 0, lineHeight: 1.5 }}>
+                  WhatsApp Direct: <a href="https://wa.me/918870044213" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)', fontWeight: 600, borderBottom: '1px solid transparent', transition: 'border-color 0.3s ease' }} onMouseEnter={(e) => e.currentTarget.style.borderColor = 'var(--gold)'} onMouseLeave={(e) => e.currentTarget.style.borderColor = 'transparent'}>Open WhatsApp us &rarr;</a>
                 </p>
               </div>
 
               {/* Map Embed */}
-              <div style={{ width: '100%', height: '300px', position: 'relative', borderRadius: '4px', overflow: 'hidden', border: '1px solid rgba(171,148,138,0.2)' }}>
+              <div style={{
+                width: '100%',
+                height: '340px',
+                position: 'relative',
+                borderRadius: '4px',
+                overflow: 'hidden',
+                border: '1px solid rgba(224, 177, 76, 0.25)',
+                boxShadow: '0 12px 36px rgba(40, 54, 43, 0.05)',
+                transition: 'border-color 0.3s ease'
+              }}
+              className="heritage-map"
+              >
                 <iframe
                   src="https://www.openstreetmap.org/export/embed.html?bbox=76.9200%2C11.0000%2C77.0200%2C11.0500&layer=mapnik&marker=11.0268%2C76.9758"
-                  style={{ width: '100%', height: '100%', border: 'none', filter: 'grayscale(0.5) contrast(1.1) brightness(0.95)' }}
+                  style={{ width: '100%', height: '100%', border: 'none', filter: 'grayscale(0.5) contrast(1.1) brightness(0.95)', transition: 'filter 0.3s ease' }}
                   loading="lazy"
                   title="Zenvistas Location Map"
                 ></iframe>
@@ -231,8 +260,23 @@ export default function Contact() {
             </div>
 
             {/* Direct Contact Form */}
-            <div style={{ backgroundColor: 'var(--cream)', padding: '40px', borderRadius: '4px', border: '1px solid rgba(171,148,138,0.15)' }}>
-              <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', marginBottom: '20px', textAlign: 'center' }}>Send Message</h4>
+            <div style={{
+              backgroundColor: 'var(--cream)',
+              padding: '44px 38px',
+              borderRadius: '4px',
+              boxShadow: '0 16px 40px rgba(40, 54, 43, 0.04)',
+              border: '1px solid rgba(171,148,138,0.25)',
+              position: 'relative',
+              overflow: 'hidden'
+            }}>
+              <div style={{
+                position: 'absolute',
+                inset: 0,
+                pointerEvents: 'none',
+                background: 'radial-gradient(circle at 100% 0%, rgba(225, 178, 88, 0.04), transparent 50%)',
+              }}></div>
+              
+              <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.6rem', fontWeight: 300, marginBottom: '24px', textAlign: 'center', color: 'var(--forest)' }}>Send Message</h4>
               
               <form onSubmit={handleSubmit}>
                 <div className="form-group">

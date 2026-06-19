@@ -76,6 +76,37 @@ export default function About() {
             }
           }
         );
+
+        // Word-by-word reveal
+        const words = historyRef.current.querySelectorAll('.reveal-word');
+        if (words.length > 0) {
+          words.forEach((word, i) => {
+            const isItalic = (word as HTMLElement).style.fontStyle === 'italic';
+            gsap.to(word, {
+              color: isItalic ? 'var(--gold)' : 'var(--forest)',
+              ease: 'none',
+              scrollTrigger: {
+                trigger: historyRef.current,
+                start: `top+=${40 + i * 25} 75%`,
+                end: `top+=${70 + i * 25} 75%`,
+                scrub: true,
+              }
+            });
+          });
+        }
+
+        // Gold line draw
+        const line = historyRef.current.querySelector('.profile-line');
+        gsap.to(line, {
+          width: '100%',
+          duration: 1.2,
+          ease: 'power2.inOut',
+          scrollTrigger: {
+            trigger: line,
+            start: 'top 85%',
+            toggleActions: 'play none none none'
+          }
+        });
       }
 
       // Vision boxes
@@ -164,7 +195,7 @@ export default function About() {
   return (
     <div>
       {/* Page Hero */}
-      <section ref={heroRef} className="page-hero page-hero-about" style={{ minHeight: '78vh', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'flex-end' }}>
+      <section ref={heroRef} className="page-hero page-hero-about" style={{ minHeight: '78vh', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', padding: '120px 0 80px 0' }}>
         <Image
           src="/images/View-47.jpg"
           alt="Zenvistas residential community"
@@ -197,41 +228,125 @@ export default function About() {
       </section>
 
       {/* 1. Group History */}
-      <section ref={historyRef} style={{ backgroundColor: 'var(--white)', padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '34%', backgroundColor: 'var(--cream)', pointerEvents: 'none' }}></div>
+      <section ref={historyRef} style={{ backgroundColor: 'var(--white)', padding: '130px 0', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '38%', backgroundColor: 'var(--cream)', pointerEvents: 'none' }}></div>
         <div className="container-custom">
-          <div className="grid-2-responsive" style={{ display: 'grid', gridTemplateColumns: '0.95fr 1.05fr', gap: 'clamp(3rem, 7vw, 7rem)', alignItems: 'start', position: 'relative', zIndex: 2 }}>
-            <div className="history-text">
+          <div className="grid-2-responsive" style={{
+            display: 'grid',
+            gridTemplateColumns: 'minmax(0, 1.12fr) minmax(360px, 0.88fr)',
+            gap: 'clamp(3rem, 7vw, 7rem)',
+            alignItems: 'stretch',
+            position: 'relative',
+            zIndex: 2,
+          }}>
+            <div className="history-text" style={{ padding: '20px 0' }}>
               <span className="eyebrow">A Rich Heritage</span>
-              <h2 style={{ fontFamily: 'var(--font-serif)', fontWeight: 300, fontSize: 'clamp(2.4rem, 5vw, 4.8rem)', lineHeight: 1, margin: '0 0 32px' }}>
-                Capital with memory. Development with patience.
+              <h2 className="profile-heading" style={{
+                fontSize: 'clamp(2.4rem, 5vw, 4.8rem)',
+                lineHeight: 1.05,
+                fontFamily: 'var(--font-serif)',
+                fontWeight: 300,
+                margin: '0 0 32px',
+                maxWidth: '900px',
+              }}>
+                {(() => {
+                  const parts = [
+                    { text: 'Capital with ', highlight: false },
+                    { text: 'memory.', highlight: true },
+                    { text: ' Development with ', highlight: false },
+                    { text: 'patience.', highlight: true },
+                  ];
+                  return parts.map((part, pIdx) => {
+                    if (part.highlight) {
+                      const words = part.text.split(' ');
+                      return words.map((word, wIdx) => (
+                        <span key={`h-${pIdx}-${wIdx}`} className="reveal-word" style={{
+                          display: 'inline-block',
+                          color: 'rgba(171,148,138,0.25)',
+                          fontStyle: 'italic',
+                          transition: 'color 0.1s ease',
+                          marginRight: '0.3em',
+                        }}>
+                          {word}
+                        </span>
+                      ));
+                    } else {
+                      const words = part.text.split(' ').filter(w => w.length > 0);
+                      return words.map((word, wIdx) => (
+                        <span key={`w-${pIdx}-${wIdx}`} className="reveal-word" style={{
+                          display: 'inline-block',
+                          color: 'rgba(40,54,43,0.12)',
+                          transition: 'color 0.1s ease',
+                          marginRight: '0.3em',
+                        }}>
+                          {word}
+                        </span>
+                      ));
+                    }
+                  });
+                })()}
               </h2>
-              <div className="section-rule" style={{ margin: '0 0 36px' }}></div>
-              <p style={{ margin: 0, color: 'var(--charcoal-3)', fontSize: '1.05rem', lineHeight: 1.9, maxWidth: '560px' }}>
+              {/* Animated Horizontal Line */}
+              <div className="profile-line" style={{
+                width: '0%',
+                height: '1px',
+                backgroundColor: 'var(--gold)',
+                margin: '48px 0 28px',
+                maxWidth: '760px',
+              }}></div>
+              <p style={{
+                maxWidth: '700px',
+                margin: '0 0 54px',
+                color: 'var(--charcoal-3)',
+                fontSize: '1.05rem',
+                lineHeight: 1.85,
+              }}>
                 ZenVistas stems from Coimbatore industrial families with roots in textile, engineering, and manufacturing enterprise. The same operating discipline that built long-standing businesses now guides how we select land, assemble teams, and deliver homes.
               </p>
             </div>
-            <div className="history-card" style={{ borderTop: '1px solid rgba(40,54,43,0.24)' }}>
-              {[
-                ['Industrial origin', 'Experience in capital-intensive businesses where timelines, quality control, and governance matter.'],
-                ['Founder proximity', 'The ownership group remains close to every project, from land evaluation to customer experience.'],
-                ['Residential focus', 'Limited, high-consideration communities rather than volume-led development.'],
-              ].map(([title, copy], idx) => (
-                <div key={title} style={{ display: 'grid', gridTemplateColumns: '70px 1fr', gap: '2rem', padding: '30px 0', borderBottom: '1px solid rgba(171,148,138,0.22)' }}>
-                  <span style={{ fontFamily: 'var(--font-ui)', color: 'var(--gold)', fontWeight: 700, fontSize: '0.8rem' }}>{String(idx + 1).padStart(2, '0')}</span>
-                  <div>
-                    <h3 style={{ margin: '0 0 10px', fontFamily: 'var(--font-serif)', fontWeight: 300, fontSize: '1.7rem' }}>{title}</h3>
-                    <p style={{ margin: 0, color: 'var(--charcoal-3)', lineHeight: 1.75 }}>{copy}</p>
+            <div className="history-card" style={{
+              width: '100%',
+              position: 'relative',
+              overflow: 'hidden',
+              background: 'var(--forest)',
+              color: 'var(--white)',
+              border: '1px solid rgba(224, 177, 76, 0.28)',
+              borderRadius: '4px',
+              boxShadow: '0 22px 60px rgba(40, 54, 43, 0.14)',
+              padding: 'clamp(34px, 5vw, 54px)',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+            }}>
+              <div style={{
+                position: 'absolute',
+                inset: 0,
+                pointerEvents: 'none',
+                background: 'radial-gradient(circle at 82% 16%, rgba(224,177,76,0.15), transparent 30%), linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 40%)',
+              }}></div>
+              
+              <div style={{ position: 'relative', zIndex: 2, display: 'grid', gap: '24px' }}>
+                {[
+                  ['Industrial origin', 'Experience in capital-intensive businesses where timelines, quality control, and governance matter.'],
+                  ['Founder proximity', 'The ownership group remains close to every project, from land evaluation to customer experience.'],
+                  ['Residential focus', 'Limited, high-consideration communities rather than volume-led development.'],
+                ].map(([title, copy], idx) => (
+                  <div key={title} style={{ display: 'grid', gridTemplateColumns: '44px 1fr', gap: '18px', paddingTop: idx === 0 ? 0 : '22px', borderTop: idx === 0 ? 'none' : '1px solid rgba(255,255,255,0.16)' }}>
+                    <span style={{ fontFamily: 'var(--font-ui)', color: 'var(--gold)', fontSize: '0.75rem', fontWeight: 700 }}>{String(idx + 1).padStart(2, '0')}</span>
+                    <div>
+                      <h3 style={{ margin: '0 0 8px', color: 'var(--white)', fontFamily: 'var(--font-serif)', fontWeight: 300, fontSize: '1.35rem' }}>{title}</h3>
+                      <p style={{ margin: 0, color: 'rgba(255,255,255,0.72)', lineHeight: 1.65, fontSize: '0.92rem' }}>{copy}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 2. Vision & Mission */}
-      <section ref={visionRef} style={{ backgroundColor: '#28362b', padding: '110px 0', color: 'var(--white)', position: 'relative', overflow: 'hidden' }}>
+      {/* 2. Operating Model (Vision & Mission) */}
+      <section ref={visionRef} style={{ backgroundColor: '#28362b', padding: '130px 0', color: 'var(--white)', position: 'relative', overflow: 'hidden' }}>
         <div style={{
           position: 'absolute',
           inset: 0,
@@ -247,28 +362,45 @@ export default function About() {
             </h2>
           </div>
 
-          <div className="grid-3" style={{ gap: 0, position: 'relative', zIndex: 2, borderTop: '1px solid rgba(255,255,255,0.18)', borderBottom: '1px solid rgba(255,255,255,0.18)' }}>
-            <div className="vision-box no-border-mobile" style={{ padding: '36px 34px 36px 0', borderRight: '1px solid rgba(255,255,255,0.16)' }}>
-              <span className="eyebrow" style={{ fontSize: '0.75rem', color: 'var(--gold)' }}>01 / Capital</span>
-              <h3 style={{ fontFamily: 'var(--font-serif)', fontWeight: 300, color: 'var(--white)', marginBottom: '1rem' }}>Equity-first growth</h3>
-              <p style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.72)', lineHeight: '1.75', margin: 0 }}>
-                We avoid debt-led pressure so project decisions can stay aligned with quality, timing, and buyer confidence.
-              </p>
-            </div>
-            <div className="vision-box no-border-mobile" style={{ padding: '36px 34px', borderRight: '1px solid rgba(255,255,255,0.16)' }}>
-              <span className="eyebrow" style={{ fontSize: '0.75rem', color: 'var(--gold)' }}>02 / Design</span>
-              <h3 style={{ fontFamily: 'var(--font-serif)', fontWeight: 300, color: 'var(--white)', marginBottom: '1rem' }}>Liveability over density</h3>
-              <p style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.72)', lineHeight: '1.75', margin: 0 }}>
-                Our planning preference is spacious, lower-density residential environments with lasting privacy and comfort.
-              </p>
-            </div>
-            <div className="vision-box" style={{ padding: '36px 0 36px 34px' }}>
-              <span className="eyebrow" style={{ fontSize: '0.75rem', color: 'var(--gold)' }}>03 / Trust</span>
-              <h3 style={{ fontFamily: 'var(--font-serif)', fontWeight: 300, color: 'var(--white)', marginBottom: '1rem' }}>Compliance as default</h3>
-              <p style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.72)', lineHeight: '1.75', margin: 0 }}>
-                Clear documentation, regulatory discipline, and professional custody sit inside the operating process.
-              </p>
-            </div>
+          <div className="grid-3" style={{ gap: '24px', position: 'relative', zIndex: 2 }}>
+            {[
+              ['01 / Capital', 'Equity-first growth', 'We avoid debt-led pressure so project decisions can stay aligned with quality, timing, and buyer confidence.'],
+              ['02 / Design', 'Liveability over density', 'Our planning preference is spacious, lower-density residential environments with lasting privacy and comfort.'],
+              ['03 / Trust', 'Compliance as default', 'Clear documentation, regulatory discipline, and professional custody sit inside the operating process.'],
+            ].map(([num, title, copy]) => (
+              <div key={title} className="vision-box" style={{
+                padding: '40px 32px',
+                background: 'rgba(255, 255, 255, 0.03)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                borderRadius: '4px',
+                transition: 'all 0.4s ease',
+                position: 'relative',
+                overflow: 'hidden',
+              }}
+              onMouseEnter={(e) => {
+                const target = e.currentTarget;
+                target.style.background = 'rgba(255, 255, 255, 0.06)';
+                target.style.borderColor = 'rgba(225, 178, 88, 0.35)';
+                target.style.transform = 'translateY(-4px)';
+              }}
+              onMouseLeave={(e) => {
+                const target = e.currentTarget;
+                target.style.background = 'rgba(255, 255, 255, 0.03)';
+                target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                target.style.transform = 'translateY(0)';
+              }}
+              >
+                <div style={{
+                  position: 'absolute',
+                  inset: 0,
+                  pointerEvents: 'none',
+                  background: 'radial-gradient(circle at 100% 0%, rgba(225, 178, 88, 0.06), transparent 50%)',
+                }}></div>
+                <span className="eyebrow" style={{ fontSize: '0.75rem', color: 'var(--gold)', marginBottom: '16px' }}>{num}</span>
+                <h3 style={{ fontFamily: 'var(--font-serif)', fontWeight: 300, color: 'var(--white)', marginBottom: '14px', fontSize: '1.5rem' }}>{title}</h3>
+                <p style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.75)', lineHeight: '1.75', margin: 0 }}>{copy}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -290,7 +422,29 @@ export default function About() {
               ['Development leadership', 'Project, design, finance, and approval workflows managed through professional specialists.'],
               ['Partner network', 'Boutique architects, structural consultants, landscape experts, and site teams selected for fit, not volume.'],
             ].map(([title, copy], idx) => (
-              <div key={title} className="leadership-card" style={{ display: 'grid', gridTemplateColumns: '120px 1fr minmax(220px, 0.55fr)', gap: '2.5rem', padding: '34px 0', borderBottom: '1px solid rgba(171,148,138,0.22)', alignItems: 'baseline' }}>
+              <div key={title} className="leadership-card" style={{
+                display: 'grid',
+                gridTemplateColumns: '120px 1fr minmax(220px, 0.55fr)',
+                gap: '2.5rem',
+                padding: '38px 16px',
+                borderBottom: '1px solid rgba(171,148,138,0.22)',
+                alignItems: 'baseline',
+                transition: 'all 0.3s ease',
+                margin: '0 -16px',
+              }}
+              onMouseEnter={(e) => {
+                const target = e.currentTarget;
+                target.style.backgroundColor = 'var(--cream)';
+                target.style.borderLeft = '3px solid var(--gold)';
+                target.style.paddingLeft = '13px';
+              }}
+              onMouseLeave={(e) => {
+                const target = e.currentTarget;
+                target.style.backgroundColor = 'transparent';
+                target.style.borderLeft = '3px solid transparent';
+                target.style.paddingLeft = '16px';
+              }}
+              >
                 <span style={{ fontFamily: 'var(--font-ui)', color: 'var(--gold)', fontWeight: 700, letterSpacing: '0.12em' }}>{String(idx + 1).padStart(2, '0')}</span>
                 <h3 style={{ margin: 0, fontFamily: 'var(--font-serif)', fontWeight: 300, fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', lineHeight: 1.05 }}>{title}</h3>
                 <p style={{ margin: 0, color: 'var(--charcoal-3)', lineHeight: 1.7 }}>{copy}</p>
@@ -308,15 +462,32 @@ export default function About() {
               <span className="eyebrow">Governance</span>
               <h2 style={{ fontFamily: 'var(--font-serif)', fontWeight: 300, fontSize: 'clamp(2.2rem, 5vw, 4rem)', lineHeight: 1, margin: 0 }}>Trust is designed into the process.</h2>
             </div>
-            <div className="gov-col" style={{ backgroundColor: 'var(--white)', border: '1px solid rgba(171,148,138,0.18)' }}>
+            <div className="gov-col" style={{
+              backgroundColor: 'var(--white)',
+              border: '1px solid rgba(171,148,138,0.18)',
+              borderRadius: '4px',
+              boxShadow: '0 12px 36px rgba(40, 54, 43, 0.04)',
+            }}>
               {[
                 ['Compliance', 'Every transaction, contract, and project layout is vetted for regulatory clarity and buyer confidence.'],
                 ['Custody', 'Project schedules, approvals, vendor coordination, and handover commitments are managed through defined professional processes.'],
                 ['Philosophy', 'We do not build to maximum capacity; we design for privacy, light, movement, and long-term living quality.'],
-              ].map(([title, copy]) => (
-                <div key={title} style={{ padding: '34px', borderBottom: title === 'Philosophy' ? 'none' : '1px solid rgba(171,148,138,0.18)' }}>
+              ].map(([title, copy], idx) => (
+                <div key={title} style={{
+                  padding: '38px',
+                  borderBottom: idx === 2 ? 'none' : '1px solid rgba(171,148,138,0.18)',
+                  transition: 'all 0.3s ease',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--cream)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                }}
+                >
                   <span className="eyebrow" style={{ marginBottom: '12px' }}>{title}</span>
-                  <p style={{ color: 'var(--forest)', margin: 0, lineHeight: 1.85 }}>{copy}</p>
+                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 300, marginBottom: '10px', color: 'var(--forest)' }}>{title}</h4>
+                  <p style={{ color: 'var(--charcoal-3)', margin: 0, lineHeight: 1.8, fontSize: '0.96rem' }}>{copy}</p>
                 </div>
               ))}
             </div>
