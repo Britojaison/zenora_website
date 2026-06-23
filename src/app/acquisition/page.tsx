@@ -272,7 +272,7 @@ export default function Acquisition() {
       <section ref={heroRef} className="acquisition-hero">
         <div className="acquisition-hero-media" aria-hidden="true">
           <Image
-            src="/images/villa.jpg"
+            src="/images/home/architecture-building-construction-concept-cropped-shot-two-engineers-evaluating-design-new-housing-project.jpg"
             alt=""
             fill
             priority

@@ -197,7 +197,7 @@ export default function About() {
       {/* Page Hero */}
       <section ref={heroRef} className="page-hero page-hero-about" style={{ minHeight: '78vh', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', padding: '120px 0 80px 0' }}>
         <Image
-          src="/images/View-47.jpg"
+          src="/images/home/from-rooftop-garden-sky-lounge-versatile-interior-design-ideas-highrise-buildings.jpg"
           alt="Zenvistas residential community"
           fill
           priority

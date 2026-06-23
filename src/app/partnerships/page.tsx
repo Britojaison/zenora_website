@@ -283,7 +283,7 @@ export default function Partnerships() {
       <section ref={heroRef} className="partnership-hero">
         <div className="partnership-hero-media" aria-hidden="true">
           <Image
-            src="/images/View-47.jpg"
+            src="/images/home/3d-rendering-luxury-modern-living-room-with-leather-sofa-lamp.jpg"
             alt=""
             fill
             priority

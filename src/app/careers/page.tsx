@@ -69,7 +69,7 @@ export default function Careers() {
       <section className="simple-hero">
         <div className="simple-hero-media" aria-hidden="true">
           <Image
-            src="/images/living room.jpg"
+            src="/images/home/creative-designers-team-working-project.jpg"
             alt=""
             fill
             priority
