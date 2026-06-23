@@ -23,7 +23,7 @@ const valuesData = [
       "Owner-Occupied Design",
       "Strict Quality Control"
     ],
-    image: "/images/seat.jpg"
+    image: "/images/home/businessman-summer-city-with-three-women.jpg"
   },
   {
     num: "02",
@@ -35,7 +35,7 @@ const valuesData = [
       "Market Volatility Shield",
       "Uninterrupted Construction"
     ],
-    image: "/images/living room.jpg"
+    image: "/images/home/chinese-city.jpg"
   },
   {
     num: "03",
@@ -47,7 +47,7 @@ const valuesData = [
       "High Retained Asset Value",
       "Ultimate Privacy Guidelines"
     ],
-    image: "/images/villa.jpg"
+    image: "/images/home/luxury-outdoor-seat-sky.jpg"
   },
   {
     num: "04",
@@ -59,7 +59,7 @@ const valuesData = [
       "International Material Spec",
       "Tailored Architectural Details"
     ],
-    image: "/images/seat.jpg"
+    image: "/images/home/blueprints-computer-monitor-desk-real-estate-office.jpg"
   }
 ];
 
