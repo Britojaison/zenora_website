@@ -246,7 +246,7 @@ export default function Projects() {
       <section ref={heroRef} className="project-hero">
         <div className="project-hero-media" aria-hidden="true">
           <Image
-            src="/images/villa_hero.jpg"
+            src="/images/zenora-opt.webp"
             alt=""
             fill
             priority
@@ -265,8 +265,7 @@ export default function Projects() {
             A low-density villa community in Goldwins, shaped for privacy, architectural restraint, and long-term residential value.
           </p>
           <div className="project-hero-actions">
-            <Link href="/contact" className="project-hero-action btn-gold">Book a private walkthrough</Link>
-            <a href="#project-story" className="project-hero-action btn-outline-white">Explore project</a>
+            <a href="https://www.zenoravillas.in/" target="_blank" rel="noopener noreferrer" className="project-hero-action btn-outline-white">Explore project</a>
           </div>
           <div className="project-hero-chips" aria-label="Project highlights">
             {['Founder-backed', 'RERA registered', 'Limited release'].map((chip) => (

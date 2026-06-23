@@ -339,6 +339,7 @@ a {
   letter-spacing: 0 !important;
   max-width: 980px !important;
   margin: 0 0 28px !important;
+  padding: 0.12em 0 !important;
 }
 
 .page-hero p {
@@ -828,8 +829,8 @@ select {
 .project-hero-overlay {
   z-index: 1;
   background:
-    linear-gradient(90deg, rgba(15, 28, 21, 0.9) 0%, rgba(15, 28, 21, 0.52) 48%, rgba(15, 28, 21, 0.12) 100%),
-    linear-gradient(180deg, rgba(15, 28, 21, 0.06) 0%, rgba(15, 28, 21, 0.36) 58%, rgba(15, 28, 21, 0.9) 100%);
+    linear-gradient(90deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 48%, rgba(0, 0, 0, 0.05) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.2) 58%, rgba(0, 0, 0, 0.6) 100%);
 }
 
 .project-hero-content {
@@ -844,6 +845,7 @@ select {
   gap: 0;
   max-width: 980px;
   margin: 0 0 26px;
+  padding: 0.12em 0;
   color: var(--white);
   font-family: var(--font-serif);
   font-size: clamp(4rem, 11vw, 10rem);
@@ -1321,8 +1323,8 @@ select {
 .partnership-hero-overlay {
   z-index: 1;
   background:
-    linear-gradient(90deg, rgba(15, 28, 21, 0.9) 0%, rgba(15, 28, 21, 0.5) 50%, rgba(15, 28, 21, 0.1) 100%),
-    linear-gradient(180deg, rgba(15, 28, 21, 0.08) 0%, rgba(15, 28, 21, 0.34) 58%, rgba(15, 28, 21, 0.9) 100%);
+    linear-gradient(90deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.05) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.2) 58%, rgba(0, 0, 0, 0.6) 100%);
 }
 
 .partnership-hero-content {
@@ -1336,6 +1338,7 @@ select {
   display: grid;
   max-width: 980px;
   margin: 0 0 26px;
+  padding: 0.12em 0;
   color: var(--white);
   font-family: var(--font-serif);
   font-size: clamp(4rem, 11vw, 10rem);
@@ -1757,8 +1760,8 @@ select {
 .acquisition-hero-overlay {
   z-index: 1;
   background:
-    linear-gradient(90deg, rgba(15, 28, 21, 0.9) 0%, rgba(15, 28, 21, 0.54) 50%, rgba(15, 28, 21, 0.12) 100%),
-    linear-gradient(180deg, rgba(15, 28, 21, 0.08) 0%, rgba(15, 28, 21, 0.34) 58%, rgba(15, 28, 21, 0.9) 100%);
+    linear-gradient(90deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.05) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.2) 58%, rgba(0, 0, 0, 0.6) 100%);
 }
 
 .acquisition-hero-content {
@@ -1772,6 +1775,7 @@ select {
   display: grid;
   max-width: 1040px;
   margin: 0 0 26px;
+  padding: 0.12em 0;
   color: var(--white);
   font-family: var(--font-serif);
   font-size: clamp(4rem, 10vw, 9.5rem);
@@ -2174,8 +2178,8 @@ select {
 .simple-hero-overlay {
   z-index: 1;
   background:
-    linear-gradient(90deg, rgba(15, 28, 21, 0.88) 0%, rgba(15, 28, 21, 0.5) 54%, rgba(15, 28, 21, 0.12) 100%),
-    linear-gradient(180deg, rgba(15, 28, 21, 0.08) 0%, rgba(15, 28, 21, 0.34) 58%, rgba(15, 28, 21, 0.9) 100%);
+    linear-gradient(90deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 54%, rgba(0, 0, 0, 0.05) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.2) 58%, rgba(0, 0, 0, 0.6) 100%);
 }
 
 .simple-hero-content {
