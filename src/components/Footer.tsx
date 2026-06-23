@@ -13,22 +13,15 @@ export default function Footer() {
         <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1.5fr', gap: '4rem', marginBottom: '60px' }} className="footer-grid-responsive">
           {/* Brand Info */}
           <div>
-            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', color: 'var(--white)', marginBottom: '20px' }}>
+            <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'var(--white)', marginBottom: '32px' }}>
               <Image
                 src="/ZV.png"
                 alt="Zenvistas Logo"
-                width={38}
-                height={38}
-                style={{ objectFit: 'contain', borderRadius: '2px', filter: 'brightness(0) invert(1)' }}
+                width={120}
+                height={120}
+                style={{ objectFit: 'contain', borderRadius: '4px', filter: 'brightness(0) invert(1)' }}
               />
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <span className="navbar-logo-main">ZENVISTAS</span>
-                <span className="navbar-logo-sub" style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.6rem' }}>Realty</span>
-              </div>
             </Link>
-            <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.9rem', lineHeight: '1.7', maxWidth: '360px', marginBottom: '24px' }}>
-              A luxury real estate developer founded by Coimbatore&apos;s mill owners and industrialists — committed to building communities that match the standards of the families who created them.
-            </p>
             <div style={{ display: 'flex', gap: '15px' }}>
               <a
                 href="https://www.instagram.com/zenora_by_zenvistas/"
