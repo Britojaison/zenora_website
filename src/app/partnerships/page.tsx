@@ -452,7 +452,6 @@ export default function Partnerships() {
                   <select id="type" name="type" value={formData.type} onChange={handleChange}>
                     <option value="joint-development">Joint Development</option>
                     <option value="revenue-share">Revenue Share</option>
-                    <option value="outright-sale">Outright Sale</option>
                     <option value="management">Development Management</option>
                   </select>
                 </div>
