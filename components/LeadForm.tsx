@@ -7,9 +7,10 @@ interface LeadFormProps {
   open: boolean;
   onClose: () => void;
   redirectUrl?: string;
+  brochureUrl?: string;
 }
 
-export default function LeadForm({ open, onClose, redirectUrl }: LeadFormProps) {
+export default function LeadForm({ open, onClose, redirectUrl, brochureUrl }: LeadFormProps) {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -147,11 +148,21 @@ export default function LeadForm({ open, onClose, redirectUrl }: LeadFormProps) 
           <div className="text-center py-8">
             <div className="w-12 h-px bg-[#e1b258] mx-auto mb-6" />
             <h3 className="font-display text-2xl text-[#28362b] mb-4">Thank you</h3>
-            <p className="font-body text-[#594433] text-base leading-relaxed">
+            <p className="font-body text-[#594433] text-base leading-relaxed mb-6">
               {redirectUrl
                 ? "Redirecting you to the Webverse experience..."
                 : "We'll be in touch shortly to help you discover Zenora."}
             </p>
+            {brochureUrl && (
+              <a
+                href={brochureUrl}
+                download
+                className="inline-flex items-center gap-2 bg-[#28362b] text-[#e1d5c9] font-body text-xs uppercase py-4 px-8 hover:bg-[#e1b258] hover:text-[#28362b] transition-all duration-200"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download Brochure
+              </a>
+            )}
           </div>
         ) : (
           <>
@@ -201,7 +212,7 @@ export default function LeadForm({ open, onClose, redirectUrl }: LeadFormProps) 
                 disabled={loading}
                 className="mt-4 bg-[#28362b] text-[#e1d5c9] font-body text-xs uppercase py-4 hover:bg-[#e1b258] hover:text-[#28362b] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {loading ? "Submitting..." : redirectUrl ? "Continue to Webverse" : "Submit"}
+                {loading ? "Submitting..." : brochureUrl ? "Get Brochure" : redirectUrl ? "Continue to Webverse" : "Submit"}
               </button>
 
               {error && (

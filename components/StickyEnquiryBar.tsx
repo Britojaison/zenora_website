@@ -146,7 +146,7 @@ export default function StickyEnquiryBar() {
         setSubmitted(false);
         setIsDrawerOpen(false);
         setForm((prev) => ({ ...prev, option1: "", option2: "" }));
-      }, 3000);
+      }, 15000);
     } catch (err) {
       console.error(err);
       setError("Failed to submit. Please try again.");
@@ -204,8 +204,18 @@ export default function StickyEnquiryBar() {
 
               {/* Form Section */}
               {submitted ? (
-                <div className="flex-1 flex items-center justify-center text-[#e1b258] font-display italic text-base py-1">
-                  <Check className="mr-2" size={18} /> Thank you. We will get back to you shortly.
+                <div className="flex-1 flex items-center justify-center gap-4 text-[#e1b258] font-display italic text-base py-1">
+                  <div className="flex items-center">
+                    <Check className="mr-2" size={18} /> Thank you. We will get back to you shortly.
+                  </div>
+                  <a
+                    href="/Zenora Brochure v2_compressed.pdf"
+                    download
+                    className="inline-flex items-center gap-2 border border-[#e1b258]/50 bg-transparent hover:bg-[#e1b258] text-[#e1b258] hover:text-[#28362b] font-body text-[10px] uppercase tracking-[1.5px] px-5 py-2 transition-all duration-300 not-italic"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Brochure
+                  </a>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex-1 lg:max-w-[900px] xl:max-w-[1050px] mx-auto flex items-center justify-between gap-3 md:gap-4 lg:gap-8">
@@ -438,9 +448,17 @@ export default function StickyEnquiryBar() {
                 <div className="text-center py-12">
                   <div className="w-12 h-px bg-[#e1b258] mx-auto mb-6" />
                   <p className="font-display text-xl text-[#e1b258] italic mb-3">Thank you</p>
-                  <p className="text-sm text-[#ab948a] leading-relaxed">
+                  <p className="text-sm text-[#ab948a] leading-relaxed mb-8">
                     We'll be in touch shortly to help you discover Zenora.
                   </p>
+                  <a
+                    href="/Zenora Brochure v2_compressed.pdf"
+                    download
+                    className="inline-flex items-center gap-2 bg-[#e1b258] text-[#28362b] font-body text-xs uppercase tracking-[1.5px] py-4 px-8 hover:bg-[#c99a3e] transition-all duration-300"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Download Brochure
+                  </a>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6">
