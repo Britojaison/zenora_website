@@ -1033,9 +1033,8 @@ select {
 
 .project-gallery-grid {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 22px;
-  align-items: end;
 }
 
 .project-gallery-card {
@@ -1047,9 +1046,7 @@ select {
   box-shadow: 0 18px 48px rgba(40, 54, 43, 0.12);
 }
 
-.project-gallery-card:nth-child(2) {
-  min-height: 430px;
-}
+/* Removed nth-child(2) height override to make all images the same size */
 
 .project-gallery-image {
   position: absolute;

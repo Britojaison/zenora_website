@@ -22,19 +22,19 @@ const gallery = [
   {
     title: 'Architectural Frontage',
     eyebrow: 'Arrival',
-    src: '/images/villa.jpg',
+    src: '/images/zenora/Architectural Frontage_compressed.jpg',
     alt: 'Zenora villa architectural frontage',
   },
   {
     title: 'Private Living Volumes',
     eyebrow: 'Interiors',
-    src: '/images/living room.jpg',
+    src: '/images/zenora/Private Living Volumes_compressed.jpg',
     alt: 'Zenora villa living room',
   },
   {
     title: 'Landscape-Led Quiet',
     eyebrow: 'Setting',
-    src: '/images/seat.jpg',
+    src: '/images/zenora/Landscape-Led Quiet.jpg',
     alt: 'Zenora landscaped seating court',
   },
 ];

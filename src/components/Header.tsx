@@ -144,7 +144,7 @@ export default function Header() {
                   fontSize: '0.68rem',
                   letterSpacing: '0.18em',
                   textTransform: 'uppercase',
-                  fontWeight: '600',
+                  fontWeight: '400',
                   textDecoration: 'none',
                   position: 'relative',
                   padding: '6px 0',
@@ -238,7 +238,7 @@ export default function Header() {
                 fontSize: '0.8rem',
                 letterSpacing: '0.12em',
                 textTransform: 'uppercase',
-                fontWeight: '600',
+                fontWeight: '400',
                 color: 'var(--forest)',
                 textDecoration: 'none',
               }}
