@@ -43,6 +43,38 @@ export async function POST(request: Request) {
       console.error("FormSubmit exception:", formSubmitError);
     }
 
+    // CRM connection hook (Sell.do)
+    const isHomePage = type === 'home-enquiry';
+    const isContactPage = type === 'general';
+
+    if (isHomePage || isContactPage) {
+      try {
+        const sellDoApiKey = "69f342a7632e73e6f895191899e2537d"; 
+        
+        const sellDoParams = new URLSearchParams();
+        sellDoParams.append("api_key", sellDoApiKey);
+        sellDoParams.append("sell_do[form][lead][name]", name);
+        if (email) sellDoParams.append("sell_do[form][lead][email]", email);
+        sellDoParams.append("sell_do[form][lead][phone]", phone);
+        sellDoParams.append("sell_do[campaign][srd]", "***");
+        
+        let noteContent = `Lead Type: ${type}\nMessage: ${message || "N/A"}`;
+        sellDoParams.append("sell_do[form][content][note]", noteContent);
+
+        const crmResponse = await fetch(`https://app.sell.do/api/leads/create?${sellDoParams.toString()}`, {
+          method: "POST",
+        });
+        
+        if (!crmResponse.ok) {
+          console.error("[SELL.DO CRM HTTP ERROR]", crmResponse.status, await crmResponse.text());
+        } else {
+          console.log("[SELL.DO CRM SUCCESS]");
+        }
+      } catch (crmError) {
+        console.error("[SELL.DO CRM ERROR]", crmError);
+      }
+    }
+
     return NextResponse.json({ success: true, message: 'Lead submitted successfully!' });
   } catch (error) {
     console.error('Error saving lead:', error);
