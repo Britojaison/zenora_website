@@ -75,7 +75,7 @@ export default function Residences() {
         <div className="w-16 h-px bg-[#e1b258] opacity-40" />
         <p className="font-body text-[#594433] text-xs uppercase">60 exclusive units</p>
       </div>
-      <LeadForm open={showForm} onClose={() => setShowForm(false)} />
+      <LeadForm open={showForm} onClose={() => setShowForm(false)} brochureUrl="/Zenora Brochure v2_compressed.pdf" />
     </section>
   );
 }

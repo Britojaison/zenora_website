@@ -43,7 +43,7 @@ export default function Intro() {
           />
         </div>
       </div>
-      <LeadForm open={showForm} onClose={() => setShowForm(false)} />
+      <LeadForm open={showForm} onClose={() => setShowForm(false)} brochureUrl="/Zenora Brochure v2_compressed.pdf" />
     </section>
   );
 }

@@ -18,5 +18,5 @@ export default function AutoLeadForm() {
     setOpen(false);
   };
 
-  return <LeadForm open={open} onClose={handleClose} />;
+  return <LeadForm open={open} onClose={handleClose} brochureUrl="/Zenora Brochure v2_compressed.pdf" />;
 }
