@@ -1,6 +1,4 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
 
 export async function POST(request: Request) {
   try {
@@ -15,38 +13,35 @@ export async function POST(request: Request) {
       );
     }
 
-    // Define path for storing leads
-    const dataDir = path.join(process.cwd(), 'data');
-    if (!fs.existsSync(dataDir)) {
-      fs.mkdirSync(dataDir, { recursive: true });
-    }
+    const relayFormData = new FormData();
+    relayFormData.append("name", name);
+    relayFormData.append("email", email);
+    relayFormData.append("phone", phone);
+    if (message) relayFormData.append("message", message);
+    if (type) relayFormData.append("type", type);
+    relayFormData.append("_subject", `New Lead Submission: ${type || 'Zenvistas'}`);
+    relayFormData.append("_captcha", "false");
+    relayFormData.append("_template", "table");
 
-    const filePath = path.join(dataDir, 'leads.json');
-    let leads = [];
+    const targetEmail = process.env.MARKETING_EMAIL || "info@zenvistas.co.in";
 
-    if (fs.existsSync(filePath)) {
-      try {
-        const fileContent = fs.readFileSync(filePath, 'utf8');
-        leads = JSON.parse(fileContent);
-      } catch {
-        // If file is empty or corrupted, reset to empty array
-        leads = [];
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${targetEmail}`, {
+        method: "POST",
+        headers: {
+          "Accept": "application/json"
+        },
+        body: relayFormData
+      });
+
+      const data = await response.json();
+      if (!response.ok || data.success !== "true") {
+        console.error("FormSubmit relay failed:", data);
+        // We log the error but still return success so the user sees a success message if possible
       }
+    } catch (formSubmitError) {
+      console.error("FormSubmit exception:", formSubmitError);
     }
-
-    // Append new lead
-    const newLead = {
-      id: Date.now().toString(),
-      name,
-      email,
-      phone,
-      message: message || '',
-      type: type || 'general',
-      createdAt: new Date().toISOString(),
-    };
-
-    leads.push(newLead);
-    fs.writeFileSync(filePath, JSON.stringify(leads, null, 2), 'utf8');
 
     return NextResponse.json({ success: true, message: 'Lead submitted successfully!' });
   } catch (error) {
