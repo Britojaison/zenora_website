@@ -5,7 +5,7 @@ import { Plus, Minus } from "lucide-react";
 const faqs = [
   {
     q: "Why choose ZenVistas Zenora in Goldwins?",
-    a: "Zenora is designed for those who value space, privacy, and thoughtful living. With only 60 villas, the community stays quiet and exclusive while still being close to the city. Rooftop lifestyle spaces, wide internal roads, and carefully planned amenities create a home that feels calm, refined, and private.",
+    a: "Zenora is designed for those who value space, privacy, and thoughtful living. With only 60 ultra luxury villas, the community stays quiet and exclusive while still being close to the city. Rooftop lifestyle spaces, wide internal roads, and carefully planned amenities create a home that feels calm, refined, and private.",
   },
   {
     q: "Why is Goldwins suitable for long term living?",
@@ -32,7 +32,7 @@ const faqs = [
     a: "Zenora attracts entrepreneurs, professionals, and business families who are looking to upgrade their lifestyle. Many buyers choose it for the privacy, space, and the quiet comfort of a well planned community.",
   },
   {
-    q: "What makes Zenora different from other luxury villa projects?",
+    q: "What makes Zenora different from other ultra luxury villa projects?",
     a: "Zenora focuses on thoughtful design rather than scale. With limited villas, rooftop lifestyle spaces, and a carefully curated environment, the project offers a quieter and more refined living experience.",
   },
 ];

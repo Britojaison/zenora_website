@@ -18,10 +18,7 @@ export default function Intro() {
           </h2>
           <hr className="rule-gold mb-8 w-16" />
           <p className="font-body text-[#594433] text-base leading-[1.9] mb-6">
-            Zenora is for those who want more from life more comfort, more intention,
-            and more elegance in everyday living. Designed as an affordable luxury community
-            in the quiet corner of Goldwins, Zenora combines premium architecture with
-            curated lifestyle spaces.
+            Zenora is for those who want more from life more comfort, more intention, and more elegance in everyday living. Designed as an ultra luxury community in the quiet corner of Goldwins, Zenora combines premium architecture with curated lifestyle spaces.
           </p>
           <p className="font-body text-[#594433] text-base leading-[1.9]">
             The Horizon Garden, Serenity Pool, and Business Lounge,
