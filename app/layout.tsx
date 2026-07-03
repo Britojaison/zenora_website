@@ -79,7 +79,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <GoogleTagManager gtmId="GTM-5FNDNF5D" />
+      <GoogleTagManager gtmId="GTM-PLWW569J" />
       <head>
         <meta name="google-site-verification" content="O8T6ZrpCr0t3UMgXa6EqKRKKS4tzh3RBagwngU3UN7s" />
         <Script
@@ -154,6 +154,14 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-PLWW569J"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         <Clarity />
         <Script
           src="//forms.cdn.sell.do/t/665d85d70d1851dc7c28dd6a.js"
