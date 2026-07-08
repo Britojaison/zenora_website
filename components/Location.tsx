@@ -28,9 +28,9 @@ const neighbourhoodData = {
     { place: "KMCH Medical", dist: "3.7 km (9 mins)" },
     { place: "Lotus Eye Care", dist: "5.4 km (14 mins)" },
     { place: "Yazhini Hospital", dist: "5.2 km (12 mins)" },
-    { place: "RG Hospital", dist: "4.4 km (9 mins)" },
+    { place: "Aravind Eye Hospital", dist: "6.8 km (15 mins)" },
     { place: "Venkateshwara Hospital", dist: "5.6 km (11 mins)" },
-    { place: "Reya Care", dist: "4.4 km (11 mins)" },
+    { place: "Royal Care Super Speciality Hospital", dist: "12.6 km (31 mins)" },
   ],
   Work: [
     { place: "Tidel Park", dist: "9.4 km (22 mins)" },
@@ -40,11 +40,11 @@ const neighbourhoodData = {
   ],
   Shopping: [
     { place: "Funmall", dist: "8.2 km (17 mins)" },
-    { place: "Prozone", dist: "9.7 km (24 mins)" },
+    { place: "Prozone Mall", dist: "9.7 km (24 mins)" },
     { place: "Broadway Cinemas", dist: "3.8 km (9 mins)" },
     { place: "DMart Singanallur", dist: "9.0 km (21 mins)" },
     { place: "DMart Chinniyampalayam", dist: "4.8 km (9 mins)" },
-    { place: "DMart Sulur", dist: "15.1 km (27 mins)" },
+    { place: "The Grocer Central", dist: "3.5 km (7 mins)" },
   ],
 };
 
@@ -84,9 +84,8 @@ export default function Location() {
                   key={cat}
                   ref={(el) => { tabRefs.current[i] = el; }}
                   onClick={() => setActiveCategory(cat)}
-                  className={`relative flex-1 font-body text-[10px] sm:text-xs uppercase py-3 transition-colors duration-400 text-center whitespace-nowrap ${
-                    activeCategory === cat ? "text-[#28362b]" : "text-[#ab948a] hover:text-[#594433]"
-                  }`}
+                  className={`relative flex-1 font-body text-[10px] sm:text-xs uppercase py-3 transition-colors duration-400 text-center whitespace-nowrap ${activeCategory === cat ? "text-[#28362b]" : "text-[#ab948a] hover:text-[#594433]"
+                    }`}
                   style={{ fontFamily: "'BW Diagrid', sans-serif" }}
                 >
                   {cat}
