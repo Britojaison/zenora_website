@@ -1,7 +1,9 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Contact() {
+  const router = useRouter();
   const [form, setForm] = useState({ name: "", phone: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -34,6 +36,7 @@ export default function Contact() {
       }
 
       setSent(true);
+      router.push("/thank-you");
     } catch {
       setError("Something went wrong. Please try again.");
     } finally {
