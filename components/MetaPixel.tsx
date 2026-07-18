@@ -17,6 +17,7 @@ export default function MetaPixel() {
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', '908045925391956');
+            fbq('init', '1699035631316687');
             fbq('track', 'PageView');
           `,
         }}
@@ -28,6 +29,14 @@ export default function MetaPixel() {
           width="1"
           style={{ display: "none" }}
           src="https://www.facebook.com/tr?id=908045925391956&ev=PageView&noscript=1"
+          alt="Meta Pixel"
+        />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          height="1"
+          width="1"
+          style={{ display: "none" }}
+          src="https://www.facebook.com/tr?id=1699035631316687&ev=PageView&noscript=1"
           alt="Meta Pixel"
         />
       </noscript>

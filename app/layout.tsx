@@ -83,7 +83,7 @@ export default function RootLayout({
       <head>
         <meta name="google-site-verification" content="O8T6ZrpCr0t3UMgXa6EqKRKKS4tzh3RBagwngU3UN7s" />
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-17832990826"
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18329908920"
           strategy="afterInteractive"
         />
         <Script id="google-ads-gtag" strategy="afterInteractive" dangerouslySetInnerHTML={{
@@ -92,6 +92,7 @@ export default function RootLayout({
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'AW-17832990826');
+            gtag('config', 'AW-18329908920');
           `
         }} />
         <MetaPixel />
@@ -100,6 +101,7 @@ export default function RootLayout({
             __html: `
               window._tfa = window._tfa || [];
               window._tfa.push({notify: 'event', name: 'page_view', id: 2046888});
+              window._tfa.push({notify: 'event', name: 'page_view', id: 2016158});
               !function (t, f, a, x) {
                 if (!document.getElementById(x)) {
                   t.async = 1;t.src = a;t.id=x;f.parentNode.insertBefore(t, f);
@@ -108,6 +110,14 @@ export default function RootLayout({
               document.getElementsByTagName('script')[0],
               '//cdn.taboola.com/libtrc/unip/2046888/tfa.js',
               'tb_tfa_script');
+              !function (t, f, a, x) {
+                if (!document.getElementById(x)) {
+                  t.async = 1;t.src = a;t.id=x;f.parentNode.insertBefore(t, f);
+                }
+              }(document.createElement('script'),
+              document.getElementsByTagName('script')[0],
+              '//cdn.taboola.com/libtrc/unip/2016158/tfa.js',
+              'tb_tfa_script_new');
             `,
           }}
         />

@@ -86,6 +86,7 @@ export default function LeadForm({ open, onClose, redirectUrl, brochureUrl }: Le
       // Taboola Lead event tracking
       if (typeof window !== "undefined" && (window as any)._tfa) {
         (window as any)._tfa.push({ notify: "event", name: "lead", id: 2046888 });
+        (window as any)._tfa.push({ notify: "event", name: "lead", id: 2016158 });
       }
 
       if (typeof window !== "undefined") {
