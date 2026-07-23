@@ -1,10 +1,30 @@
 "use client";
 
+import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Script from "next/script";
 import { motion } from "framer-motion";
 
 export default function ThankYouContent() {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (typeof (window as any).gtag === "function") {
+        (window as any).gtag("event", "conversion", {
+          send_to: "AW-18329908920/voemCKaemdIcELjtsKRE",
+        });
+      } else {
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        function gtag(...args: any[]) {
+          (window as any).dataLayer.push(args);
+        }
+        gtag("event", "conversion", {
+          send_to: "AW-18329908920/voemCKaemdIcELjtsKRE",
+        });
+      }
+    }
+  }, []);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -36,6 +56,15 @@ export default function ThankYouContent() {
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-[#33090d] text-[#e1d5c9] overflow-hidden">
+      {/* Event snippet for Zenora Web Enquiry conversion page */}
+      <Script
+        id="google-ads-conversion"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `gtag('event', 'conversion', {'send_to': 'AW-18329908920/voemCKaemdIcELjtsKRE'});`,
+        }}
+      />
+
       {/* Left side: content */}
       <motion.div
         variants={containerVariants}
