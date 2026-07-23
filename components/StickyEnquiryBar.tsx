@@ -59,15 +59,18 @@ export default function StickyEnquiryBar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [pathname]);
 
-  // Parse dynamic SRD from UTM parameters on mount
+  // Parse dynamic SRD from URL parameter or UTM parameters on mount
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
+    const urlSrd = params.get("srd");
     const utmSource = params.get("utm_source");
     const utmMedium = params.get("utm_medium");
     const utmCampaign = params.get("utm_campaign");
 
     let resolvedSrd = null;
-    if (utmSource === "Website" && utmMedium === "WATI" && utmCampaign === "Zenora_Brochure_WATI") {
+    if (urlSrd) {
+      resolvedSrd = urlSrd;
+    } else if (utmSource === "Website" && utmMedium === "WATI" && utmCampaign === "Zenora_Brochure_WATI") {
       resolvedSrd = "69c50198735daf0afb3b7ec6";
     } else if (utmSource === "Google" && utmMedium === "Branded_Search" && utmCampaign === "Zenora_Search_Branded") {
       resolvedSrd = "698309f658f1e7c46b1b85db";

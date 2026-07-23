@@ -40,14 +40,17 @@ export default function CoffeeWithZenora() {
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
 
-    // Extract dynamic SRD from UTM parameters
+    // Extract dynamic SRD from URL parameter or UTM parameters
     const params = new URLSearchParams(window.location.search);
+    const urlSrd = params.get("srd");
     const utmSource = params.get("utm_source");
     const utmMedium = params.get("utm_medium");
     const utmCampaign = params.get("utm_campaign");
 
     let resolvedSrd = null;
-    if (utmSource === "Google" && utmMedium === "Search" && utmCampaign === "Coffee_With_Zenora_Search") {
+    if (urlSrd) {
+      resolvedSrd = urlSrd;
+    } else if (utmSource === "Google" && utmMedium === "Search" && utmCampaign === "Coffee_With_Zenora_Search") {
       resolvedSrd = "69c2478b9403689446b6b864";
     } else if (utmSource === "Google" && utmMedium === "Pmax" && utmCampaign === "Coffee_With_Zenora_Pmax") {
       resolvedSrd = "69c141382f31c6ef6540e41e";
