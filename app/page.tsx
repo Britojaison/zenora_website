@@ -98,7 +98,7 @@ export default function Home() {
       <FAQ />
       <Contact />
       <Footer />
-      <AutoLeadForm />
+      {/* <AutoLeadForm /> */}
     </main>
   );
 }

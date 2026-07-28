@@ -178,7 +178,7 @@ export default function RootLayout({
           strategy="beforeInteractive"
         />
         {children}
-        <StickyEnquiryBar />
+        {/* <StickyEnquiryBar /> */}
         <CookieBanner />
       </body>
     </html>
