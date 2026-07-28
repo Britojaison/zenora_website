@@ -178,6 +178,7 @@ export default function RootLayout({
           strategy="beforeInteractive"
         />
         {children}
+        <WhatsAppButton />
         {/* <StickyEnquiryBar /> */}
         <CookieBanner />
       </body>
