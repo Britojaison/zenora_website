@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
     // Send POST request to Salesforce endpoint with form inputs JSON
     try {
       const sfResponse = await fetch(
-        "https://computing-platform-6340.my.salesforce-sites.com/webIntegration/services/apexrest/leads/zenora",
+        "https://computing-platform-6340.my.salesforce-sites.com/webIntegration/services/apexrest/leads/website",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
