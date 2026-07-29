@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
+          body: JSON.stringify({ ...body, project: "zenora" }),
         }
       );
 

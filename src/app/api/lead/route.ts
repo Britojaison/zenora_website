@@ -16,11 +16,11 @@ export async function POST(request: Request) {
     // Send POST request to Salesforce endpoint with form inputs JSON
     try {
       await fetch(
-        "https://computing-platform-6340.my.salesforce-sites.com/webIntegration/services/apexrest/leads/zenora",
+        "https://computing-platform-6340.my.salesforce-sites.com/webIntegration/services/apexrest/leads/website",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
+          body: JSON.stringify({ ...body, project: "zenora" }),
         }
       );
     } catch (sfErr) {
