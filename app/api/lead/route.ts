@@ -9,6 +9,24 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "All fields are required" }, { status: 400 });
     }
 
+    // Send POST request to Salesforce endpoint with form inputs JSON
+    try {
+      const sfResponse = await fetch(
+        "https://computing-platform-6340.my.salesforce-sites.com/webIntegration/services/apexrest/leads/zenora",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        }
+      );
+
+      if (!sfResponse.ok) {
+        console.error("Salesforce API error:", sfResponse.status, await sfResponse.text());
+      }
+    } catch (sfErr) {
+      console.error("Salesforce API exception:", sfErr);
+    }
+
     const params = new URLSearchParams({
       "api_key": "69f342a7632e73e6f895191899e2537d",
       "sell_do[form][lead][name]": name,

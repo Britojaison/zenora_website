@@ -13,6 +13,20 @@ export async function POST(request: Request) {
       );
     }
 
+    // Send POST request to Salesforce endpoint with form inputs JSON
+    try {
+      await fetch(
+        "https://computing-platform-6340.my.salesforce-sites.com/webIntegration/services/apexrest/leads/zenora",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        }
+      );
+    } catch (sfErr) {
+      console.error("Salesforce API exception:", sfErr);
+    }
+
     const relayFormData = new FormData();
     relayFormData.append("name", name);
     relayFormData.append("email", email);
