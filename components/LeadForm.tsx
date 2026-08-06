@@ -107,11 +107,8 @@ export default function LeadForm({ open, onClose, redirectUrl, brochureUrl }: Le
           window.open(redirectUrl, "_blank", "noopener,noreferrer");
         }, 1200);
       } else {
-        // Show success state briefly and redirect to the thank-you page
-        setSubmitted(true);
-        setTimeout(() => {
-          window.location.href = "/thank-you";
-        }, 800);
+        // Immediately navigate to the thank-you page
+        window.location.href = "/thank-you";
       }
     } catch (err) {
       console.error(err);
