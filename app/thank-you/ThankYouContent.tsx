@@ -112,10 +112,33 @@ export default function ThankYouContent() {
             Thank you for expressing interest in Zenora. Our concierge team has been notified and will connect with you shortly to assist with floor plans, pricing, and private site visits.
           </motion.p>
 
-          <motion.div variants={itemVariants}>
+          <motion.div variants={itemVariants} className="flex flex-wrap gap-4 items-center">
+            <a
+              href="/Zenora Brochure v2_compressed.pdf"
+              download
+              className="inline-flex items-center gap-3 bg-[#e1b258] text-[#28362b] font-body text-xs uppercase tracking-[2px] px-8 py-4 hover:bg-[#e1d5c9] transition-all duration-300 font-semibold shadow-lg"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Download Brochure
+            </a>
+
             <Link
               href="/"
-              className="group inline-flex items-center gap-3 border border-[#e1d5c9]/40 text-[#e1d5c9] font-body text-xs uppercase tracking-[2px] px-10 py-4 hover:bg-[#e1d5c9] hover:text-[#561a28] hover:border-transparent transition-all duration-500 w-fit"
+              className="group inline-flex items-center gap-3 border border-[#e1d5c9]/40 text-[#e1d5c9] font-body text-xs uppercase tracking-[2px] px-8 py-4 hover:bg-[#e1d5c9] hover:text-[#561a28] hover:border-transparent transition-all duration-500 w-fit"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
