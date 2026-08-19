@@ -18,7 +18,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
-  const isLightPage = pathname?.startsWith("/insights") || pathname?.startsWith("/privacy-policy") || pathname?.startsWith("/terms") || pathname?.startsWith("/coffee-with-zenora") && scrolled;
+  const isLightPage = pathname?.startsWith("/insights") || pathname?.startsWith("/privacy-policy") || pathname?.startsWith("/terms") || pathname?.startsWith("/blog") || (pathname?.startsWith("/coffee-with-zenora") && scrolled);
   const showDarkText = scrolled || isLightPage;
 
   useEffect(() => {
