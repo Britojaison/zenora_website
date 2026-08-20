@@ -82,6 +82,7 @@ export default function RootLayout({
       <GoogleTagManager gtmId="GTM-PLWW569J" />
       <head>
         <meta name="google-site-verification" content="O8T6ZrpCr0t3UMgXa6EqKRKKS4tzh3RBagwngU3UN7s" />
+        <meta name="msvalidate.01" content="633A695605D70CD62EDD7BA7B72FDA70" />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-18329908920"
           strategy="afterInteractive"
