@@ -26,6 +26,23 @@ export async function POST(req: NextRequest) {
       console.error("Salesforce API exception:", sfErr);
     }
 
+    // Send POST request to Google Sheets Web App
+    try {
+      const gsResponse = await fetch(
+        "https://script.google.com/macros/s/AKfycbzmupp9JQ5ulm7WoXzWMr3P3OuZum6ZhlUeXtswD_w8XRLE5sZTN4BSHTjuKnW2CHZx/exec",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ...body, project: "zenora" }),
+        }
+      );
+      if (!gsResponse.ok) {
+        console.error("Google Sheets API error for dinner form:", gsResponse.status);
+      }
+    } catch (gsErr) {
+      console.error("Google Sheets API exception for dinner form:", gsErr);
+    }
+
     // Combine special fields into the note for CRM
     const noteContent = `Lead from Zenora Website - Exclusive Dinner
 Special Requests: ${requests || "None"}`;

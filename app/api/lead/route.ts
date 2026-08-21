@@ -28,6 +28,23 @@ export async function POST(req: NextRequest) {
       console.error("Salesforce API exception:", sfErr);
     }
 
+    // Send POST request to Google Sheets Web App
+    try {
+      const gsResponse = await fetch(
+        "https://script.google.com/macros/s/AKfycbzmupp9JQ5ulm7WoXzWMr3P3OuZum6ZhlUeXtswD_w8XRLE5sZTN4BSHTjuKnW2CHZx/exec",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ...body, project: "zenora" }),
+        }
+      );
+      if (!gsResponse.ok) {
+        console.error("Google Sheets API error:", gsResponse.status);
+      }
+    } catch (gsErr) {
+      console.error("Google Sheets API exception:", gsErr);
+    }
+
     const params = new URLSearchParams({
       "api_key": "69f342a7632e73e6f895191899e2537d",
       "sell_do[form][lead][name]": name,
