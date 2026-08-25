@@ -58,7 +58,7 @@ export default function SiteVisitForm() {
         <div className={styles.headerInner}>
           <Image
             src="/images/zenora_logo.svg"
-            alt="Zenora Logo"
+            alt="Zenora luxury villa community in Goldwins, Coimbatore"
             width={180}
             height={48}
             priority
@@ -350,7 +350,7 @@ export default function SiteVisitForm() {
             <div className={styles.footerBrand}>
               <Image
                 src="/images/zenora_logo.svg"
-                alt="Zenora Logo"
+                alt="Zenora luxury villa community in Goldwins, Coimbatore"
                 width={160}
                 height={42}
               />

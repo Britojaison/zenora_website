@@ -77,7 +77,7 @@ export default function ThankYouContent() {
           <Link href="/" className="inline-block">
             <img
               src="/images/zenora_logo.svg"
-              alt="Zenora Logo"
+              alt="Zenora luxury villa community in Goldwins, Coimbatore"
               className="h-10 w-auto hover:opacity-80 transition-opacity duration-300"
             />
           </Link>

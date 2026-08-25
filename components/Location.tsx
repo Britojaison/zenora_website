@@ -113,7 +113,7 @@ export default function Location() {
           <div className="relative aspect-square overflow-hidden">
             <Image
               src="/img/street-view.jpg"
-              alt="Goldwins, Coimbatore"
+              alt="Goldwins neighbourhood in Coimbatore near Zenora Villas"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"

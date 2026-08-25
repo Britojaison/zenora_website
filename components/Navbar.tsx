@@ -38,7 +38,7 @@ export default function Navbar() {
         <a href="/" className="flex items-center gap-3">
           <img 
             src={showDarkText ? "/images/Artboard 1.svg" : "/images/zenora_logo.svg"}
-            alt="Zenora Logo" 
+            alt="Zenora luxury villa community in Goldwins, Coimbatore" 
             className="h-10 w-auto transition-all duration-700"
           />
         </a>

@@ -88,7 +88,7 @@ export default function Home() {
       <Highlights />
       <FullBleedImage
         src="/img/private-theatre.jpg"
-        alt="Zenora lifestyle"
+        alt="Zenora luxury villa lifestyle and community amenities in Coimbatore"
         quote="Rise to elevated living."
         author="Zenora"
       />

@@ -7,7 +7,7 @@ export default function Footer() {
           <div>
             <img 
               src="/images/zenora_logo.svg" 
-              alt="Zenora Logo" 
+              alt="Zenora luxury villa community in Goldwins, Coimbatore" 
               className="h-12 w-auto mb-4"
             />
             <p className="font-body text-[#b9b4a8] text-base leading-relaxed max-w-xs mb-6">

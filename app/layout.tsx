@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
-import Clarity from "../components/Clarity";
 import MetaPixel from "../components/MetaPixel";
 import WhatsAppButton from "../components/WhatsAppButton";
 import CallButton from "../components/CallButton";
@@ -97,6 +96,15 @@ export default function RootLayout({
           `
         }} />
         <MetaPixel />
+        <Script id="microsoft-clarity" strategy="afterInteractive">
+          {`
+            (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "xgmvxlmgfo");
+          `}
+        </Script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -173,7 +181,6 @@ export default function RootLayout({
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
-        <Clarity />
         <Script
           src="//forms.cdn.sell.do/t/665d85d70d1851dc7c28dd6a.js"
           strategy="beforeInteractive"

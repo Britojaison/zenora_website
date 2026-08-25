@@ -7,10 +7,11 @@ const units = [
   {
     number: "5.5",
     text: "Cent Villa",
-    label: "5 Cent Villa",
+    label: "5.5 Cent Villa",
     tag: "Intimate",
     desc: "A refined sanctuary designed for those who value privacy and precision. Every corner considered, every material chosen with intent.",
     img: "/img/master-bedroom-view-1.jpg",
+    alt: "5.5 Cent luxury villa at Zenora, Goldwins, Coimbatore",
   },
   {
     number: "7",
@@ -19,6 +20,7 @@ const units = [
     tag: "Signature",
     desc: "The balance of grandeur and warmth. Generous spaces that breathe, with rooftop access to the Sky Garden and Aqua Lounge.",
     img: "/img/7-cent-side.jpg",
+    alt: "7 Cent luxury villa at Zenora, Goldwins, Coimbatore",
   },
   {
     number: "11",
@@ -27,6 +29,7 @@ const units = [
     tag: "Estate",
     desc: "The pinnacle of Zenora living. Expansive, commanding, and designed for those who have arrived — and know it.",
     img: "/img/bedroom01.jpg",
+    alt: "11 Cent estate villa at Zenora, Goldwins, Coimbatore",
   },
 ];
 
@@ -45,7 +48,7 @@ export default function Residences() {
             <div className="relative aspect-[3/4] overflow-hidden">
               <Image
                 src={u.img}
-                alt={u.label}
+                alt={u.alt}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700"

@@ -5,61 +5,73 @@ const amenities = [
     name: "Meditation Centre",
     desc: "A quiet sanctuary within Zenora. Designed for reflection, stillness, and moments away from the rhythm of the day.",
     img: "/img/amenities/meditation-centre.jpg",
+    alt: "Meditation centre at Zenora luxury villa community in Coimbatore",
   },
   {
     name: "Business Lounge",
     desc: "A sophisticated space for residents balancing work and leisure. Quiet, private, and equipped for professional needs.",
     img: "/img/amenities/business-lounge.jpg",
+    alt: "Business lounge at Zenora luxury villa community",
   },
   {
     name: "Gala Room",
     desc: "A grand setting for special occasions and events. Perfectly designed for celebrations, gatherings, and memorable moments.  ",
     img: "/img/amenities/gala-room.jpg",
+    alt: "Gala room for events and celebrations at Zenora",
   },
   {
     name: "Clubhouse",
     desc: "A shared address within Zenora. A place where conversations, quiet gatherings, and community moments naturally unfold.",
     img: "/img/amenities/clubhouse.jpg",
+    alt: "Zenora clubhouse and community space in Goldwins, Coimbatore",
   },
   {
     name: "Swimming Pool",
     desc: "A calm water retreat within the landscape. Meant for slow laps, quiet afternoons, and a refreshing pause.",
     img: "/img/amenities/swimming-pool.jpg",
+    alt: "Swimming pool at Zenora luxury villa community",
   },
   {
     name: "Multi Sport Court",
     desc: "A versatile court where recreation finds its place. From quick games to longer evenings of sport.",
     img: "/img/amenities/multi-sport-court.jpg",
+    alt: "Multi sport court at Zenora luxury villa community",
   },
   {
     name: "Children's Play Garden",
     desc: "A lively corner of the community. Designed for exploration, imagination, and carefree play.",
     img: "/img/amenities/childrens-play-garden.jpg",
+    alt: "Children's play garden at Zenora luxury villa community",
   },
   {
     name: "Community Lounge",
     desc: "An informal setting for conversation and connection. A place where neighbours meet beyond the everyday.",
     img: "/img/amenities/Community Lounge.jpg",
+    alt: "Community lounge at Zenora luxury villa community",
   },
   {
     name: "Cricket Turf",
     desc: "For the familiar rhythm of the game. Evenings often gather here around friendly matches and spirited play.",
     img: "/img/amenities/cricket.jpg",
+    alt: "Cricket turf at Zenora luxury villa community",
   },
   {
     name: "Private Theatre",
     desc: "Cinema-grade entertainment in the comfort of your community. Because evenings should be extraordinary.",
     img: "/img/amenities/private-theatre.jpg",
+    alt: "Private theatre at Zenora luxury villa community",
   },
   {
     name: "Walking Paths",
     desc: "Pathways that move gently through Zenora. Designed for morning walks, evening conversations, and unhurried movement.",
     img: "/img/amenities/walking-paths.jpg",
+    alt: "Walking paths through the Zenora villa community",
   }
   ,{
     name: "Garden Cafe",
     desc: "A serene cafe nestled within lush gardens, offering a perfect spot to enjoy freshly brewed coffee or light bites amidst nature's tranquility.",
     img: "/img/amenities/garden-cafe.jpg",
+    alt: "Garden cafe at Zenora luxury villa community",
   },
 ];
 
@@ -77,7 +89,7 @@ export default function Amenities() {
               <div className="relative aspect-[4/3] overflow-hidden">
                 <img
                   src={a.img}
-                  alt={a.name}
+                  alt={a.alt}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
