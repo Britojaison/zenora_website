@@ -45,6 +45,7 @@ export async function POST(req: NextRequest) {
       console.error("Google Sheets API exception:", gsErr);
     }
 
+    /*
     const params = new URLSearchParams({
       "api_key": "69f342a7632e73e6f895191899e2537d",
       "sell_do[form][lead][name]": name,
@@ -64,6 +65,7 @@ export async function POST(req: NextRequest) {
       console.error("Sell.do API error:", errorText);
       return NextResponse.json({ error: "Failed to submit lead" }, { status: 500 });
     }
+    */
 
     return NextResponse.json({ success: true });
   } catch (error) {
