@@ -1,126 +1,154 @@
 export default function Footer() {
   return (
-    <footer className="bg-[#28362b] border-t border-[#ab948a]/10 py-16 px-6 md:px-20">
-      <div className="max-w-screen-xl mx-auto">
-        <div className="grid md:grid-cols-3 gap-12 mb-16">
-          {/* Brand */}
-          <div>
-            <img 
-              src="/images/zenora_logo.svg" 
-              alt="Zenora luxury villa community in Goldwins, Coimbatore" 
-              className="h-12 w-auto mb-4"
-            />
-            <p className="font-body text-[#b9b4a8] text-base leading-relaxed max-w-xs mb-6">
-              A luxury villa community in Goldwins, Coimbatore.
-              Elevation without compromise.
-            </p>
-            <div className="flex gap-3 items-center">
-              <a
-                href="https://www.facebook.com/profile.php?id=61577722516155#"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-                className="w-9 h-9 flex items-center justify-center rounded-full border border-[#ab948a]/20 bg-[#ab948a]/5 text-[#b9b4a8] transition-all duration-300 hover:bg-[#e1b258] hover:text-[#28362b] hover:border-transparent hover:scale-110"
-              >
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M9 8H7v3h2v9h4v-9h3.6l.4-3H13V6c0-.5.5-1 1-1h3V1H13c-3.3 0-5 1.7-5 5v2z" />
-                </svg>
+    <>
+      {/* RERA Section - Reference Layout */}
+      <div className="bg-[#eaedf0] border-t border-b border-[#d5d9e0] py-7 md:py-8 px-6 text-center">
+        <div className="max-w-screen-xl mx-auto flex flex-col items-center justify-center">
+          <h3 className="font-body text-lg md:text-xl font-medium tracking-[2.5px] text-[#2c3038] uppercase mb-2">
+            RERA NUMBER
+          </h3>
+          <p className="font-body text-xs md:text-sm text-[#4a5260] tracking-wide mb-1 select-all">
+            TNRERA/11/BLG/0013/2026
+          </p>
+          <a
+            href="https://rera.tn.gov.in/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-body text-xs md:text-sm text-[#4a5260] hover:text-[#1a1d24] hover:underline transition-colors"
+          >
+            https://rera.tn.gov.in/
+          </a>
+        </div>
+      </div>
+
+      {/* Main Footer */}
+      <footer className="bg-[#28362b] py-16 px-6 md:px-20">
+        <div className="max-w-screen-xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-12 mb-16">
+            {/* Brand */}
+            <div>
+              <img 
+                src="/images/zenora_logo.svg" 
+                alt="Zenora luxury villa community in Goldwins, Coimbatore" 
+                className="h-12 w-auto mb-4"
+              />
+              <p className="font-body text-[#b9b4a8] text-base leading-relaxed max-w-xs mb-6">
+                A luxury villa community in Goldwins, Coimbatore.
+                Elevation without compromise.
+              </p>
+              <div className="flex gap-3 items-center">
+                <a
+                  href="https://www.facebook.com/profile.php?id=61577722516155#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className="w-9 h-9 flex items-center justify-center rounded-full border border-[#ab948a]/20 bg-[#ab948a]/5 text-[#b9b4a8] transition-all duration-300 hover:bg-[#e1b258] hover:text-[#28362b] hover:border-transparent hover:scale-110"
+                >
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M9 8H7v3h2v9h4v-9h3.6l.4-3H13V6c0-.5.5-1 1-1h3V1H13c-3.3 0-5 1.7-5 5v2z" />
+                  </svg>
+                </a>
+                <a
+                  href="https://www.instagram.com/zenora_by_zenvistas/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="w-9 h-9 flex items-center justify-center rounded-full border border-[#ab948a]/20 bg-[#ab948a]/5 text-[#b9b4a8] transition-all duration-300 hover:bg-[#e1b258] hover:text-[#28362b] hover:border-transparent hover:scale-110"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                  </svg>
+                </a>
+                <a
+                  href="https://wa.me/919789003828"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="WhatsApp"
+                  className="w-9 h-9 flex items-center justify-center rounded-full border border-[#ab948a]/20 bg-[#ab948a]/5 text-[#b9b4a8] transition-all duration-300 hover:bg-[#e1b258] hover:text-[#28362b] hover:border-transparent hover:scale-110"
+                >
+                  <svg className="w-4.5 h-4.5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                  </svg>
+                </a>
+                <a
+                  href="https://www.threads.net/@zenora_by_zenvistas?fbclid=IwY2xjawSGPB9leHRuA2FlbQIxMABicmlkETFobkVCS0RsV0JRNzVsWjZTc3J0YwZhcHBfaWQPNTE0NzcxNTY5MjI4MDYxAAEe6Rncs-s9DibBjSMu9ykb-jY-l1YE1lCKN181kkNH8S2MGE81L8ClQzDQf_k_aem_rBsIS2uErWjFPTf6IzCG7g"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Threads"
+                  className="w-9 h-9 flex items-center justify-center rounded-full border border-[#ab948a]/20 bg-[#ab948a]/5 text-[#b9b4a8] transition-all duration-300 hover:bg-[#e1b258] hover:text-[#28362b] hover:border-transparent hover:scale-110"
+                >
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.847c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.142 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65Zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            {/* Links */}
+            <div className="flex flex-col gap-4">
+              <p className="font-body text-[9px] uppercase text-[#ab948a] mb-2">
+                Navigate
+              </p>
+              {["Residences", "Amenities", "Gallery", "Location", "Contact"].map((l) => (
+                <a
+                  key={l}
+                  href={`#${l.toLowerCase()}`}
+                  className="font-body text-[#b9b4a8] text-xs hover:text-[#e1d5c9] transition-colors"
+                >
+                  {l}
+                </a>
+              ))}
+            </div>
+
+            {/* Contact */}
+            <div className="flex flex-col gap-4">
+              <p className="font-body text-[9px] uppercase text-[#ab948a] mb-2">
+                Contact
+              </p>
+              <a href="mailto:info@zenvistas.co.in" className="font-body text-[#e1b258] text-xs hover:underline">
+                info@zenvistas.co.in
               </a>
-              <a
-                href="https://www.instagram.com/zenora_by_zenvistas/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="w-9 h-9 flex items-center justify-center rounded-full border border-[#ab948a]/20 bg-[#ab948a]/5 text-[#b9b4a8] transition-all duration-300 hover:bg-[#e1b258] hover:text-[#28362b] hover:border-transparent hover:scale-110"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                </svg>
+              <a href="https://zenoravillas.in" className="font-body text-[#e1b258] text-xs hover:underline">
+                zenoravillas.in
               </a>
-              <a
-                href="https://wa.me/919789003828"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="WhatsApp"
-                className="w-9 h-9 flex items-center justify-center rounded-full border border-[#ab948a]/20 bg-[#ab948a]/5 text-[#b9b4a8] transition-all duration-300 hover:bg-[#e1b258] hover:text-[#28362b] hover:border-transparent hover:scale-110"
-              >
-                <svg className="w-4.5 h-4.5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                </svg>
-              </a>
-              <a
-                href="https://www.threads.net/@zenora_by_zenvistas?fbclid=IwY2xjawSGPB9leHRuA2FlbQIxMABicmlkETFobkVCS0RsV0JRNzVsWjZTc3J0YwZhcHBfaWQPNTE0NzcxNTY5MjI4MDYxAAEe6Rncs-s9DibBjSMu9ykb-jY-l1YE1lCKN181kkNH8S2MGE81L8ClQzDQf_k_aem_rBsIS2uErWjFPTf6IzCG7g"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Threads"
-                className="w-9 h-9 flex items-center justify-center rounded-full border border-[#ab948a]/20 bg-[#ab948a]/5 text-[#b9b4a8] transition-all duration-300 hover:bg-[#e1b258] hover:text-[#28362b] hover:border-transparent hover:scale-110"
-              >
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.847c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.142 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65Zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221z" />
-                </svg>
-              </a>
+              <p className="font-body text-[#b9b4a8] text-base leading-relaxed">
+                Goldwins, Coimbatore<br />Tamil Nadu, India
+              </p>
             </div>
           </div>
 
-          {/* Links */}
-          <div className="flex flex-col gap-4">
-            <p className="font-body text-[9px] uppercase text-[#ab948a] mb-2">
-              Navigate
+          {/* Bottom bar */}
+          <div className="border-t border-[#ab948a]/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="font-body text-[#ab948a] text-[10px] shrink-0">
+              © {new Date().getFullYear()} ZenVistas. All rights reserved.
             </p>
-            {["Residences", "Amenities", "Gallery", "Location", "Contact"].map((l) => (
-              <a
-                key={l}
-                href={`#${l.toLowerCase()}`}
-                className="font-body text-[#b9b4a8] text-xs hover:text-[#e1d5c9] transition-colors"
-              >
-                {l}
+
+            <div className="flex gap-6 items-center flex-wrap justify-center">
+              <a href="/terms-and-conditions" className="font-body text-[#ab948a] hover:text-[#e1d5c9] transition-colors text-[10px]">
+                Terms and Conditions
               </a>
-            ))}
-          </div>
+              <a href="/privacy-policy" className="font-body text-[#ab948a] hover:text-[#e1d5c9] transition-colors text-[10px]">
+                Privacy Policy
+              </a>
+              <a href="/cookies" className="font-body text-[#ab948a] hover:text-[#e1d5c9] transition-colors text-[10px]">
+                Cookies
+              </a>
+            </div>
 
-          {/* Contact */}
-          <div className="flex flex-col gap-4">
-            <p className="font-body text-[9px] uppercase text-[#ab948a] mb-2">
-              Contact
-            </p>
-            <a href="mailto:info@zenvistas.co.in" className="font-body text-[#e1b258] text-xs hover:underline">
-              info@zenvistas.co.in
+            <a
+              href="https://rera.tn.gov.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-body text-[#ab948a] hover:text-[#e1d5c9] transition-colors text-[10px] shrink-0 inline-flex items-center gap-1.5 group"
+            >
+              <span>RERA Registered · TNRERA/11/BLG/0013/2026</span>
+              <span className="text-[#e1b258] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200">↗</span>
             </a>
-            <a href="https://zenoravillas.in" className="font-body text-[#e1b258] text-xs hover:underline">
-              zenoravillas.in
-            </a>
-            <p className="font-body text-[#b9b4a8] text-base leading-relaxed">
-              Goldwins, Coimbatore<br />Tamil Nadu, India
-            </p>
-            
           </div>
         </div>
-
-        {/* Bottom bar */}
-        <div className="border-t border-[#ab948a]/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-body text-[#ab948a] text-[10px] shrink-0">
-            © {new Date().getFullYear()} ZenVistas. All rights reserved.
-          </p>
-
-          <div className="flex gap-6 items-center flex-wrap justify-center">
-            <a href="/terms-and-conditions" className="font-body text-[#ab948a] hover:text-[#e1d5c9] transition-colors text-[10px]">
-              Terms and Conditions
-            </a>
-            <a href="/privacy-policy" className="font-body text-[#ab948a] hover:text-[#e1d5c9] transition-colors text-[10px]">
-              Privacy Policy
-            </a>
-            <a href="/cookies" className="font-body text-[#ab948a] hover:text-[#e1d5c9] transition-colors text-[10px]">
-              Cookies
-            </a>
-          </div>
-
-          <p className="font-body text-[#ab948a] text-[10px] shrink-0">
-            RERA Registered · TNRERA/11/BLG/0013/2026
-          </p>
-        </div>
-      </div>
-    </footer>
+      </footer>
+    </>
   );
 }
