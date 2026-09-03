@@ -136,16 +136,6 @@ export default function Footer() {
                 Cookies
               </a>
             </div>
-
-            <a
-              href="https://rera.tn.gov.in/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-body text-[#ab948a] hover:text-[#e1d5c9] transition-colors text-[10px] shrink-0 inline-flex items-center gap-1.5 group"
-            >
-              <span>RERA Registered · TNRERA/11/BLG/0013/2026</span>
-              <span className="text-[#e1b258] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200">↗</span>
-            </a>
           </div>
         </div>
       </footer>
