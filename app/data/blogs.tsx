@@ -11,11 +11,11 @@ export interface BlogData {
 
 export const BLOGS_DATA: Record<string, BlogData> = {
   "4-bhk-villas-coimbatore": {
-    tag: "Guide",
+    tag: "Lifestyle",
     title: "4 BHK Luxury Villas in Coimbatore: A Complete Buyer’s Guide",
     excerpt: "Buying a villa is very different from choosing a conventional apartment. For most families, it is a long-term decision shaped by space, privacy, lifestyle, location and how the home can adapt to future needs.",
     time: "7",
-    img: "https://www.zenoravillas.in/img/street-view.jpg",
+    img: "/blogs/og 4bhk villas.png",
     content: (
       <>
         <AP>
@@ -235,7 +235,7 @@ export const BLOGS_DATA: Record<string, BlogData> = {
     title: "Villas Near Coimbatore Airport: What Homebuyers Should Look For",
     excerpt: "Location is one of the most important factors when choosing a premium home. While architecture, plot size, floor plans and amenities influence the buying decision, the location determines how conveniently the property fits into everyday life.",
     time: "8",
-    img: "https://www.zenoravillas.in/img/7-cent-side.jpg",
+    img: "/blogs/villa near airport.png",
     content: (
       <>
         <AP>
@@ -482,7 +482,7 @@ export const BLOGS_DATA: Record<string, BlogData> = {
     title: "Vastu Villas in Coimbatore: A Complete Buyer’s Guide",
     excerpt: "For many homebuyers, selecting a villa is not only about location, architecture or square footage. The way a home is oriented and planned can also play an important role in the buying decision.",
     time: "8",
-    img: "https://www.zenoravillas.in/img/amenities/meditation-centre.jpg",
+    img: "/blogs/vastu villas.png",
     content: (
       <>
         <AP>
@@ -689,7 +689,7 @@ export const BLOGS_DATA: Record<string, BlogData> = {
     title: "Luxury Villa Features: 12 Things That Define a Truly Premium Home",
     excerpt: "The word “luxury” is used extensively in real estate, but not every large home or expensive property necessarily delivers a true premium living experience.",
     time: "8",
-    img: "https://www.zenoravillas.in/img/aerial-view-club-hosue.jpg",
+    img: "/blogs/luxury villa features.png",
     content: (
       <>
         <AP>
@@ -877,7 +877,7 @@ export const BLOGS_DATA: Record<string, BlogData> = {
     title: "NRI Property Investment in Coimbatore: A Complete Buyer’s Guide",
     excerpt: "For many Non-Resident Indians, buying a home in India is about more than owning another property. It can represent a future residence, a home for parents, a base during visits to India or a long-term asset that keeps the family connected to its roots.",
     time: "8",
-    img: "https://www.zenoravillas.in/img/master-bedroom-view-1.jpg",
+    img: "/blogs/nri villas.png",
     content: (
       <>
         <AP>
@@ -1043,11 +1043,11 @@ export const BLOGS_DATA: Record<string, BlogData> = {
     )
   },
   "ready-vs-under-construction-villas": {
-    tag: "Market",
+    tag: "Investment",
     title: "Ready to Move Villas in Coimbatore: A Complete Buyer’s Guide",
     excerpt: "For many homebuyers, one of the biggest advantages of purchasing a completed home is certainty. Instead of imagining how a property may eventually look based on floor plans, brochures and renders, buyers can physically walk through the house, understand the actual room sizes, inspect the surroundings and experience the community before making a decision.",
     time: "8",
-    img: "https://www.zenoravillas.in/img/amenities/swimming-pool.jpg",
+    img: "/blogs/ready vs underconstruction.png",
     content: (
       <>
         <AP>
@@ -1218,11 +1218,11 @@ export const BLOGS_DATA: Record<string, BlogData> = {
     )
   },
   "plot-vs-built-up-vs-carpet-area": {
-    tag: "Guide",
+    tag: "Legal",
     title: "Plot Area vs Built-Up Area: A Complete Guide for Villa Buyers",
     excerpt: "When comparing villas, buyers frequently come across impressive numbers such as 3,500 sq. ft., 5,000 sq. ft. or even 10,000 sq. ft. But those numbers do not always represent the same thing.",
     time: "8",
-    img: "https://www.zenoravillas.in/img/street-view.jpg",
+    img: "/blogs/plot vs builtup.png",
     content: (
       <>
         <AP>
@@ -1396,11 +1396,11 @@ export const BLOGS_DATA: Record<string, BlogData> = {
     )
   },
   "villa-maintenance-costs": {
-    tag: "Guide",
+    tag: "Investment",
     title: "Villa Maintenance Costs: A Complete Guide for Homebuyers",
     excerpt: "Buying a villa is often associated with more space, privacy, outdoor areas and a premium lifestyle. However, the financial commitment does not end once the property is purchased.",
     time: "8",
-    img: "https://www.zenoravillas.in/img/7-cent-side.jpg",
+    img: "/blogs/maintanence cost.png",
     content: (
       <>
         <AP>
@@ -1579,7 +1579,7 @@ export const BLOGS_DATA: Record<string, BlogData> = {
     title: "Villas With Terrace in Coimbatore: A Complete Guide to Rooftop Living",
     excerpt: "A terrace was once treated mainly as a functional part of an Indian home. It was often used for drying clothes, placing water tanks or occasionally hosting family gatherings.",
     time: "8",
-    img: "https://www.zenoravillas.in/img/amenities/meditation-centre.jpg",
+    img: "/blogs/terrace villas.png",
     content: (
       <>
         <AP>
@@ -1765,11 +1765,11 @@ export const BLOGS_DATA: Record<string, BlogData> = {
     )
   },
   "villa-site-visit-checklist": {
-    tag: "Guide",
+    tag: "Legal",
     title: "Villa Site Visit Checklist: 25 Things to Check Before Buying a Villa",
     excerpt: "A site visit is one of the most important stages of buying a villa. Brochures, renders, floor plans and virtual tours can help you shortlist properties, but they cannot fully show how a home feels when you actually walk through it.",
     time: "8",
-    img: "https://www.zenoravillas.in/img/aerial-view-club-hosue.jpg",
+    img: "/blogs/villa checklist.png",
     content: (
       <>
         <AP>
@@ -1963,7 +1963,7 @@ export const BLOGS_DATA: Record<string, BlogData> = {
     title: "Villa vs Apartment: Which Is a Better Investment in Coimbatore?",
     excerpt: "Coimbatore's real estate market has grown steadily on the back of IT parks, textile and manufacturing wealth, strong NRI demand and improving infrastructure around Avinashi Road and the airport corridor. As the city expands outward along these growth corridors, buyers are increasingly weighing two very different asset types against each other: apartments and villas.",
     time: "7",
-    img: "https://www.zenoravillas.in/img/street-view.jpg",
+    img: "/blogs/villa vs apartment.png",
     content: (
       <>
         <AP>
@@ -2087,11 +2087,11 @@ export const BLOGS_DATA: Record<string, BlogData> = {
     )
   },
   "coimbatore-real-estate-market-outlook": {
-    tag: "Market Analysis",
+    tag: "Market",
     title: "Coimbatore Real Estate Market Outlook: Why Villas Are in Demand",
     excerpt: "Coimbatore has quietly become one of South India's most resilient real estate markets, supported by a diversified economy spanning textiles, engineering, manufacturing and a growing IT and services sector. Within this broader growth story, villas have emerged as one of the fastest-evolving segments. Here is what is driving that shift, and what it means for buyers evaluating the market today.",
     time: "6",
-    img: "https://www.zenoravillas.in/img/street-view.jpg",
+    img: "/blogs/market outlook.png",
     content: (
       <>
         <AP>
@@ -2193,11 +2193,11 @@ export const BLOGS_DATA: Record<string, BlogData> = {
     )
   },
   "smart-home-features-luxury-villas": {
-    tag: "Features",
+    tag: "Lifestyle",
     title: "Smart Home Features in Modern Luxury Villas",
     excerpt: "Luxury today is defined not only by space and finishes, but by how intelligently a home responds to the people living in it. Smart home technology has moved from a novelty to an expected feature in premium villa developments, and buyers increasingly evaluate this dimension alongside floor plans and amenities.",
     time: "6",
-    img: "https://www.zenoravillas.in/img/street-view.jpg",
+    img: "/blogs/smarthome.png",
     content: (
       <>
         <AP>
@@ -2302,11 +2302,11 @@ export const BLOGS_DATA: Record<string, BlogData> = {
     )
   },
   "villa-buying-mistakes-coimbatore": {
-    tag: "Guide",
+    tag: "Legal",
     title: "Common Mistakes to Avoid When Buying a Villa in Coimbatore",
     excerpt: "A villa purchase involves a significant amount of money, emotion and long-term commitment. Even experienced buyers can make avoidable mistakes when the process moves quickly or when excitement about a beautiful model villa overshadows practical due diligence. Here are the most common pitfalls to watch for.",
     time: "7",
-    img: "https://www.zenoravillas.in/img/street-view.jpg",
+    img: "/blogs/common villa buying mistakes.png",
     content: (
       <>
         <AP>
@@ -2418,11 +2418,11 @@ export const BLOGS_DATA: Record<string, BlogData> = {
     )
   },
   "3bhk-vs-4bhk-villas-coimbatore": {
-    tag: "Guide",
+    tag: "Lifestyle",
     title: "3 BHK vs 4 BHK Villas in Coimbatore: Which Should You Choose?",
     excerpt: "One of the first decisions villa buyers face is not location or amenities, but configuration: should you choose a 3 BHK or a 4 BHK villa? The right answer depends less on budget alone and more on how your family lives today, and how it is likely to evolve.",
     time: "6",
-    img: "https://www.zenoravillas.in/img/street-view.jpg",
+    img: "/blogs/3bhk vs 4bhk.png",
     content: (
       <>
         <AP>
@@ -2531,7 +2531,7 @@ export const BLOGS_DATA: Record<string, BlogData> = {
     title: "Villa Resale Value: What Makes a Villa Appreciate in Coimbatore",
     excerpt: "Every villa buyer eventually thinks about resale value, whether the purchase is for personal use or investment. While no one can predict the market with certainty, certain factors consistently separate villas that appreciate strongly from those that stagnate. Understanding these factors at the time of purchase can meaningfully influence your long-term returns.",
     time: "6",
-    img: "https://www.zenoravillas.in/img/street-view.jpg",
+    img: "/blogs/villa resale value.png",
     content: (
       <>
         <AP>
@@ -2638,11 +2638,11 @@ export const BLOGS_DATA: Record<string, BlogData> = {
     )
   },
   "legal-checklist-buying-villa-coimbatore": {
-    tag: "Guide",
+    tag: "Legal",
     title: "Legal Checklist & Documents Required to Buy a Villa in Coimbatore",
     excerpt: "A villa is one of the most significant purchases a family will make, and the legal due diligence involved deserves the same seriousness as the design, location and amenities. Buyers who skip this step often discover complications only after booking, when they are far more difficult and expensive to resolve. Here is a structured checklist to guide your verification process.",
     time: "7",
-    img: "https://www.zenoravillas.in/img/street-view.jpg",
+    img: "/blogs/legal checklist.png",
     content: (
       <>
         <AP>
@@ -2754,11 +2754,11 @@ export const BLOGS_DATA: Record<string, BlogData> = {
     )
   },
   "best-locations-buy-villa-coimbatore": {
-    tag: "Location",
+    tag: "Market",
     title: "Best Locations to Buy a Villa in Coimbatore (Goldwins & Beyond)",
     excerpt: "Coimbatore's growth has not been uniform across the city. Certain corridors have pulled ahead as preferred villa destinations because of infrastructure investment, airport connectivity, industrial and IT growth, and the presence of quality residential developments. For buyers evaluating where to invest, understanding these micro-markets is as important as evaluating the villa itself.",
     time: "6",
-    img: "https://www.zenoravillas.in/img/street-view.jpg",
+    img: "/blogs/best location to buy villa.png",
     content: (
       <>
         <AP>
@@ -2867,11 +2867,11 @@ export const BLOGS_DATA: Record<string, BlogData> = {
     )
   },
   "home-loan-for-villa-coimbatore": {
-    tag: "Guide",
+    tag: "Investment",
     title: "Home Loan for Villas in Coimbatore: A Complete Guide",
     excerpt: "Financing a villa involves a few more considerations than financing an apartment, largely because of the higher ticket size, the land component, and, in some cases, phased or under-construction disbursement. Understanding how villa home loans work can help you plan your purchase with confidence and avoid last-minute surprises.",
     time: "7",
-    img: "https://www.zenoravillas.in/img/street-view.jpg",
+    img: "/blogs/homeloan.png",
     content: (
       <>
         <AP>
@@ -2993,11 +2993,11 @@ export const BLOGS_DATA: Record<string, BlogData> = {
     )
   },
   "gated-community-villas-coimbatore": {
-    tag: "Guide",
+    tag: "Market",
     title: "Gated Community Villas in Coimbatore: Why Buyers Prefer Them",
     excerpt: "Standalone villas built on independent plots once represented the pinnacle of residential living. Today, an increasing number of Coimbatore homebuyers are choosing gated community villas instead, trading a purely independent plot for the combination of privacy, security, shared amenities and professional management.",
     time: "6",
-    img: "https://www.zenoravillas.in/img/street-view.jpg",
+    img: "/blogs/villa features.png",
     content: (
       <>
         <AP>

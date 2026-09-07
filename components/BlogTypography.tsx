@@ -5,21 +5,33 @@ import React from "react";
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const AHero = ({ tag, title, excerpt, time, img }: any) => (
-  <>
-    <div className="pt-8 pb-16 px-6 md:px-12 max-w-screen-xl mx-auto text-left">
-      <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-light italic text-[#28362b] leading-[1.1] mb-8">
-        {title}
-      </h1>
-      <p className="font-body text-base md:text-lg text-[#594433] leading-relaxed max-w-2xl">
-        {excerpt}
-      </p>
-      <div className="flex items-center justify-start gap-4 mt-8 font-body text-[10px] uppercase tracking-[2px] text-[#ab948a]">
-        <span>August 2026</span>
-        <span className="w-1 h-1 bg-[#ab948a]/40 rounded-full"></span>
-        <span>{time} min read</span>
-      </div>
+  <div className="pt-8 pb-12 px-6 md:px-12 max-w-screen-xl mx-auto text-left">
+    {tag && (
+      <span className="font-body text-[10px] uppercase tracking-[3px] text-[#e1b258] block mb-4">
+        {tag}
+      </span>
+    )}
+    <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-light italic text-[#28362b] leading-[1.1] mb-8">
+      {title}
+    </h1>
+    <p className="font-body text-base md:text-lg text-[#594433] leading-relaxed max-w-3xl">
+      {excerpt}
+    </p>
+    <div className="flex items-center justify-start gap-4 mt-6 font-body text-[10px] uppercase tracking-[2px] text-[#ab948a]">
+      <span>August 2026</span>
+      <span className="w-1 h-1 bg-[#ab948a]/40 rounded-full"></span>
+      <span>{time} min read</span>
     </div>
-  </>
+    {img && (
+      <div className="mt-10 rounded-2xl overflow-hidden border border-[#ab948a]/20 aspect-[16/9] max-h-[560px] w-full bg-[#162338] shadow-sm">
+        <img
+          src={img}
+          alt={title}
+          className="w-full h-full object-cover"
+        />
+      </div>
+    )}
+  </div>
 );
 
 export const AH2 = ({ children }: any) => (

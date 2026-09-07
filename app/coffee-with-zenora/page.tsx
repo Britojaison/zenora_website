@@ -6,10 +6,22 @@ import CoffeeContent from "./CoffeeContent";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Coffee with Zenora | Exclusive VIP Experience",
-  description: "An intimate evening designed for families who are seriously considering Zenora.",
+  title: "Coffee with Zenora | Exclusive Luxury Villa Experience",
+  description:
+    "Discover Coffee with Zenora, an exclusive luxury villa experience in Coimbatore with private villa walkthroughs, fine dining and curated hospitality.",
   alternates: {
     canonical: "https://www.zenoravillas.in/coffee-with-zenora",
+  },
+  openGraph: {
+    title: "Coffee with Zenora | Exclusive Luxury Villa Experience",
+    description:
+      "Discover Coffee with Zenora, an exclusive luxury villa experience in Coimbatore with private villa walkthroughs, fine dining and curated hospitality.",
+    url: "https://www.zenoravillas.in/coffee-with-zenora",
+  },
+  twitter: {
+    title: "Coffee with Zenora | Exclusive Luxury Villa Experience",
+    description:
+      "Discover Coffee with Zenora, an exclusive luxury villa experience in Coimbatore with private villa walkthroughs, fine dining and curated hospitality.",
   },
 };
 

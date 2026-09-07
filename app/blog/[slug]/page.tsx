@@ -20,11 +20,25 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const data = BLOGS_DATA[slug];
   if (!data) return {};
   
+  const imageUrl = data.img ? `https://www.zenoravillas.in${encodeURI(data.img)}` : undefined;
+
   return {
     title: `${data.title} | Zenora`,
     description: data.excerpt,
     alternates: {
       canonical: `https://www.zenoravillas.in/blog/${slug}`,
+    },
+    openGraph: {
+      title: `${data.title} | Zenora`,
+      description: data.excerpt,
+      url: `https://www.zenoravillas.in/blog/${slug}`,
+      ...(imageUrl ? { images: [{ url: imageUrl, width: 1200, height: 675, alt: data.title }] } : {}),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${data.title} | Zenora`,
+      description: data.excerpt,
+      ...(imageUrl ? { images: [imageUrl] } : {}),
     },
   };
 }
