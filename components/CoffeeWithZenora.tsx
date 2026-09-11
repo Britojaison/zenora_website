@@ -191,14 +191,14 @@ export default function CoffeeWithZenora() {
           </p>
 
           {/* Heading */}
-          <h2
+          <h1
             className={`font-display text-[clamp(2rem,5vw,4rem)] text-[#e1d5c9] text-center leading-[1.15] mb-8 transition-all duration-700 delay-400 ${isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-6"
               }`}
           >
             Exclusive Dinner with Zenora
-          </h2>
+          </h1>
 
           {/* Description */}
           <div
